@@ -1,0 +1,238 @@
+.scene-start {
+  height: 100%;
+  width: 100%;
+  padding: 20px 0;
+  box-sizing: border-box;
+
+  .scene-start__header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    width: 100%;
+    position: relative;
+
+    img {
+      height: 100%;
+    }
+
+    // CUSTOM BLINK 
+    img.blink {
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      transform: translate(-50%, -50%);
+
+      &.blink1-0 {
+        left: 10%;
+        bottom: -2%;
+      }
+
+      &.blink2-0 {
+        right: 5%;
+        bottom: -24%;
+      }
+
+      &.blink1-1 {
+        left: 10%;
+        bottom: -10%;
+      }
+
+      &.blink2-1 {
+        top: 50%;
+        right: 5%;
+      }
+
+      &.blink1-2 {
+        left: 10%;
+        bottom: -2%;
+      }
+
+      &.blink2-2 {
+        right: 5%;
+        bottom: -24%;
+      }
+
+      &.blink1-3 {
+        left: 10%;
+        bottom: -10%;
+      }
+
+      &.blink2-3 {
+        top: 50%;
+        right: 5%;
+      }
+
+      &.blink1-4 {
+        left: 10%;
+        bottom: -2%;
+      }
+
+      &.blink2-4 {
+        right: 5%;
+        bottom: -24%;
+      }
+    }
+  }
+
+  // Container 
+  .scene-start__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80%;
+    padding: 15px 15px 0 15px;
+    width: 100%;
+    position: relative;
+    box-sizing: border-box;
+
+    .scene-start__container__img {
+      height: 70%;
+      width: 100%;
+      position: relative;
+      background-position: bottom;
+      background-size: contain;
+      background-repeat: no-repeat;
+
+      img {
+        bottom: 2px;
+        width: 102%;
+        max-height: 100%;
+        left: -13px;
+        position: absolute;
+        object-fit: contain;
+      }
+
+      img.bear4 {
+        bottom: 2px;
+        width: 105%;
+        max-height: 100%;
+        right: -13px;
+        left: auto;
+        position: absolute;
+        object-fit: contain;
+      }
+
+      img.cloud {
+        position: absolute;
+      }
+
+      img.cloud1 {
+        max-width: 105px;
+
+        &.cloud1-0 {
+          top: 25%;
+          left: 0%;
+        }
+
+        &.cloud1-1 {
+          top: 30%;
+          left: 0%;
+        }
+
+        &.cloud1-2 {
+          top: 25%;
+          left: 0%;
+        }
+
+        &.cloud1-3 {
+          top: 30%;
+          left: 30%;
+        }
+
+        &.cloud1-4 {
+          top: 25%;
+          left: 0%;
+        }
+      }
+
+      img.cloud2 {
+        max-width: 85px;
+
+        &.cloud2-0 {
+          top: 40%;
+          left: auto;
+          right: -4%;
+        }
+
+        &.cloud2-1 {
+          top: 25%;
+          left: auto;
+          right: 0%;
+        }
+
+        &.cloud2-2 {
+          top: 40%;
+          left: auto;
+          right: -4%;
+        }
+
+        &.cloud2-3 {
+          top: 25%;
+          left: auto;
+          right: 0%;
+        }
+
+        &.cloud2-4 {
+          top: 40%;
+          left: auto;
+          right: -4%;
+        }
+      }
+    }
+
+    .scene-start__container__btn {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      padding-top: 15px;
+      position: relative;
+      margin-bottom: 15px;
+      gap: 20px;
+
+      a {
+        width: 50%;
+        cursor: pointer;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+
+      }
+    }
+
+    .scene-start__container__footer {
+      height: 15%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      max-height: 55px;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}

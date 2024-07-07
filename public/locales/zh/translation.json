@@ -1,0 +1,70 @@
+{
+  "event_open_time": "活動開發時段",
+  "open_countdown": "開放倒數",
+  "mode_open": "模式\n開放中",
+  "info": "説明",
+  "organizer": "主辦單位",
+  "countdown": "倒數計時",
+  "modal-close": "返回首頁",
+  "mode1": "圖像煙花",
+  "mode2": "塗鴉繪畫",
+  "mode3": "文字留言",
+  "mode_close": "體驗時間已結束",
+
+  "scene02": {
+    "title": "高雄亞灣5G AIoT",
+    "subtitle": "水幕互動展演",
+    "description": "璀璨的水幕投影秀照亮大港橋，\n我們邀請您共同成為這場光彩的一部分。",
+    "mode01_title": "圖像煙花",
+    "mode01_description": "發射你喜歡的煙火圖像",
+    "mode02_title": "塗鴉繪畫",
+    "mode02_description": "在畫版揮灑你的創意",
+    "mode03_title": "文字留言",
+    "mode03_description": "留下深藏心底的話語"
+  },
+
+  "scene03_mode1": {
+    "title": "選取圖像",
+    "subtitle": "圖像煙花",
+    "info_modal_title": "圖像煙花",
+    "info_modal_intro": "體驗說明",
+    "info_modal_content": "一起讓煙花在大港橋的夜色綻放！\n請選擇你最喜歡的煙火圖像，確認後向上滑動，你的煙火將即時在水幕上綻放。\n和大家一起參與，照亮大港橋的夜晚，\n享受歡慶的氛圍吧！",
+    "info_modal_start": "開始體驗",
+    "info_modal_join": "開始體驗",
+    "info_modal_swipeUp": "向上滑動"
+  },
+
+  "scene03_mode2": {
+    "title": "塗鴉繪畫",
+    "subtitle": "塗鴉繪畫",
+    "info_modal_title": "塗鴉繪畫",
+    "info_modal_intro": "體驗說明",
+    "info_modal_content": "讓創意在水幕夜空中閃耀！\n請先選擇你想要繪畫的位置，然後挑選喜歡的筆刷，開始在畫框內創作吧！\n每一筆畫都會即時投影在水幕上。準備好大展身手了嗎？讓我們一起創造難忘的夜晚！",
+    "info_modal_start": "開始體驗",
+    "info_modal_join": "開始體驗",
+    "info_modal_swipeUp": "塗鴉繪畫",
+    "left": "左",
+    "right": "右",
+    "center": "中"
+  },
+
+  "scene03_mode3": {
+    "title": "文字留言",
+    "subtitle": "文字留言",
+    "info_modal_title": "文字留言",
+    "info_modal_intro": "體驗說明",
+    "info_modal_content": "平常有什麼想說的話沒有說出口嗎？\n在選單中找到你想說話的對象以及句子來表達你的想法吧！\n完成送出後，你的話語將在文字展演中出現，和大家一起在大港橋留下美好的回憶。",
+    "info_modal_start": "開始體驗",
+    "info_modal_join": "開始體驗",
+    "info_modal_swipeUp": "文字留言",
+    "choose": "選擇選項",
+    "choose_title": "請選擇你的稱呼",
+    "choose_to": "想對",
+    "choose_say": "說",
+    "choose_send": "完成送出",
+    "send_title1": "您的圖像煙花已成功送出!",
+    "send_title3": "您的留言已成功送出!",
+    "send_content1": "於 ",
+    "send_content2": " 秒後返回首頁"
+  }
+}

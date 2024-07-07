@@ -1,0 +1,73 @@
+{
+  "event_open_time": "Event Open Time",
+  "open_countdown": "Opens in",
+  "mode_open": "Now\nOpen",
+  "info": "Info",
+  "organizer": "Organizer",
+  "countdown": "Ends in",
+  "modal-close": "Back to Home",
+  "mode1": "Fireworks",
+  "mode2": "Drawing",
+  "mode3": "Messages",
+  "mode_close": "Experience Time Ended",
+
+  "scene02": {
+    "title": "Asia Bay 5G AIoT ",
+    "subtitle": "Water Screen Interactive Show",
+    "description": "Experience the dazzling water screen\n projection show at the Great Harbor Bridge.\n Join us for this spectacular event!",
+    "mode01_title": "Fireworks",
+    "mode01_description": "Select an icon to light up the sky!",
+    "mode02_title": "Drawing",
+    "mode02_description": "Draw to express your creativity!",
+    "mode03_title": "Messages",
+    "mode03_description": "Share your heartfelt thoughts."
+  },
+
+  "scene03_mode1": {
+    "title": "Select Icon",
+    "subtitle": "Fireworks",
+    "countdown": "Ends in",
+    "info_modal_title": "Firework",
+    "info_modal_intro": "Instructions",
+    "info_modal_content": "Light up the night at the Great Harbor Bridge! Choose your favorite firework, confirm, and swipe up. Your firework will appear on the water screen instantly.\nJoin us and enjoy the festive atmosphere!",
+    "info_modal_start": "Starts in",
+    "info_modal_join": "JOIN NOW",
+    "info_modal_swipeUp": "Swipe Up"
+  },
+
+  "scene03_mode2": {
+    "title": "Drawing",
+    "subtitle": "Drawing",
+    "countdown": "Ends in",
+    "info_modal_title": "Drawing",
+    "info_modal_intro": "Instructions",
+    "info_modal_content": "Let your creativity shine!\nChoose the drawing area, pick a brush, and start creating. Your art will instantly appear on the water screen. Ready to impress?\nLet's make an unforgettable night!",
+    "info_modal_start": "Starts in",
+    "info_modal_join": "JOIN NOW",
+    "info_modal_swipeUp": "Drawing",
+    "left": "LEFT",
+    "right": "RIGHT",
+    "center": "CENTER"
+  },
+
+  "scene03_mode3": {
+    "title": "Messages",
+    "subtitle": "Messages",
+    "countdown": "Ends in",
+    "info_modal_title": "Messages",
+    "info_modal_intro": "Instructions",
+    "info_modal_content": "Have something you've been wanting to say? Choose a subject and a message from the lists to express your thoughts! Your message will appear on the water screen, creating memories at the Great Harbor Bridge.",
+    "info_modal_start": "Starts in",
+    "info_modal_join": "JOIN NOW",
+    "info_modal_swipeUp": "Messages",
+    "choose": "Choose an option",
+    "choose_title": "Please select your title",
+    "choose_to": "wants to say to",
+    "choose_say": "your messages",
+    "choose_send": "Send",
+    "send_title1": "Your firework image has been sent!",
+    "send_title3": "Your message has been sent!",
+    "send_content1": "Returning to the homepage in ",
+    "send_content2": " seconds."
+  }
+}

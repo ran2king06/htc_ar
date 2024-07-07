@@ -1,0 +1,60 @@
+.scene-intro {
+  height: 100%;
+  width: 100%;
+  padding: 20px 0;
+  box-sizing: border-box;
+
+  header {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    color: black;
+
+    .header-right {
+      display: flex;
+      gap: 10px;
+    }
+
+    img {
+      height: 45px;
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    gap: 20px;
+    position: fixed;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  footer {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    gap: 15px;
+
+    span {
+      font-size: 8px;
+      margin-right: 20px;
+    }
+
+    img {}
+  }
+}
