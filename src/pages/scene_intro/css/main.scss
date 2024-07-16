@@ -1,11 +1,11 @@
 .scene-intro {
   height: 100%;
   width: 100%;
-  padding: 20px 0;
   box-sizing: border-box;
+  position: relative;
 
   header {
-    position: fixed;
+    position: absolute;
     top: 20px;
     left: 0;
     width: 90%;

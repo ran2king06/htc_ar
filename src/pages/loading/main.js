@@ -1,7 +1,9 @@
+import LoadingImg from './img/loading.png';
+
 const Loading = () => {
   return (
-    <div>
-      <h1>Loading...</h1>
+    <div className="loading-bg">
+      <img src={LoadingImg} alt="Loading" />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import Loading from './../loading/main';
 import Bear1 from './img/bear1.png';
 import Bear2 from './img/bear2.png';
 import Bear3 from './img/bear3.png';
@@ -33,45 +34,45 @@ const Scene_Start = () => {
   const [dynamicLocation, setDynamicLocation] = React.useState(Location1);
 
   const [uiShowBear, setUiShowBear] = React.useState(Bear1);
-  const [chooseMode, setChooseMode] = React.useState(0);
+  const [chooseMode, setChooseMode] = React.useState(null);
 
-  // 取得 ULR QUERY STRING
+  // 取得 URL QUERY STRING
 
   React.useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const ar = urlParams.get('ar');
+    const ar = urlParams.get('location');
     if (ar) {
       setChooseMode(parseInt(ar));
     }
     console.log(chooseMode);
 
     switch (chooseMode) {
-      case 0:
+      case 1:
         setDynamicBGColor('#D1D8EE');
         setDynamicBG(StartBG1);
         setDynamicLocation(Location1);
         setUiShowBear(Bear1);
         break;
-      case 1:
+      case 2:
         setDynamicBGColor('#FFE8F0');
         setDynamicBG(StartBG2);
         setDynamicLocation(Location2);
         setUiShowBear(Bear2);
         break;
-      case 2:
+      case 3:
         setDynamicBGColor('#D2FFFF');
         setDynamicBG(StartBG3);
         setDynamicLocation(Location3);
         setUiShowBear(Bear3);
         break;
-      case 3:
+      case 4:
         setDynamicBGColor('#FFD8D8');
         setDynamicBG(StartBG4);
         setDynamicLocation(Location4);
         setUiShowBear(Bear4);
         break;
-      case 4:
+      case 5:
         setDynamicBGColor('#FBE3D2');
         setDynamicBG(StartBG5);
         setDynamicLocation(Location5);
@@ -94,34 +95,43 @@ const Scene_Start = () => {
   }
 
   return (
-    <div className='scene-start' style={{ backgroundColor: `${dynamicBGColor}` }}>
-      <div className='scene-start__header'>
-        <img src={StartTitle} alt='AR Start' />
-        {/* BLINK */}
-        <img src={Blink} alt='Blink' className={`blink blink1-${chooseMode}`} />
-        <img src={Blink} alt='Blink' className={`blink blink2-${chooseMode}`} />
-      </div>
-      <div className='scene-start__container'>
-        <div className='scene-start__container__img' style={{ backgroundImage: `url(${dynamicBG})` }}>
-          {/* BEAR */}
-          <img src={uiShowBear} alt='Bear' className={`bear bear${chooseMode}`} />
-          {/* CLOUD */}
-          <img src={Cloud1} alt='Cloud 1' className={`cloud cloud1 cloud1-${chooseMode}`} />
-          <img src={Cloud2} alt='Cloud 2' className={`cloud cloud2 cloud2-${chooseMode}`} />
-        </div>
-        <div className='scene-start__container__btn'>
-          <Link to={`/intro?ar=${chooseMode}`} onClick={() => chooseLanguage('en', chooseMode)}>
-            <img src={BtnEn} alt='English' />
-          </Link>
-          <Link to={`/intro?ar=${chooseMode}`} onClick={() => chooseLanguage('zh', chooseMode)}>
-            <img src={BtnZn} alt='Chinese' />
-          </Link>
-        </div>
-        <div className='scene-start__container__footer'>
-          <img src={dynamicLocation} alt='Location' />
-        </div>
-      </div>
-    </div>
+    <>
+      {
+        !chooseMode ? <Loading /> :
+
+          <div className='scene-start' style={{ backgroundColor: `${dynamicBGColor}` }}>
+            <div className='scene-start__header'>
+              <img src={StartTitle} alt='AR Start' />
+              {/* BLINK */}
+              <img src={Blink} alt='Blink' className={`blink blink1-${chooseMode}`} />
+              <img src={Blink} alt='Blink' className={`blink blink2-${chooseMode}`} />
+            </div>
+            <div className='scene-start__container'>
+              <div className='scene-start__container__img'>
+                {/* BG */}
+                <img src={dynamicBG} alt='BG' className={`bg-img`} />
+
+                {/* BEAR */}
+                <img src={uiShowBear} alt='Bear' className={`bear bear${chooseMode}`} />
+                {/* CLOUD */}
+                <img src={Cloud1} alt='Cloud 1' className={`cloud cloud1 cloud1-${chooseMode}`} />
+                <img src={Cloud2} alt='Cloud 2' className={`cloud cloud2 cloud2-${chooseMode}`} />
+              </div>
+              <div className='scene-start__container__btn'>
+                <Link to={`/intro?ar=${chooseMode}`} onClick={() => chooseLanguage('en', chooseMode)}>
+                  <img src={BtnEn} alt='English' />
+                </Link>
+                <Link to={`/intro?ar=${chooseMode}`} onClick={() => chooseLanguage('zh', chooseMode)}>
+                  <img src={BtnZn} alt='Chinese' />
+                </Link>
+              </div>
+              <div className='scene-start__container__footer'>
+                <img src={dynamicLocation} alt='Location' />
+              </div>
+            </div>
+          </div>
+      }
+    </>
   );
 }
 
