@@ -35,7 +35,7 @@ const ImagePreloader = ({ srcArray, loadStatus }) => {
   }, [srcArray]);
 
   return (
-    <div>
+    <div style={{ display: 'none' }}>
       {loadedStatus.every(status => status) ? (
         srcArray.map((src, index) => <img key={index} src={src} alt={`Image ${index}`} />)
       ) : (
