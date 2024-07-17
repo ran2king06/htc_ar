@@ -117,8 +117,10 @@
 
 
           .swiper-body-text {
-            padding: 20px;
+            margin: 20px;
             text-align: left;
+            overflow: auto;
+            max-height: 150px;
 
             h4 {
               font-size: 15px;
@@ -133,8 +135,6 @@
               font-size: 13px;
               line-height: 1.5;
               text-align: left;
-              max-height: 100px;
-              overflow: auto;
               margin-bottom: 0;
             }
           }
