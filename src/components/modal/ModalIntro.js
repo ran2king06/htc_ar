@@ -13,9 +13,8 @@ const ModalIntro = (props) => {
       {
         props.modalIsOpen ? (
           // Modal Mask
-          <div className="modal-mask">
+          <div className="modal-mask modal-intro-custom">
             <div className="modal-intro">
-              <span className="close" onClick={props.closeModal}>&times;</span>
               <div className="modal-content">
                 <div className="modal-header">
                   <h2>
@@ -26,7 +25,8 @@ const ModalIntro = (props) => {
                     共 5 個AR導覽體驗點等你來探索！<br />
                     和高雄熊一起逛逛港區，完成任務即可獲得<br />
                     獎章，蒐集齊全就有機會兌換限定好禮！
-                  </p>              </div>
+                  </p>
+                </div>
                 <div className="modal-body">
                   <section>
                     <span>

@@ -1,3 +1,5 @@
+import React from 'react';
+
 import LoadingImg from './img/loading.png';
 
 const Loading = () => {

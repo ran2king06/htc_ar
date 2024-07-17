@@ -18,6 +18,10 @@
     .header-right {
       display: flex;
       gap: 10px;
+
+      button {
+        padding: 0;
+      }
     }
 
     img {
@@ -30,7 +34,6 @@
     justify-content: center;
     align-items: flex-end;
     width: 100%;
-    gap: 20px;
     position: fixed;
     bottom: 5%;
     left: 50%;
@@ -55,6 +58,8 @@
       margin-right: 20px;
     }
 
-    img {}
+    img {
+      max-height: 30px;
+    }
   }
 }

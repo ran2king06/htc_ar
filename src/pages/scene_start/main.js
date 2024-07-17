@@ -28,7 +28,7 @@ import Location5 from './img/location/5.png';
 import StartTitle from './img/title.png';
 
 const Scene_Start = () => {
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
   const [dynamicBG, setDynamicBG] = React.useState(StartBG1);
   const [dynamicBGColor, setDynamicBGColor] = React.useState('#FFD8D8');
   const [dynamicLocation, setDynamicLocation] = React.useState(Location1);
@@ -45,7 +45,6 @@ const Scene_Start = () => {
     if (ar) {
       setChooseMode(parseInt(ar));
     }
-    console.log(chooseMode);
 
     switch (chooseMode) {
       case 1:
@@ -90,8 +89,6 @@ const Scene_Start = () => {
   const chooseLanguage = (lng, mode) => {
     localStorage.setItem('i18nextLng_htc_ar', lng);
     i18n.changeLanguage(lng);
-
-    console.log('chooseLanguage', lng, mode);
   }
 
   return (
@@ -110,7 +107,6 @@ const Scene_Start = () => {
               <div className='scene-start__container__img'>
                 {/* BG */}
                 <img src={dynamicBG} alt='BG' className={`bg-img`} />
-
                 {/* BEAR */}
                 <img src={uiShowBear} alt='Bear' className={`bear bear${chooseMode}`} />
                 {/* CLOUD */}
@@ -118,10 +114,10 @@ const Scene_Start = () => {
                 <img src={Cloud2} alt='Cloud 2' className={`cloud cloud2 cloud2-${chooseMode}`} />
               </div>
               <div className='scene-start__container__btn'>
-                <Link to={`/intro?ar=${chooseMode}`} onClick={() => chooseLanguage('en', chooseMode)}>
+                <Link to={`/intro?mode=${chooseMode}`} onClick={() => chooseLanguage('en', chooseMode)}>
                   <img src={BtnEn} alt='English' />
                 </Link>
-                <Link to={`/intro?ar=${chooseMode}`} onClick={() => chooseLanguage('zh', chooseMode)}>
+                <Link to={`/intro?mode=${chooseMode}`} onClick={() => chooseLanguage('zh', chooseMode)}>
                   <img src={BtnZn} alt='Chinese' />
                 </Link>
               </div>
