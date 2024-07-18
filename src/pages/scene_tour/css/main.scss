@@ -1,0 +1,167 @@
+.scene-tour {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  background: linear-gradient(180deg, #FCFDFF 0%, #60D9FF 53%);
+  overflow: auto;
+
+  header {
+    position: fixed;
+    top: 20px;
+    left: 0;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    color: black;
+
+    h1 {
+      font-size: 22px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-right {
+      display: flex;
+      gap: 10px;
+
+      button {
+        padding: 0;
+      }
+    }
+
+    img {
+      height: 45px;
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    position: fixed;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  footer {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    gap: 15px;
+
+    span {
+      font-size: 8px;
+      margin-right: 20px;
+    }
+
+    img {
+      max-height: 30px;
+    }
+  }
+
+  .tour-container {
+    top: 85px;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    padding-bottom: 20px;
+  }
+
+  section.tour-map {
+    width: 100%;
+    display: flex;
+    position: relative;
+    border-radius: 10px;
+    border: 2px solid #000;
+    overflow: hidden;
+    padding: 10px;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+
+    span {
+      border-radius: 9px;
+      padding: 10px 20px;
+      color: #000;
+      font-size: 18px;
+      border: 1.5px solid #000;
+      font-weight: 700;
+      background-color: #BDBDBD;
+
+      &.placeA.active {
+        background-color: #59C0E0;
+      }
+
+      &.placeB.active {
+        background-color: #9E9FCE;
+      }
+
+      &.placeC.active {
+        background-color: #FFB5CD;
+      }
+
+      &.placeD.active {
+        background-color: #F29669;
+      }
+
+      &.placeE.active {
+        background-color: #9ADF6F;
+      }
+    }
+
+    .tour-map-box {
+      position: relative;
+
+      button {
+        max-width: 45px;
+        max-height: 45px;
+        position: absolute;
+        right: 17px;
+        bottom: 20px;
+        padding: 0;
+        box-sizing: content-box;
+      }
+    }
+  }
+
+  section.tour-content {
+    width: 100%;
+    position: sticky;
+    border-radius: 10px;
+    border: 2px solid #000;
+    margin-bottom: 10px;
+    background-color: #fff;
+    color: #000;
+    padding: 15px 25px;
+
+    h2 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+
+    }
+
+    p {
+      font-size: 16px;
+      line-height: 1.5;
+      text-align: left;
+      margin-bottom: 0;
+    }
+  }
+}

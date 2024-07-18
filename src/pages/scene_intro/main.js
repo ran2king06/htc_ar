@@ -3,23 +3,23 @@ import './css/main.scss';
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+import BtnBack from './../../assets/img/btn/btn-back.png';
+import BtnNotify from './../../assets/img/btn/btn-notify.png';
+import BtnQa from './../../assets/img/btn/btn-qa.png';
+import BtnCollect from './../../assets/img/btn/collect.png';
+import BtnIntro from './../../assets/img/btn/intro.png';
+import BtnStart from './../../assets/img/btn/start.png';
 import LogoA from './../../assets/img/logo/logo-a.png';
 import LogoB from './../../assets/img/logo/logo-b.png';
 import LogoC from './../../assets/img/logo/logo-c.png';
 import ModalIntro from './../../components/modal/ModalIntro';
 import ModalNews from './../../components/modal/ModalNews';
-import BtnBack from './img/btn/btn-back.png';
-import BtnNotify from './img/btn/btn-notify.png';
-import BtnQa from './img/btn/btn-qa.png';
-import BtnCollect from './img/btn/collect.png';
-import BtnIntro from './img/btn/intro.png';
-import BtnStart from './img/btn/start.png';
 
 
 const Scene_Intro = () => {
   const navigate = useNavigate();
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [modalNewsIsOpen, setIsOpenNews] = React.useState(true);
+  const [modalNewsIsOpen, setIsOpenNews] = React.useState(null);
   const [modeStart, setModeStart] = React.useState('');
 
   function openNewsModal() {
@@ -49,7 +49,7 @@ const Scene_Intro = () => {
   }
 
   const goToTour = () => {
-    navigate('/tour');
+    navigate('/tour' + modeStart);
   };
 
   useEffect(() => {
@@ -57,7 +57,14 @@ const Scene_Intro = () => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const mode = urlParams.get('mode');
-    setModeStart('/?location=' + mode);
+    const newsModal = urlParams.get('newsModal');
+    if (newsModal === 'false') {
+      setIsOpenNews(false);
+    } else {
+      setIsOpenNews(true);
+    }
+
+    setModeStart('/?mode=' + mode);
   }, []);
 
   return (

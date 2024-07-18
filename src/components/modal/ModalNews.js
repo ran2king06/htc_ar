@@ -31,6 +31,27 @@ const ModalNews = (props) => {
         prevEl: '.swiper-button-prev',
       },
     });
+
+
+    // If swiper-body-text scrolling, stop swiper autoplay
+    const swiperBodyText = document.querySelectorAll('.swiper-body-text');
+    swiperBodyText.forEach((element) => {
+      element.addEventListener('mouseenter', () => {
+        swiper.autoplay.stop();
+      });
+      element.addEventListener('mouseleave', () => {
+        swiper.autoplay.start();
+      });
+
+      element.addEventListener('touchstart', () => {
+        swiper.autoplay.stop();
+      });
+      element.addEventListener('touchend', () => {
+        swiper.autoplay.start();
+      });
+    });
+
+
   }, [props.modalIsOpen]);
 
   return (

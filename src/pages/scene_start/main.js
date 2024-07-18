@@ -41,7 +41,7 @@ const Scene_Start = () => {
   React.useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const ar = urlParams.get('location');
+    const ar = urlParams.get('mode');
     if (ar) {
       setChooseMode(parseInt(ar));
     }
