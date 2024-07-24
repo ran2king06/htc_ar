@@ -46,7 +46,7 @@ const SceneTour = () => {
         break;
       case 1:
         setMapChoose(MapB);
-        setBgColor('#D1D8E');
+        setBgColor('#D1D8EE');
         break;
       case 2:
         setMapChoose(MapC);

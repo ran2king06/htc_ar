@@ -1,0 +1,237 @@
+.scene-collection {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  position: fixed;
+  background: linear-gradient(180deg, #FCFDFF 0%, #60D9FF 53%);
+  overflow: auto;
+  max-width: 480px;
+
+  header {
+    position: absolute;
+    top: 20px;
+    left: 0;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: black;
+
+    .header-right {
+      display: flex;
+      gap: 10px;
+
+      button {
+        padding: 0;
+      }
+    }
+
+    img {
+      height: 45px;
+    }
+  }
+
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    width: 100%;
+    position: fixed;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  footer {
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    gap: 15px;
+
+    span {
+      font-size: 8px;
+      margin-right: 20px;
+    }
+
+    img {
+      max-height: 30px;
+    }
+  }
+
+  .scene-collection-top {
+    margin-top: 85px;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    background-color: #fff;
+    border-radius: 10px;
+    color: #000;
+    padding: 10px 0;
+    border: 2px solid #000;
+    margin-bottom: 20px;
+
+    .top-title {
+      font-size: 18px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      gap: 10px;
+
+      span {
+        font-size: 24px;
+      }
+
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    button {
+      img {
+        height: 35px;
+      }
+    }
+  }
+
+  section.scene-collection-section {
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    position: relative;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #000;
+    margin-bottom: 20px;
+
+    &.section-first {
+      background-color: #59C0E0;
+
+      .collection-box {
+        &.complete {
+          background-color: #D2FFFF;
+        }
+      }
+    }
+
+    &.section-second {
+      background-color: #9E9FCE;
+
+      .collection-box {
+        &.complete {
+          background-color: #D1D8EE;
+        }
+      }
+    }
+
+    &.section-third {
+      background-color: #EBB5CD;
+
+      .collection-box {
+        &.complete {
+          background-color: #EAEAEA;
+        }
+      }
+    }
+
+    &.section-forth {
+      background-color: #F29669;
+
+      .collection-box {
+        &.complete {
+          background-color: #FBE3D2;
+        }
+      }
+    }
+
+    &.section-fifth {
+      background-color: #9ADF6F;
+
+      .collection-box {
+        &.complete {
+          background-color: #FFFFD1;
+        }
+      }
+    }
+
+    .box-title {
+      position: absolute;
+      height: 55px;
+      top: 10px;
+      left: -8.5px;
+
+      img {
+        height: 100%;
+      }
+
+      span {
+        font-size: 18px;
+        position: absolute;
+        top: 60%;
+        left: 45%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+      }
+    }
+
+    img.bear-img {
+      display: block;
+      margin: 0 0 0 auto;
+      max-width: 120px;
+    }
+
+    .collection-box {
+      background-color: #EAEAEA;
+      border-radius: 10px;
+      padding: 15px 20px;
+      margin-bottom: 5px;
+      border: 2px solid #000;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+
+      .box-metal {
+        width: 60px;
+        position: relative;
+
+        img.box-iconPrize {
+          width: 100%;
+          height: auto;
+        }
+
+        img.box-iconNew {
+          width: 25px;
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+      }
+
+      span {
+        font-size: 18px;
+      }
+
+      .box-complete {
+        width: 80px;
+
+      }
+
+      button {
+        width: 80px;
+      }
+    }
+  }
+}
