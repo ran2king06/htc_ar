@@ -7,6 +7,7 @@ import i18n from './i18n';
 import ImagePreloader from './imageLoaded';
 import imageSources from './imageSources';
 import Loading from './pages/loading/main';
+import SceneCollection from './pages/scene_collection/main';
 import SceneIntro from './pages/scene_intro/main';
 import SceneStart from './pages/scene_start/main';
 import SceneTour from './pages/scene_tour/main';
@@ -31,6 +32,7 @@ function App() {
             <Route path="/" element={<SceneStart />} />
             <Route path="/intro" element={<SceneIntro />} />
             <Route path="/tour" element={<SceneTour />} />
+            <Route path="/collection" element={<SceneCollection />} />
           </Routes>
         </Router>
       </div>

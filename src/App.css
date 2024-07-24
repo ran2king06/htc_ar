@@ -43,3 +43,38 @@ img {
   max-width: 100%;
   box-sizing: content-box;
 }
+
+footer {
+  position: fixed;
+  z-index: 0;
+  bottom: 10px;
+  left: 0;
+  width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  gap: 15px;
+  max-width: 480px;
+
+  span {
+    font-size: 8px;
+    margin-right: 20px;
+  }
+
+  img {
+    max-height: 30px;
+    mix-blend-mode: multiply;
+  }
+}
+
+button.back-to-top {
+  max-width: 50px;
+  margin: 0 0 25px 0;
+
+  img {
+    width: 100%;
+  }
+}

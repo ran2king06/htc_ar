@@ -9,9 +9,7 @@ import BtnQa from './../../assets/img/btn/btn-qa.png';
 import BtnCollect from './../../assets/img/btn/collect.png';
 import BtnIntro from './../../assets/img/btn/intro.png';
 import BtnStart from './../../assets/img/btn/start.png';
-import LogoA from './../../assets/img/logo/logo-a.png';
-import LogoB from './../../assets/img/logo/logo-b.png';
-import LogoC from './../../assets/img/logo/logo-c.png';
+import Footer from './../../components/footer';
 import ModalIntro from './../../components/modal/ModalIntro';
 import ModalNews from './../../components/modal/ModalNews';
 
@@ -52,6 +50,10 @@ const Scene_Intro = () => {
     navigate('/tour' + modeStart);
   };
 
+  const goToCollection = () => {
+    navigate('/collection' + modeStart)
+  };
+
   useEffect(() => {
     // 取得 param query
     const queryString = window.location.search;
@@ -88,23 +90,16 @@ const Scene_Intro = () => {
         <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToTour}>
           <img src={BtnIntro} alt="Intro" />
         </button>
-        <button style={{ width: '35%', maxWidth: '105px' }}>
+        <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToCollection}>
           <img src={BtnCollect} alt="Collect" />
         </button>
         <button style={{ width: '30%', maxWidth: '90px' }}>
           <img src={BtnStart} alt="Start" />
         </button>
       </div>
-      <footer>
-        <span>
-          主辦單位
-        </span>
 
-        <img src={LogoA} alt="Logo A" />
-        <img src={LogoB} alt="Logo B" />
-        <img src={LogoC} alt="Logo C" />
+      <Footer />
 
-      </footer>
 
       {/* Modal 最新消息 */}
       <ModalNews
