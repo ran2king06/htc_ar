@@ -1,7 +1,7 @@
 import './css/main.scss';
 
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import BtnBack from './../../assets/img/btn/btn-back.png';
 import BtnChallenge from './../../assets/img/btn/btn-challenge.png';
@@ -12,6 +12,7 @@ import IconNew from './../../assets/img/icon/icon-new.png';
 import IconPrizeSilver from './../../assets/img/icon/icon-prize-silver.png';
 import IconPrize from './../../assets/img/icon/icon-prize.png';
 import IconWhite from './../../assets/img/icon/icon-white.png';
+import Footer from './../../components/footer';
 import ModalIntro from './../../components/modal/ModalIntro';
 import Bear01 from './img/bear1.png';
 import Bear02 from './img/bear2.png';
@@ -20,10 +21,22 @@ import Bear04 from './img/bear4.png';
 import Bear05 from './img/bear5.png';
 
 const SceneCollection = () => {
+  const navigate = useNavigate();
+
   const [modeStart, setModeStart] = React.useState('');
   const [modalIsOpen, setIsOpen] = React.useState(false);
-
   const [missionCompleteA1, setMissionCompleteA1] = React.useState(true);
+  const [missionCompleteA2, setMissionCompleteA2] = React.useState(false);
+  const [missionCompleteB1, setMissionCompleteB1] = React.useState(false);
+  const [missionCompleteB2, setMissionCompleteB2] = React.useState(false);
+  const [missionCompleteC1, setMissionCompleteC1] = React.useState(false);
+  const [missionCompleteC2, setMissionCompleteC2] = React.useState(false);
+  const [missionCompleteD1, setMissionCompleteD1] = React.useState(false);
+  const [missionCompleteD2, setMissionCompleteD2] = React.useState(false);
+  const [missionCompleteE1, setMissionCompleteE1] = React.useState(false);
+  const [missionCompleteE2, setMissionCompleteE2] = React.useState(false);
+
+  const [rewardPoints, setRewardPoints] = React.useState(0);
 
   const openModal = () => {
     setIsOpen(true);
@@ -37,6 +50,15 @@ const SceneCollection = () => {
     setIsOpen(false);
   }
 
+  const exchangeReward = () => {
+    // 取得 param query
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const mode = urlParams.get('mode');
+
+    navigate(`/reward?mode=${mode}`);
+  }
+
   useEffect(() => {
     // 取得 param query
     const queryString = window.location.search;
@@ -44,7 +66,79 @@ const SceneCollection = () => {
     const mode = urlParams.get('mode');
     setModeStart('/intro?mode=' + mode + '&newsModal=false');
 
+    // localStorage 取得獎章數量
+    // htcAr_localStorgeData 資料結構，會有 
+    // rewardPoints, missionA_1, missionA_2, missionB_1, missionB_2, missionC_1, missionC_2, missionD_1, missionD_2, missionE_1, missionE_2
+    const userData = localStorage.getItem('htcAr_localStorgeData');
+
+    if (userData) {
+      const data = JSON.parse(userData);
+      setRewardPoints(data.rewardPoints);
+
+      setMissionCompleteA1(data.missionA_1);
+      setMissionCompleteA2(data.missionA_2);
+      setMissionCompleteB1(data.missionB_1);
+      setMissionCompleteB2(data.missionB_2);
+      setMissionCompleteC1(data.missionC_1);
+      setMissionCompleteC2(data.missionC_2);
+      setMissionCompleteD1(data.missionD_1);
+      setMissionCompleteD2(data.missionD_2);
+      setMissionCompleteE1(data.missionE_1);
+      setMissionCompleteE2(data.missionE_2);
+    } else {
+      setRewardPoints(0);
+
+      localStorage.setItem('htcAr_localStorgeData', JSON.stringify({
+        rewardPoints: 0,
+        exchangeSuccess: false,
+        missionA_1: false,
+        missionA_2: false,
+        missionB_1: false,
+        missionB_2: false,
+        missionC_1: false,
+        missionC_2: false,
+        missionD_1: false,
+        missionD_2: false,
+        missionE_1: false,
+        missionE_2: false
+      }));
+    }
+
   }, []);
+
+  const testEarnPoints = (points) => {
+    // localStorage 取得獎章數量
+    const userData = localStorage.getItem('htcAr_localStorgeData');
+
+    if (!userData) {
+      return;
+    }
+    const data = JSON.parse(userData);
+
+    // 獲得獎章
+    data.rewardPoints += points;
+    setRewardPoints(data.rewardPoints);
+
+    // 更新 localStorage
+    localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
+  }
+
+  const clearPoints = () => {
+    // localStorage 取得獎章數量
+    const userData = localStorage.getItem('htcAr_localStorgeData');
+    const data = JSON.parse(userData);
+
+    // 清空獎章
+    data.rewardPoints = 0;
+    setRewardPoints(data.rewardPoints);
+
+    // 更新 localStorage
+    localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
+  }
+
+  const goToQA = (mode) => {
+    navigate(`/qa?mode=${mode}`);
+  }
 
   return (
     <div className="scene-collection">
@@ -63,10 +157,10 @@ const SceneCollection = () => {
 
       <div className="scene-collection-top">
         <div className="top-title">
-          您目前擁有<span>5</span>個獎章
+          您目前擁有<span>{rewardPoints}</span>個獎章
           <img src={IconPrize} alt="Prize" />
         </div>
-        <button>
+        <button onClick={exchangeReward}>
           <img src={BtnExchange} alt="Exchange" />
         </button>
       </div>
@@ -88,7 +182,7 @@ const SceneCollection = () => {
             missionCompleteA1 ?
               <img src={IconComplete} alt="Complete" className="box-complete" />
               :
-              <button>
+              <button onClick={() => testEarnPoints(5)}>
                 <img src={BtnChallenge} alt="Challenge" />
               </button>
           }
@@ -99,7 +193,8 @@ const SceneCollection = () => {
           </div>
           <span>QA問答</span>
 
-          <button>
+          {/* 測試新增 */}
+          <button onClick={() => goToQA(1)}>
             <img src={BtnChallenge} alt="Challenge" />
           </button>
         </div>
@@ -133,7 +228,8 @@ const SceneCollection = () => {
           </div>
           <span>QA問答</span>
 
-          <button>
+          {/* 測試清空點數 */}
+          <button onClick={() => clearPoints()}>
             <img src={BtnChallenge} alt="Challenge" />
           </button>
         </div>
@@ -246,6 +342,8 @@ const SceneCollection = () => {
         afterOpenModal={afterOpenModal}
         closeModal={closeModal}
       />
+
+      <Footer />
     </div>
   );
 }

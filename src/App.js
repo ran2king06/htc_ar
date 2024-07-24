@@ -9,6 +9,8 @@ import imageSources from './imageSources';
 import Loading from './pages/loading/main';
 import SceneCollection from './pages/scene_collection/main';
 import SceneIntro from './pages/scene_intro/main';
+import SceneQA from './pages/scene_qa/main';
+import SceneReward from './pages/scene_reward/main';
 import SceneStart from './pages/scene_start/main';
 import SceneTour from './pages/scene_tour/main';
 
@@ -24,6 +26,11 @@ function App() {
     }
   }, [currentLanguage]);
 
+  // Clear htcAr_localStorgeData
+  function clearLocalStorageData() {
+    localStorage.removeItem('htcAr_localStorgeData')
+  }
+
   return (
     <div className="App">
       <div className='app-container'>
@@ -33,14 +40,22 @@ function App() {
             <Route path="/intro" element={<SceneIntro />} />
             <Route path="/tour" element={<SceneTour />} />
             <Route path="/collection" element={<SceneCollection />} />
+            <Route path="/reward" element={<SceneReward />} />
+            <Route path="/qa" element={<SceneQA />} />
           </Routes>
         </Router>
       </div>
+
+      {/* 開發階段用：清空LocalStorage */}
+      <button className="test-clear" onClick={clearLocalStorageData}>
+        CLEAR DATA
+      </button>
+
       {
         loading && <Loading />
       }
       <ImagePreloader srcArray={imageSources} loadStatus={status => setLoading(status.every(s => s))} />
-    </div>
+    </div >
   );
 }
 
