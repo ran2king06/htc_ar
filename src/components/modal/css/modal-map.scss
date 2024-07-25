@@ -44,10 +44,17 @@
       overflow: auto;
       max-height: 50vh;
 
+      .map-img {
+        width: 1600px;
+        height: 800px;
+      }
+
       img {
         margin-bottom: 10px;
-        max-width: 1600px;
+        width: 100%;
       }
+
+      iframe {}
     }
 
     .modal-header {

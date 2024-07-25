@@ -1,12 +1,13 @@
 import './css/modal-map.scss';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 import IconClose from './../../assets/img/icon/icon-close.png';
 import BigMapA from './../../assets/img/map/KMap.png';
 
 const ModalMap = (props) => {
   const [mapImg, setMapImg] = React.useState('');
+  const modalContent = useRef(null);
 
   useEffect(() => {
     switch (props.chooseMap) {
@@ -17,11 +18,15 @@ const ModalMap = (props) => {
         setMapImg(BigMapA);
         break;
     }
-
-    return () => {
-
-    };
   }, []);
+
+  useEffect(() => {
+    if (props.modalMapIsOpen) {
+      modalContent.current.scrollTop = 300;
+      modalContent.current.scrollLeft = 770;
+    }
+
+  }, [props.modalMapIsOpen]);
 
   return (
     <>
@@ -33,8 +38,14 @@ const ModalMap = (props) => {
               <span className="close" onClick={props.closeMapModal}>
                 <img src={IconClose} alt="Close" />
               </span>
-              <div className="modal-content">
-                <img src={mapImg} alt="Map" />
+              <div className="modal-content" ref={modalContent}>
+                {/* <div className="map-img"> */}
+                {/* <img src={mapImg} alt="Map" /> */}
+
+                {/* </div> */}
+
+                <iframe src={mapImg} title="Map" width="1600" height="800">
+                </iframe>
               </div>
             </div>
           </div>
