@@ -88,3 +88,11 @@ button.back-to-top {
   border: 1px solid #000;
   padding: 10px;
 }
+
+span.span-blue {
+  color: #223883;
+}
+
+.special-display-block {
+  display: block !important;
+}

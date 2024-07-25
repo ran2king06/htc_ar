@@ -3,7 +3,7 @@ import './css/modal-map.scss';
 import React, { useEffect } from 'react';
 
 import IconClose from './../../assets/img/icon/icon-close.png';
-import BigMapA from './../../assets/img/map/bigmap-a.png';
+import BigMapA from './../../assets/img/map/KMap.png';
 
 const ModalMap = (props) => {
   const [mapImg, setMapImg] = React.useState('');

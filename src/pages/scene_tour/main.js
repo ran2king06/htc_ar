@@ -110,7 +110,7 @@ const SceneTour = () => {
 
       <div className="tour-container">
         <section className="tour-map" style={{ backgroundColor: bgColor }}>
-          <span className={`placeA ${choosePlace === 0 ? 'active' : ''}`} onClick={() => setChoosePlace(0)}>大港車站</span>
+          <span className={`placeA ${choosePlace === 0 ? 'active' : ''}`} onClick={() => setChoosePlace(0)}>高雄港</span>
           <span className={`placeB ${choosePlace === 1 ? 'active' : ''}`} onClick={() => setChoosePlace(1)}>大港橋</span>
           <span className={`placeC ${choosePlace === 2 ? 'active' : ''}`} onClick={() => setChoosePlace(2)}>大港倉</span>
           <span className={`placeD ${choosePlace === 3 ? 'active' : ''}`} onClick={() => setChoosePlace(3)}>港史館</span>
