@@ -29,6 +29,9 @@ function App() {
   // Clear htcAr_localStorgeData
   function clearLocalStorageData() {
     localStorage.removeItem('htcAr_localStorgeData')
+
+    // refresh page
+    window.location.reload();
   }
 
   return (
@@ -48,7 +51,7 @@ function App() {
 
       {/* 開發階段用：清空LocalStorage */}
       <button className="test-clear" onClick={clearLocalStorageData}>
-        CLEAR DATA
+        Clear Score
       </button>
 
       {

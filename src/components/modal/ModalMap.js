@@ -39,13 +39,9 @@ const ModalMap = (props) => {
                 <img src={IconClose} alt="Close" />
               </span>
               <div className="modal-content" ref={modalContent}>
-                {/* <div className="map-img"> */}
-                {/* <img src={mapImg} alt="Map" /> */}
-
-                {/* </div> */}
-
-                <iframe src={mapImg} title="Map" width="1600" height="800">
-                </iframe>
+                <div className="map-img">
+                  <img src={mapImg} alt="Map" />
+                </div>
               </div>
             </div>
           </div>

@@ -136,8 +136,13 @@ const SceneCollection = () => {
     localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
   }
 
-  const goToQA = (mode) => {
-    navigate(`/qa?mode=${mode}`);
+  const goToQA = (qa) => {
+    // 取得 param query
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const mode = urlParams.get('mode');
+
+    navigate(`/qa?mode=${mode}&qa=${qa}`);
   }
 
   return (
@@ -182,7 +187,7 @@ const SceneCollection = () => {
             missionCompleteA1 ?
               <img src={IconComplete} alt="Complete" className="box-complete" />
               :
-              <button onClick={() => testEarnPoints(5)}>
+              <button onClick={() => testEarnPoints(1)}>
                 <img src={BtnChallenge} alt="Challenge" />
               </button>
           }
@@ -192,11 +197,14 @@ const SceneCollection = () => {
             <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
           </div>
           <span>QA問答</span>
-
-          {/* 測試新增 */}
-          <button onClick={() => goToQA(1)}>
-            <img src={BtnChallenge} alt="Challenge" />
-          </button>
+          {
+            missionCompleteA2 ?
+              <img src={IconComplete} alt="Complete" className="box-complete" />
+              :
+              <button onClick={() => goToQA(1)}>
+                <img src={BtnChallenge} alt="Challenge" />
+              </button>
+          }
         </div>
       </section>
 
@@ -214,10 +222,10 @@ const SceneCollection = () => {
           </div>
           <span>拍照任務</span>
           {
-            missionCompleteA1 ?
+            missionCompleteB1 ?
               <img src={IconComplete} alt="Complete" className="box-complete" />
               :
-              <button>
+              <button onClick={() => clearPoints()}>
                 <img src={BtnChallenge} alt="Challenge" />
               </button>
           }
@@ -227,11 +235,14 @@ const SceneCollection = () => {
             <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
           </div>
           <span>QA問答</span>
-
-          {/* 測試清空點數 */}
-          <button onClick={() => clearPoints()}>
-            <img src={BtnChallenge} alt="Challenge" />
-          </button>
+          {
+            missionCompleteB2 ?
+              <img src={IconComplete} alt="Complete" className="box-complete" />
+              :
+              <button onClick={() => goToQA(2)}>
+                <img src={BtnChallenge} alt="Challenge" />
+              </button>
+          }
         </div>
       </section>
 
@@ -249,7 +260,7 @@ const SceneCollection = () => {
           </div>
           <span>拍照任務</span>
           {
-            missionCompleteA1 ?
+            missionCompleteC1 ?
               <img src={IconComplete} alt="Complete" className="box-complete" />
               :
               <button>
@@ -262,10 +273,14 @@ const SceneCollection = () => {
             <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
           </div>
           <span>QA問答</span>
-
-          <button>
-            <img src={BtnChallenge} alt="Challenge" />
-          </button>
+          {
+            missionCompleteC2 ?
+              <img src={IconComplete} alt="Complete" className="box-complete" />
+              :
+              <button onClick={() => goToQA(3)}>
+                <img src={BtnChallenge} alt="Challenge" />
+              </button>
+          }
         </div>
       </section>
 
@@ -283,7 +298,7 @@ const SceneCollection = () => {
           </div>
           <span>港史館</span>
           {
-            missionCompleteA1 ?
+            missionCompleteD1 ?
               <img src={IconComplete} alt="Complete" className="box-complete" />
               :
               <button>
@@ -296,10 +311,14 @@ const SceneCollection = () => {
             <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
           </div>
           <span>QA問答</span>
-
-          <button>
-            <img src={BtnChallenge} alt="Challenge" />
-          </button>
+          {
+            missionCompleteD2 ?
+              <img src={IconComplete} alt="Complete" className="box-complete" />
+              :
+              <button onClick={() => goToQA(4)}>
+                <img src={BtnChallenge} alt="Challenge" />
+              </button>
+          }
         </div>
       </section>
 
@@ -317,7 +336,7 @@ const SceneCollection = () => {
           </div>
           <span>拍照任務</span>
           {
-            missionCompleteA1 ?
+            missionCompleteE1 ?
               <img src={IconComplete} alt="Complete" className="box-complete" />
               :
               <button>
@@ -330,10 +349,14 @@ const SceneCollection = () => {
             <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
           </div>
           <span>QA問答</span>
-
-          <button>
-            <img src={BtnChallenge} alt="Challenge" />
-          </button>
+          {
+            missionCompleteE2 ?
+              <img src={IconComplete} alt="Complete" className="box-complete" />
+              :
+              <button onClick={() => goToQA(5)}>
+                <img src={BtnChallenge} alt="Challenge" />
+              </button>
+          }
         </div>
       </section>
 

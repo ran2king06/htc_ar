@@ -84,70 +84,155 @@
     }
   }
 
-  .scene-reward-content {
-    margin-top: 85px;
-    width: 90%;
-    left: 50%;
-    transform: translateX(-50%);
-    position: relative;
-    height: 85%;
-    background-color: #fff;
-    border-radius: 10px;
-    padding: 20px;
-    box-sizing: border-box;
-    border: 2px solid #000;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .ans-feedback {
+    margin: 85px auto 40px auto;
+    display: block;
 
-    h2 {
-      font-size: 20px;
-      margin-bottom: 20px;
-      text-align: center;
-      color: #000;
-
-
-      span {
-        margin-top: 10px;
-        display: block;
-        color: #FF7008;
-      }
+    .ans-result {
+      height: 50px;
+      margin-bottom: 10px;
     }
 
-    p {
-      font-size: 18px;
+    .ans-text {
+      font-size: 15px;
+      text-align: center;
       color: #000;
-      line-height: 2;
-      text-align: left;
+      margin-bottom: 5px;
+    }
+
+    img.ans-bear {
+      width: 135px;
+      display: block;
+      margin: 0 auto;
     }
   }
 
-  .reward-change-value {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    gap: 20px;
-    color: #000;
+  .qa-content {
+    width: 90%;
+    margin: 125px auto 50px auto;
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 2px solid #000;
+    height: 75dvh;
+    position: relative;
+    z-index: 6;
 
-    img {
-      width: 35px;
+    &.margin-dlc {
+      margin: 0 auto 50px auto;
       height: auto;
     }
 
-    span {
-      font-size: 25px;
+    .qa-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 250px;
+      top: -30px;
+
+      h2 {
+        position: absolute;
+        top: 5px;
+        font-size: 20px;
+        color: #000;
+      }
+
     }
 
+    p {
+      color: #000;
+      text-align: left;
+      font-size: 21px;
+      line-height: 1.5;
+    }
+
+    .qa-container {
+      display: flex;
+      flex-direction: column;
+      margin-top: 20px;
+      justify-content: space-between;
+      align-items: center;
+      height: 95%;
+
+      .qa-answer {
+        width: 100%;
+
+        button {
+          margin-bottom: 10px;
+          text-align: left;
+          font-size: 20px;
+          display: block;
+          border: 2px solid #000;
+          border-radius: 10px;
+          padding: 12.5px 20px;
+          background-color: #fff;
+          width: 100%;
+          box-sizing: border-box;
+          box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+          -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+          -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+
+          &.active {
+            background-color: #faebd7;
+          }
+
+          &.correctAnswer {
+            display: block !important
+          }
+        }
+      }
+
+      button.qa-done {
+        font-size: 20px;
+        display: block;
+        border: 2px solid #000;
+        border-radius: 10px;
+        padding: 10px 20px;
+        background-color: #59C0E0;
+        box-sizing: border-box;
+        box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+        -webkit-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+        -moz-box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+      }
+
+      .icon-result {
+        display: none;
+        width: 20px;
+      }
+
+      &.show-result {
+        button {
+          display: none;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .icon-result {
+          display: inline-block;
+        }
+
+        button.active {
+          display: flex;
+          background-color: #FFCBCB;
+        }
+
+        button.correctAnswer {
+          display: flex !important;
+          background-color: #E0FFD1;
+        }
+      }
+    }
   }
 
-  .reward-change-box {
-    button {
-      height: 40px;
-
-      img {
-        height: 100%;
-      }
+  .qa-hint {
+    p {
+      font-size: 14px;
+      text-align: left;
+      line-height: 1.5;
     }
   }
 }
