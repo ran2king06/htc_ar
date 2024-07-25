@@ -25,7 +25,7 @@ const SceneCollection = () => {
 
   const [modeStart, setModeStart] = React.useState('');
   const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [missionCompleteA1, setMissionCompleteA1] = React.useState(true);
+  const [missionCompleteA1, setMissionCompleteA1] = React.useState(false);
   const [missionCompleteA2, setMissionCompleteA2] = React.useState(false);
   const [missionCompleteB1, setMissionCompleteB1] = React.useState(false);
   const [missionCompleteB2, setMissionCompleteB2] = React.useState(false);
