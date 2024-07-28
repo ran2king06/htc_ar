@@ -1,12 +1,21 @@
 import './css/main.scss';
 
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
 import BtnBack from './../../assets/img/btn/btn-back.png';
 import BtnChallenge from './../../assets/img/btn/btn-challenge.png';
 import BtnExchange from './../../assets/img/btn/btn-exchange.png';
 import BtnQa from './../../assets/img/btn/btn-qa.png';
+import EnBtnChallenge from './../../assets/img/btn/en/btn-challenge.png';
+import EnIconComplete from './../../assets/img/btn/en/icon-complete.png';
+import EnTitle1 from './../../assets/img/collection/1.png';
+import EnTitle2 from './../../assets/img/collection/2.png';
+import EnTitle3 from './../../assets/img/collection/3.png';
+import EnTitle4 from './../../assets/img/collection/4.png';
+import EnTitle5 from './../../assets/img/collection/5.png';
+import EnBtnExchange from './../../assets/img/collection/btn-redeem.png';
 import IconComplete from './../../assets/img/icon/icon-complete.png';
 import IconNew from './../../assets/img/icon/icon-new.png';
 import IconPrizeSilver from './../../assets/img/icon/icon-prize-silver.png';
@@ -21,6 +30,7 @@ import Bear04 from './img/bear4.png';
 import Bear05 from './img/bear5.png';
 
 const SceneCollection = () => {
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
   const [modeStart, setModeStart] = React.useState('');
@@ -36,7 +46,11 @@ const SceneCollection = () => {
   const [missionCompleteE1, setMissionCompleteE1] = React.useState(false);
   const [missionCompleteE2, setMissionCompleteE2] = React.useState(false);
 
+  const [btnChallenge, setBtnChallenge] = React.useState(BtnChallenge);
+  const [btnComplete, setBtnComplete] = React.useState(IconComplete);
+
   const [rewardPoints, setRewardPoints] = React.useState(0);
+  const [lang, setLang] = React.useState('');
 
   const openModal = () => {
     setIsOpen(true);
@@ -103,8 +117,27 @@ const SceneCollection = () => {
         missionE_2: false
       }));
     }
-
   }, []);
+
+  useEffect(() => {
+    // 取得語言
+    const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
+    if (currentLanguage) {
+      i18n.changeLanguage(currentLanguage);
+      setLang(currentLanguage);
+
+
+      if (currentLanguage === 'en') {
+        setBtnChallenge(EnBtnChallenge);
+        setBtnComplete(EnIconComplete);
+      } else {
+        setBtnChallenge(BtnChallenge);
+        setBtnComplete(IconComplete);
+      }
+
+
+    }
+  }, [lang]);
 
   const testEarnPoints = (points) => {
     // localStorage 取得獎章數量
@@ -152,7 +185,9 @@ const SceneCollection = () => {
           <img src={BtnBack} alt="Back" />
         </Link>
 
-        <h1>獎章集點冊</h1>
+        <h1>
+          {t('scene-collection.title')}
+        </h1>
         <div className="header-right">
           <button onClick={openModal}>
             <img src={BtnQa} alt="Q&A" />
@@ -162,33 +197,49 @@ const SceneCollection = () => {
 
       <div className="scene-collection-top">
         <div className="top-title">
-          您目前擁有<span>{rewardPoints}</span>個獎章
+          {t('scene-collection.text1')}<span>{rewardPoints}</span>{t('scene-collection.text2')}
           <img src={IconPrize} alt="Prize" />
         </div>
         <button onClick={exchangeReward}>
-          <img src={BtnExchange} alt="Exchange" />
+          {
+            lang === 'en' ?
+              <img src={EnBtnExchange} alt="Exchange" />
+              :
+              <img src={BtnExchange} alt="Exchange" />
+          }
         </button>
       </div>
 
       {/* MODE 01 */}
       <section className="scene-collection-section section-first">
         <img src={Bear01} alt="Bear01" className="bear-img" />
-        <div className="box-title">
-          <img src={IconWhite} alt="White" />
-          <span>高雄港</span>
+        <div className={`box-title ${lang === 'en' ? 'en' : ''}`}>
+          {
+            lang === 'en' ?
+              <img src={EnTitle1} alt="Title" />
+              :
+              <>
+                <img src={IconWhite} alt="White" />
+                <span>
+                  {t('scene-collection.l1')}
+                </span>
+              </>
+          }
         </div>
         <div className={` collection-box ${missionCompleteA1 ? 'complete' : ''}`}>
           <div className="box-metal">
             <img src={IconPrize} alt="Prize" className="box-iconPrize" />
             <img src={IconNew} alt="New" className="box-iconNew" />
           </div>
-          <span>拍照任務</span>
+          <span>
+            {t('scene-collection.mission1')}
+          </span>
           {
             missionCompleteA1 ?
-              <img src={IconComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" />
               :
               <button onClick={() => testEarnPoints(1)}>
-                <img src={BtnChallenge} alt="Challenge" />
+                <img src={btnChallenge} alt="Challenge" />
               </button>
           }
         </div>
@@ -196,13 +247,15 @@ const SceneCollection = () => {
           <div className="box-metal">
             <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
           </div>
-          <span>QA問答</span>
+          <span>
+            {t('scene-collection.mission2')}
+          </span>
           {
             missionCompleteA2 ?
-              <img src={IconComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" />
               :
               <button onClick={() => goToQA(1)}>
-                <img src={BtnChallenge} alt="Challenge" />
+                <img src={btnChallenge} alt="Challenge" />
               </button>
           }
         </div>
@@ -211,22 +264,33 @@ const SceneCollection = () => {
       {/* MODE 02 */}
       <section className="scene-collection-section section-second">
         <img src={Bear02} alt="Bear01" className="bear-img" />
-        <div className="box-title">
-          <img src={IconWhite} alt="White" />
-          <span>大港橋</span>
+        <div className={`box-title ${lang === 'en' ? 'en' : ''}`}>
+          {
+            lang === 'en' ?
+              <img src={EnTitle2} alt="Title" />
+              :
+              <>
+                <img src={IconWhite} alt="White" />
+                <span>
+                  {t('scene-collection.l2')}
+                </span>
+              </>
+          }
         </div>
         <div className={` collection-box ${missionCompleteA1 ? 'complete' : ''}`}>
           <div className="box-metal">
             <img src={IconPrize} alt="Prize" className="box-iconPrize" />
             <img src={IconNew} alt="New" className="box-iconNew" />
           </div>
-          <span>拍照任務</span>
+          <span>
+            {t('scene-collection.mission1')}
+          </span>
           {
             missionCompleteB1 ?
-              <img src={IconComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" />
               :
               <button onClick={() => clearPoints()}>
-                <img src={BtnChallenge} alt="Challenge" />
+                <img src={btnChallenge} alt="Challenge" />
               </button>
           }
         </div>
@@ -234,13 +298,15 @@ const SceneCollection = () => {
           <div className="box-metal">
             <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
           </div>
-          <span>QA問答</span>
+          <span>
+            {t('scene-collection.mission2')}
+          </span>
           {
             missionCompleteB2 ?
-              <img src={IconComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" />
               :
               <button onClick={() => goToQA(2)}>
-                <img src={BtnChallenge} alt="Challenge" />
+                <img src={btnChallenge} alt="Challenge" />
               </button>
           }
         </div>
@@ -249,22 +315,33 @@ const SceneCollection = () => {
       {/* MODE 03 */}
       <section className="scene-collection-section section-third">
         <img src={Bear03} alt="Bear01" className="bear-img" />
-        <div className="box-title">
-          <img src={IconWhite} alt="White" />
-          <span>大港倉</span>
+        <div className={`box-title ${lang === 'en' ? 'en' : ''}`}>
+          {
+            lang === 'en' ?
+              <img src={EnTitle3} alt="Title" />
+              :
+              <>
+                <img src={IconWhite} alt="White" />
+                <span>
+                  {t('scene-collection.l3')}
+                </span>
+              </>
+          }
         </div>
         <div className={` collection-box ${missionCompleteA1 ? 'complete' : ''}`}>
           <div className="box-metal">
             <img src={IconPrize} alt="Prize" className="box-iconPrize" />
             <img src={IconNew} alt="New" className="box-iconNew" />
           </div>
-          <span>拍照任務</span>
+          <span>
+            {t('scene-collection.mission1')}
+          </span>
           {
             missionCompleteC1 ?
-              <img src={IconComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" />
               :
               <button>
-                <img src={BtnChallenge} alt="Challenge" />
+                <img src={btnChallenge} alt="Challenge" />
               </button>
           }
         </div>
@@ -272,13 +349,15 @@ const SceneCollection = () => {
           <div className="box-metal">
             <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
           </div>
-          <span>QA問答</span>
+          <span>
+            {t('scene-collection.mission2')}
+          </span>
           {
             missionCompleteC2 ?
-              <img src={IconComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" />
               :
               <button onClick={() => goToQA(3)}>
-                <img src={BtnChallenge} alt="Challenge" />
+                <img src={btnChallenge} alt="Challenge" />
               </button>
           }
         </div>
@@ -287,22 +366,33 @@ const SceneCollection = () => {
       {/* MODE 04 */}
       <section className="scene-collection-section section-forth">
         <img src={Bear04} alt="Bear01" className="bear-img" />
-        <div className="box-title">
-          <img src={IconWhite} alt="White" />
-          <span>大港倉</span>
+        <div className={`box-title ${lang === 'en' ? 'en' : ''}`}>
+          {
+            lang === 'en' ?
+              <img src={EnTitle4} alt="Title" />
+              :
+              <>
+                <img src={IconWhite} alt="White" />
+                <span>
+                  {t('scene-collection.l4')}
+                </span>
+              </>
+          }
         </div>
         <div className={` collection-box ${missionCompleteA1 ? 'complete' : ''}`}>
           <div className="box-metal">
             <img src={IconPrize} alt="Prize" className="box-iconPrize" />
             <img src={IconNew} alt="New" className="box-iconNew" />
           </div>
-          <span>港史館</span>
+          <span>
+            {t('scene-collection.mission1')}
+          </span>
           {
             missionCompleteD1 ?
-              <img src={IconComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" />
               :
               <button>
-                <img src={BtnChallenge} alt="Challenge" />
+                <img src={btnChallenge} alt="Challenge" />
               </button>
           }
         </div>
@@ -310,13 +400,15 @@ const SceneCollection = () => {
           <div className="box-metal">
             <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
           </div>
-          <span>QA問答</span>
+          <span>
+            {t('scene-collection.mission2')}
+          </span>
           {
             missionCompleteD2 ?
-              <img src={IconComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" />
               :
               <button onClick={() => goToQA(4)}>
-                <img src={BtnChallenge} alt="Challenge" />
+                <img src={btnChallenge} alt="Challenge" />
               </button>
           }
         </div>
@@ -325,22 +417,33 @@ const SceneCollection = () => {
       {/* MODE 05 */}
       <section className="scene-collection-section section-fifth">
         <img src={Bear05} alt="Bear01" className="bear-img" />
-        <div className="box-title">
-          <img src={IconWhite} alt="White" />
-          <span>高港水花園</span>
+        <div className={`box-title ${lang === 'en' ? 'en' : ''}`}>
+          {
+            lang === 'en' ?
+              <img src={EnTitle5} alt="Title" />
+              :
+              <>
+                <img src={IconWhite} alt="White" />
+                <span>
+                  {t('scene-collection.l5')}
+                </span>
+              </>
+          }
         </div>
         <div className={` collection-box ${missionCompleteA1 ? 'complete' : ''}`}>
           <div className="box-metal">
             <img src={IconPrize} alt="Prize" className="box-iconPrize" />
             <img src={IconNew} alt="New" className="box-iconNew" />
           </div>
-          <span>拍照任務</span>
+          <span>
+            {t('scene-collection.mission1')}
+          </span>
           {
             missionCompleteE1 ?
-              <img src={IconComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" />
               :
               <button>
-                <img src={BtnChallenge} alt="Challenge" />
+                <img src={btnChallenge} alt="Challenge" />
               </button>
           }
         </div>
@@ -348,13 +451,15 @@ const SceneCollection = () => {
           <div className="box-metal">
             <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
           </div>
-          <span>QA問答</span>
+          <span>
+            {t('scene-collection.mission2')}
+          </span>
           {
             missionCompleteE2 ?
-              <img src={IconComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" />
               :
               <button onClick={() => goToQA(5)}>
-                <img src={BtnChallenge} alt="Challenge" />
+                <img src={btnChallenge} alt="Challenge" />
               </button>
           }
         </div>

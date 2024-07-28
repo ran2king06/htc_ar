@@ -1,14 +1,18 @@
 import './css/main.scss';
 
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
 import BtnBack from './../../assets/img/btn/btn-back.png';
 import BtnNotify from './../../assets/img/btn/btn-notify.png';
 import BtnQa from './../../assets/img/btn/btn-qa.png';
-import BtnCollect from './../../assets/img/btn/collect.png';
-import BtnIntro from './../../assets/img/btn/intro.png';
-import BtnStart from './../../assets/img/btn/start.png';
+import ZhBtnCollect from './../../assets/img/btn/collect.png';
+import EnBtnCollect from './../../assets/img/btn/en/collect.png';
+import EnBtnIntro from './../../assets/img/btn/en/intro.png';
+import EnBtnStart from './../../assets/img/btn/en/start.png';
+import ZhBtnIntro from './../../assets/img/btn/intro.png';
+import ZhBtnStart from './../../assets/img/btn/start.png';
 import Footer from './../../components/footer';
 import ModalIntro from './../../components/modal/ModalIntro';
 import ModalNews from './../../components/modal/ModalNews';
@@ -16,9 +20,31 @@ import ModalNews from './../../components/modal/ModalNews';
 
 const Scene_Intro = () => {
   const navigate = useNavigate();
+  const { i18n } = useTranslation();
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modalNewsIsOpen, setIsOpenNews] = React.useState(null);
   const [modeStart, setModeStart] = React.useState('');
+
+  const [btnCollect, setBtnCollect] = React.useState(ZhBtnCollect);
+  const [btnIntro, setBtnIntro] = React.useState(ZhBtnIntro);
+  const [btnStart, setBtnStart] = React.useState(ZhBtnStart);
+
+  useEffect(() => {
+    // 取得語言
+    const lng = localStorage.getItem('i18nextLng_htc_ar');
+    i18n.changeLanguage(lng);
+
+    if (lng === 'en') {
+      setBtnCollect(EnBtnCollect);
+      setBtnIntro(EnBtnIntro);
+      setBtnStart(EnBtnStart);
+    } else {
+      setBtnCollect(ZhBtnCollect);
+      setBtnIntro(ZhBtnIntro);
+      setBtnStart(ZhBtnStart);
+    }
+  }, []);
 
   function openNewsModal() {
     setIsOpenNews(true);
@@ -88,13 +114,13 @@ const Scene_Intro = () => {
 
       <div className="btn-container">
         <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToTour}>
-          <img src={BtnIntro} alt="Intro" />
+          <img src={btnIntro} alt="Intro" />
         </button>
         <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToCollection}>
-          <img src={BtnCollect} alt="Collect" />
+          <img src={btnCollect} alt="Collect" />
         </button>
         <button style={{ width: '30%', maxWidth: '90px' }}>
-          <img src={BtnStart} alt="Start" />
+          <img src={btnStart} alt="Start" />
         </button>
       </div>
 

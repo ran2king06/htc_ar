@@ -4,6 +4,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import Swiper from 'swiper';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
 
@@ -14,6 +15,7 @@ import IconNews from './../../assets/img/icon/icon-news.png';
 import NewsImage1 from './../../assets/img/news/01.png';
 
 const ModalNews = (props) => {
+  const { t } = useTranslation();
 
   useEffect(() => {
     // eslint-disable-next-line no-unused-vars
@@ -67,7 +69,7 @@ const ModalNews = (props) => {
               <div className="modal-content">
                 <div className="modal-header">
                   <h2>
-                    <img src={IconNews} alt="News" />最新消息
+                    <img src={IconNews} alt="News" />{t('modal-news.title')}
                   </h2>
                 </div>
 

@@ -1,73 +1,192 @@
 {
-  "event_open_time": "Event Open Time",
-  "open_countdown": "Opens in",
-  "mode_open": "Now\nOpen",
-  "info": "Info",
-  "organizer": "Organizer",
-  "countdown": "Ends in",
-  "modal-close": "Back to Home",
-  "mode1": "Fireworks",
-  "mode2": "Drawing",
-  "mode3": "Messages",
-  "mode_close": "Experience Time Ended",
-
-  "scene02": {
-    "title": "Asia Bay 5G AIoT ",
-    "subtitle": "Water Screen Interactive Show",
-    "description": "Experience the dazzling water screen\n projection show at the Great Harbor Bridge.\n Join us for this spectacular event!",
-    "mode01_title": "Fireworks",
-    "mode01_description": "Select an icon to light up the sky!",
-    "mode02_title": "Drawing",
-    "mode02_description": "Draw to express your creativity!",
-    "mode03_title": "Messages",
-    "mode03_description": "Share your heartfelt thoughts."
+  "footer": {
+    "organization": "Organizer"
   },
 
-  "scene03_mode1": {
-    "title": "Select Icon",
-    "subtitle": "Fireworks",
-    "countdown": "Ends in",
-    "info_modal_title": "Firework",
-    "info_modal_intro": "Instructions",
-    "info_modal_content": "Light up the night at the Great Harbor Bridge! Choose your favorite firework, confirm, and swipe up. Your firework will appear on the water screen instantly.\nJoin us and enjoy the festive atmosphere!",
-    "info_modal_start": "Starts in",
-    "info_modal_join": "JOIN NOW",
-    "info_modal_swipeUp": "Swipe Up"
+  "modal-news": {
+    "title": "News"
+  },
+  "modal-intro": {
+    "title1": "Asia New Bay Area 5G AIoT ",
+    "title2": "",
+
+    "content1": "Explore 5 AR spots with Kaohsiung Bear!",
+    "content2": "Complete missions in the harbor area, earn medals,",
+    "content3": "and collect them all for exclusive gifts!",
+
+    "t1": "Tour Spot Info",
+    "t2": "Find the icons, start exploring!",
+    "t3": "Complete missions, collect medals!",
+
+    "text1": "Tap 'Tour Spot Info' to see descriptions, store details, and a mini-map of all 5 tour spots!",
+    "text2": "Tap 'Explore', find and scan the image to learn about Kaohsiung with Kaohsiung Bear!",
+    "text3": "Tap 'Medal Collection' to check your progress. Explore AR spots to unlock quizzes and collect medals for exclusive gifts!"
   },
 
-  "scene03_mode2": {
-    "title": "Drawing",
-    "subtitle": "Drawing",
-    "countdown": "Ends in",
-    "info_modal_title": "Drawing",
-    "info_modal_intro": "Instructions",
-    "info_modal_content": "Let your creativity shine!\nChoose the drawing area, pick a brush, and start creating. Your art will instantly appear on the water screen. Ready to impress?\nLet's make an unforgettable night!",
-    "info_modal_start": "Starts in",
-    "info_modal_join": "JOIN NOW",
-    "info_modal_swipeUp": "Drawing",
-    "left": "LEFT",
-    "right": "RIGHT",
-    "center": "CENTER"
+  "modal-redeem": {
+    "p1_1": "Use '10 medals' to redeem the exclusive gift? ",
+    "p1_2": "",
+    "p1_3": "",
+    "p2": "*Please hand your device to the staff. This action cannot be undone!",
+    "p3": "Redeemed!"
   },
 
-  "scene03_mode3": {
-    "title": "Messages",
-    "subtitle": "Messages",
-    "countdown": "Ends in",
-    "info_modal_title": "Messages",
-    "info_modal_intro": "Instructions",
-    "info_modal_content": "Have something you've been wanting to say? Choose a subject and a message from the lists to express your thoughts! Your message will appear on the water screen, creating memories at the Great Harbor Bridge.",
-    "info_modal_start": "Starts in",
-    "info_modal_join": "JOIN NOW",
-    "info_modal_swipeUp": "Messages",
-    "choose": "Choose an option",
-    "choose_title": "Please select your title",
-    "choose_to": "wants to say to",
-    "choose_say": "your messages",
-    "choose_send": "Send",
-    "send_title1": "Your firework image has been sent!",
-    "send_title3": "Your message has been sent!",
-    "send_content1": "Returning to the homepage in ",
-    "send_content2": " seconds."
+  "scene-collection": {
+    "title": "Medal Collection",
+    "text1": "Currently have",
+    "text2": "Medals",
+    "mission1": "Photo Mission",
+    "mission2": "QA Challenge",
+    "l1": "Port of Kaohsiung",
+    "l2": "Great Harbor Bridge",
+    "l3": "Kaohsiung Port Depot",
+    "l4": "Kaohsiung Harbor Museum",
+    "l5": "Kao Port Park"
+  },
+
+  "scene-reward": {
+    "title": "Redeem Rewards",
+    "text1": "Asia New Bay Area 5G AIoT AR Tour",
+    "text2": "Exclusive Gifts",
+    "text3": "Complete missions in the Kaohsiung Bear AR tour experience. Collect 10 medals to redeem exclusive gifts at the KW2 2F service desk or the KD10 service desk."
+  },
+
+  "scene-tour": {
+    "title": "Tour Spot Info",
+    "location1": "Port of \n Kaohsiung",
+    "location2": "Great Harbor\n Bridge",
+    "location3": "Kaohsiung \n Port Depot",
+    "location4": "Kaohsiung \n Harbor Museum",
+    "location5": "Kao Port \n Park",
+
+    "tour1": {
+      "title_about": "About",
+      "h3_1": "Taiwan's Largest International Port",
+      "p_1": "Located at the southern tip of Kaohsiung City and spanning six districts, Kaohsiung Harbor is the largest harbor in Taiwan and the 13th largest in the world. With 116 operational wharves, it serves as Taiwan's maritime hub and gateway for cargo imports and exports, handling over 60% of the island's total cargo throughput. It is the economic lifeline and symbol of Kaohsiung City. The sight of giant cargo ships, naval vessels, and fishing boats navigating the azure waters, the bustling logistics of the container terminals, and the warm smiles of the southern people create the most beautiful scenery of this harbor city.",
+      "h3_2": "Historical Footsteps of Piers 1-10",
+      "p_2": "The Penglai Commercial Harbor area of Kaohsiung Harbor was part of the Takao Port plan during the Japanese colonial period, second only to the Shinbintyo Pier on the west side. Originally salt fields, the area was gradually transformed into a commercial port and the Yancheng District through dredging and land reclamation by the Japanese. By 1917, more than half of the Penglai Commercial Harbor area was completed, and it was essentially finished by 1925. The operation of this harbor area propelled the urban development of Kaohsiung City, making it an important port in the south, mainly exporting rice and sugar. After the destruction of war and post-war recovery, Kaohsiung Harbor surpassed Keelung Harbor in the 1960s to become the largest port in Taiwan.",
+      "h3_3": "A New Chapter for Penglai Commercial Harbor",
+      "p_3": "In 1949, Kaohsiung Harbor was placed under control due to port security needs, leading to a 70-year separation between the Penglai Commercial Harbor and the city. However, in recent years, the Kaohsiung Harbor Bureau has diligently expanded the port facilities, allowing the Penglai Commercial Harbor area to be lifted from its restricted status in December 2018. Now, citizens can freely visit Piers 1-10 of the old harbor area, experiencing the unique scenery of the port's warehouses and docks..",
+      "attraction_title": "Nearby Attractions",
+      "h3_4": "KW7",
+      "p_4": "1-min walk",
+      "p_5": "'The VR playground with the most game types!'",
+      "p_6": " XR Digital Broadway Theater (VIVELAND) is the world's first movable 5G XR theater. It's an extension of the popular Eternal Notre Dame and Paris Ball VR experiences, using VIVE Focus 3 headsets and real-scene entertainment tech for immersive, multiplayer fun. Visitors can explore all sorts of amazing VR content at Pier-2 Art Center. With 5G's super-fast speeds and low lag, you get smooth views and high-quality visuals. Whether you're into games, theater, or digital shows, you'll find the freshest digital experiences here!",
+      "h3_5": "Shou Shan Ferry",
+      "p_7": "1-min walk",
+      "p_8": "Meet the The Steel Hero of Kaohsiung Harbor – Shou Shan Ferry, the oldest steel champion. Launched in 1996, it was the harbor's first double-decker ferry, serving for decades before retiring in 2019. Back when the Cross-Harbor Tunnel was restricted, it was a lifeline on the Qianzhen-Zhongzhou route, carrying essential goods, gas, and chemicals. It even paved the way for Kaohsiung's steel-hulled ferry fleet, becoming the model for the Cijin Ferry. It was almost scrapped, but Pier-2 Art Center stepped in, turning this emotional connection into a living memory for Kaohsiung's residents, hoping to create new memories for the future."
+    },
+
+    "tour2": {
+      "title_about": "About",
+      "h3_1": "Taiwan's First Horizontal Rotating Bridge",
+      "p_1": "The pure white Great Harbor Bridge is 110 meters long and 5 to 11 meters wide. It completes a horizontal rotation in just 3 minutes, allowing 550 people and bicycles to cross at the same time. It's Taiwan's first horizontal rotating bridge and the longest rotating bridge in Asia.",
+      "h3_2": "Observation Deck on the Bridge",
+      "p_2": "The Great Harbor Bridge, designed with shell and dolphin motifs, features a sleek and stylish look. At its center, there's an elevated observation deck offering visitors stunning views of Kaohsiung's waterfront.",
+      "h3_3": "A Landmark Blending Technology and Beauty",
+      "p_3": "The canopy is made of metal pipes crafted by Kaohsiung’s shipbuilding steel factory, combined with local yacht builders’ curved molding techniques. An additional frame achieves smooth curves hard to create with steel. This design connects people to the harbor's imagery while showcasing Kaohsiung's local industry expertise. The 80-meter canopy provides shade from the sun, inviting visitors to relax and enjoy the sea breeze, passing ships, and reflections of waterfront buildings.",
+      "h3_4": "Connecting the New Bay Area for Tourists",
+      "p_4": "The Great Harbor Bridge links major public facilities, the Kao port warehouse, and The Pier-2 Art Center in the New Bay Area, creating a vast tourist corridor. It's the trendiest travel route, perfect for enjoying sea breezes by day, sunsets by evening, and illuminated bridge views at night. Additionally, the weekend Great Harbor Bridge Market offers delicious food, performances, and creative goods, attracting many visitors.",
+      "opentime1": "Great Harbor Bridge Rotation Show",
+      "opentime2": "Monday to Thursday: 3:00 PM",
+      "opentime3": "Friday to Sunday: 3:00 PM / 7:00 PM",
+      "opentime4": "(Showtimes are subject to change)",
+      "attraction_title": "Nearby Attractions",
+      "h3_5": "Echo Across the Harbor",
+      "p_5": "1-min walk",
+      "p_6": "The 'Echo Across the Harbor' musical bronze bells recreate the historical imagery of Kaohsiung Port's banana pier with cranes lifting banana baskets. Comprising one swinging bell and 37 bronze bells, it creates lively harbor sounds and is the largest musical bronze bell setup in Taiwan.",
+      "p_7": "'Classic Melodies Echoing Across the Harbor'",
+      "p_8": "It features 72 well-known tunes, playing on the hour daily. Before the Great Harbor Bridge rotates, the classic tune 'Happy Sailing' plays, highlighting Taiwan's unique island culture. During the rotation, the sound of the swinging bell enhances the harbor's soundscape, spreading the echo far and wide.",
+      "opentime5": "Bronze Bell Schedule (hourly)",
+      "opentime6": "Monday to Thursday: 10:00 AM - 8:00 PM",
+      "opentime7": "Friday to Sunday: 10:00 AM - 9:00 PM"
+    },
+
+    "tour3": {
+      "title_about": "About",
+      "h3_1": "Indulge Your Senses:A culinary journey awaits",
+      "p_1": " Kaohsiung Port Depot 410 is located near Kaohsiung Port, Great Harbor Bridge, Pier-2 Art Center, and the Kaohsiung Music Center. It includes warehouses KD7 to KD10. The renovation preserves the old beams and columns, transforming brick walls into glass and metal storefronts. The former storage warehouses have been transformed into artisan eateries, trendy shops, and a garden, blending the charm of the harbor with the historical wharf area for a delightful waterfront experience.",
+      "h3_2": "Connecting the Harbor and City with Stylish Storefronts",
+      "p_2": "Great Harbor Warehouse 410 embraces the port area's 'public, open, and service-oriented' spirit. Preserving the original beams and columns, the renovation replaces brick walls with glass and metal, enhancing openness and providing stunning views of the Great Harbor Bridge and the port. With its 'stylish storefront' concept, it combines arts, dining, tech entertainment, and waterfront leisure, attracting visitors from Pier-2 and connecting seamlessly with the surrounding warehouses to create a continuous waterfront recreational area.",
+
+      "opentime1": "Port Depot 410 Opening Hours",
+      "opentime2": " Sunday to Thursday: 10:00 AM - 9:00 PM",
+      "opentime3": "Friday and Saturday: 10:00 AM - 10:00 PM",
+      "opentime4": "(Times are subject to change)",
+
+      "attraction_title": "Port Depot 410",
+
+      "store": {
+        "c1": "ALL",
+        "c2": "KD7",
+        "c3": "KD8",
+        "c4": "KD9",
+        "c5": "KD10",
+
+        "title1": "Delicious Cuisine",
+        "title2": "Joyful Shopping",
+
+        "c1_item": {
+          "h5_1": "永心浮島",
+          "h5_2": "olivo LIFE",
+          "h5_3": "E-WEAR",
+          "h5_4": "KISS KISS 選物店",
+          "h5_5": "yunique Backyard",
+          "h5_6": "IPANEMA",
+
+          "p_1_1": "全新海鮮餐酒餐廳",
+          "p_1_2": "弛放生活新節奏",
+
+          "p_2_1": "正式又休閒的",
+          "p_2_2": "都市休閒風穿著性格",
+
+          "p_3": "平易近人的個性魅力",
+
+          "p_4_1": "就是要你幸福的",
+          "p_4_2": "首選飾品",
+
+          "p_5_1": "以自然萬物為設計主軸",
+          "p_5_2": "給喜歡精緻工藝的妳",
+
+          "p_6_1": "穿上Ipanema",
+          "p_6_2": "找到最輕鬆美好的自己"
+        }
+      }
+    },
+
+    "tour4": {
+      "title_about": "About",
+      "h3_1": "Over a Century of History",
+      "p_1": "Built in 1914, the Kaohsiung Harbor Museum was initially constructed for the second phase of the Takao Port development during Japanese rule. It served as the Kaohsiung Port Tax Office and was renamed the 'Kaohsiung Harbor Bureau' in 1943, managing all administrative matters related to the port. In 1997, it was renovated into the Harbor Museum, dedicated to preserving and showcasing the history of Kaohsiung Port.",
+      "h3_2": "Asymmetrical Harmony",
+      "p_2": "The Harbor Museum, a two-story Baroque-style building, is often called the 'Red House' due to its red brick exterior. Notable features include its red and white striped walls, arched doorways, and white decorative bands. The building's design is asymmetrical, with mismatched front walls and varied window styles. Each of the four walls, the interior decorations, and even the perforations in the high ceiling are unique, creating an overall harmony and aesthetic that exudes a unique, irregular charm.",
+      "h3_3": "Exploring History and Scenery",
+      "p_3": "Inside the Harbor Museum, you'll find a wealth of historical artifacts, photographs, and documents that chronicle the development of Kaohsiung Port. In addition to delving into the port's history, visitors can explore the nearby Fisherman's Wharf and Observation Deck to enjoy stunning views of the beautiful Kaohsiung harbor.",
+
+      "opentime1": "Harbor Museum Opening Hours",
+      "opentime2": "Monday to Thursday: 9:00 AM - 5:00 PM",
+      "opentime3": "Friday: 10:00 AM - 5:00 PM ",
+      "opentime4": "※ Closed on Saturdays, Sundays, and public holidays.",
+      "opentime5": "(Times are subject to change)"
+    },
+
+    "tour5": {
+      "title_about": "About",
+      "h3_1": "A Secret Garden in Kaohsiung Harbor",
+      "p_1": "Tucked away behind Piers 3 to 5 of Kaohsiung Harbor, Kao Port Park is a hidden gem inspired by the concept of an ocean garden city. Covering 4,300 square meters, it boasts over 50,000 plants and incorporates existing air raid shelters and vegetation to create a miniature forest sanctuary within the harbor.",
+      "caption1": "Sunlight Tree",
+      "caption2": "Waterfall Forest",
+      "h3_2": "Urban Forest and Natural Scenery",
+      "p_2": "Enter through the hollow of the Sunlight Tree at the entrance, and you'll feel like you've stepped into a tropical island forest. The park features a waterfall forest inspired by Kaohsiung's Chai Mountain, a misty Forget Worries pond and bridge, a tree archway, an exploration path, a heart-shaped stone weir, and a lucky clover windmill.",
+      "h3_3": "Tropical South Pacific Pavilion",
+      "p_3": "At the wooden pavilion, you'll find a scene straight out of a South Pacific vacation, with sunshine, a sandy beach, and swaying palm trees. The fine golden sand is a hit with kids and families.",
+      "h3_4": "Panoramic Views from the Observation Deck",
+      "p_4": "Standing on the observation deck atop the air raid shelter, you can take in the beautiful surroundings of the port. If you're lucky, you might see a cruise ship or a large vessel entering the harbor, set against the backdrop of the blue sea and sky, offering visitors a unique glimpse of Kaohsiung's port scenery.",
+
+      "attraction_title": "Nearby Attractions",
+      "h3_5": "KW2",
+      "p_5": "5-min walk",
+      "p_6": "KW2 brings together talented artisans and iconic Taiwanese brands to create and achieve their dreams in this historic space where old meets new. It's a brand-new waterfront shopping and leisure experience in Kaohsiung Harbor, unlike anything you've seen before!"
+    }
   }
 }

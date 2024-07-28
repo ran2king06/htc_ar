@@ -7,6 +7,15 @@
   overflow: auto;
   max-width: 480px;
 
+  &.en {
+    section.tour-map {
+      span.placeName {
+        font-size: 12px !important;
+        white-space: pre-line !important;
+      }
+    }
+  }
+
   header {
     position: absolute;
     top: 20px;
@@ -414,14 +423,16 @@
   width: 100%;
   display: flex;
   gap: 15px;
+  margin-bottom: 20px;
 
-  img.custom-img {
+  img {
     margin: 0 !important;
+    margin-right: 5px !important;
   }
 
   span {
     display: flex;
     justify-content: center;
-    align-self: center;
+    align-items: center;
   }
 }

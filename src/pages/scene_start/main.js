@@ -114,6 +114,7 @@ const Scene_Start = () => {
                 <img src={Cloud2} alt='Cloud 2' className={`cloud cloud2 cloud2-${chooseMode}`} />
               </div>
               <div className='scene-start__container__btn'>
+                {/* LANGUAGE */}
                 <Link to={`/intro?mode=${chooseMode}`} onClick={() => chooseLanguage('en', chooseMode)}>
                   <img src={BtnEn} alt='English' />
                 </Link>

@@ -1,24 +1,31 @@
 import './css/main.scss';
 
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 
+import EnBtnChange from './../../assets/img/btn//en/btn-change.png';
 import BtnBack from './../../assets/img/btn/btn-back.png';
 import BtnChange from './../../assets/img/btn/btn-change.png';
 import BtnChangeDisable from './../../assets/img/btn/btn-exchange-dis.png';
 import BtnChangeFinish from './../../assets/img/btn/btn-exchange-finish.png';
+import EnBtnChangeDisable from './../../assets/img/btn/en/btn-exchange-dis.png';
+import EnBtnChangeFinish from './../../assets/img/btn/en/btn-exchange-finish.png';
 import IconPrize1 from './../../assets/img/icon/icon-prize.png';
 import Footer from './../../components/footer';
 import ModalConfirmExchange from './../../components/modal/ModalConfirmExchange';
 import BannerImg from './img/banner.png';
 
 const SceneReward = () => {
+  const { t, i18n } = useTranslation();
+
   const [modeStart, setModeStart] = useState('');
   const [rewardPoints, setRewardPoints] = useState(0);
   const [exchangeSuccess, setExchangeSuccess] = useState(false);
   const [enableChange, setEnableChange] = useState(false);
 
   const [modalExchangeIsOpen, setModalExchangeIsOpen] = useState(false);
+  const [lang, setLang] = useState('');
 
   useEffect(() => {
     // 取得 param query
@@ -44,6 +51,19 @@ const SceneReward = () => {
 
   }, [exchangeSuccess]);
 
+  useEffect(() => {
+    // 取得語言
+    const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
+    if (currentLanguage) {
+      setLang(currentLanguage);
+
+      if (currentLanguage === 'en') {
+        i18n.changeLanguage('en');
+      }
+    }
+  }, []);
+
+
   const exchangeSuccessCall = () => {
     setExchangeSuccess(true);
   }
@@ -64,7 +84,9 @@ const SceneReward = () => {
           <img src={BtnBack} alt="Back" />
         </Link>
 
-        <h1>獎勵兌換</h1>
+        <h1>
+          {t('scene-reward.title')}
+        </h1>
 
         <div className="header-right">
           <img src={IconPrize1} alt="Prize" />
@@ -75,14 +97,14 @@ const SceneReward = () => {
       <div className="scene-reward-content">
         <div>
           <h2>
-            高雄亞灣5G AIoT AR導覽體驗
-            <span>限定好禮</span>
+            {t('scene-reward.text1')}
+            <span>{t('scene-reward.text2')}</span>
           </h2>
 
           <img src={BannerImg} alt="Banner" />
 
           <p>
-            於高雄熊AR導覽體驗中完成任務， 集滿 10 個獎章，即可至棧貳庫2F服務台或大港倉10服務台兌換限定好禮。
+            {t('scene-reward.text3')}
           </p>
         </div>
 
@@ -96,16 +118,35 @@ const SceneReward = () => {
           {
             enableChange && !exchangeSuccess ? (
               <button onClick={() => setModalExchangeIsOpen(true)}>
-                <img src={BtnChange} alt="BtnChange" />
+                {
+                  lang === 'en' ? (
+                    <img src={EnBtnChange} alt="BtnChange" />
+                  ) : (
+                    <img src={BtnChange} alt="BtnChange" />
+                  )
+                }
               </button>
             ) :
               !enableChange && !exchangeSuccess ? (
                 <button>
-                  <img src={BtnChangeDisable} alt="BtnChangeDisable" />
+                  {
+                    lang === 'en' ? (
+                      <img src={EnBtnChangeDisable} alt="BtnChangeDisable" />
+                    ) : (
+                      <img src={BtnChangeDisable} alt="BtnChangeDisable" />
+                    )
+                  }
                 </button>
               ) : (
                 <button>
-                  <img src={BtnChangeFinish} alt="BtnChangeFinish" />
+                  {
+                    lang === 'en' ? (
+                      <img src={EnBtnChangeFinish} alt="BtnChangeFinish" />
+                    ) : (
+                      <img src={BtnChangeFinish} alt="BtnChangeFinish" />
+                    )
+                    // <img src={BtnChangeFinish} alt="BtnChangeFinish" />
+                  }
                 </button>
               )
           }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 import IconAbout from './../../assets/img/icon/icon-about.png';
 import IconHouse from './../../assets/img/icon/icon-house.png';
@@ -38,6 +39,7 @@ import TourC905 from './../../assets/img/tour/c/9/5.png';
 import TourC906 from './../../assets/img/tour/c/9/6.png';
 
 const Tour03 = () => {
+  const { t } = useTranslation();
   const [chooseHouse, setChooseHouse] = React.useState(0);
 
   return (
@@ -45,49 +47,58 @@ const Tour03 = () => {
       <div className="tour-content-about">
         <h2>
           <img src={IconAbout} alt="Icon About" className="tour-content-icon" />
-          關於「大港倉」
+          {t('scene-tour.tour3.title_about')}
         </h2>
         <img src={TourC01} alt="Tour A01" />
         <h3>
-          一茶一樹一咖啡一酒一鞄一食肆
+          {t('scene-tour.tour3.h3_1')}
         </h3>
         <p>
-          「大港倉410」緊鄰高雄港、大港橋、棧貳庫、駁二藝術特區、高雄流行音樂中心。昔日為「裏船溜」的第三船渠所在地，含括KD7至KD10這4座倉庫，藉由翻新老高港的歷史面貌，建築保留舊倉庫的樑柱結構，並將磚牆改建為通透的玻璃、金屬構成風格櫥窗。昔日儲貨舊倉庫群轉身為職人食肆、大港潮文創禮店、裏船溜花園，港灣魅力景緻結合蓬萊港區舊有碼頭場域特色，遊逛水岸饒富況味風情。
+          {t('scene-tour.tour3.p_1')}
         </p>
         <img src={TourC02} alt="Tour A02" />
         <h3>
-          連接港口與城市的風格櫥窗
+          {t('scene-tour.tour3.h3_2')}
         </h3>
         <p>
-          大港倉410將維持港口碼頭場域的「公共性、開放性、服務性」，保存舊倉庫的樑柱結構，但將磚牆改為通透的玻璃、金屬等材質，讓4座倉庫更具開放性，並能盡攬大港橋與港口風景。以「風格櫥窗」構想出發，引入藝文、餐飲、科技娛樂等商業機能，結合水岸休憩，吸引從駁二一帶步行而來的遊客，並和棧庫群連成一個連續性的水岸遊憩帶。
+          {t('scene-tour.tour3.p_2')}
         </p>
+
+        <div className="tour-openTime">
+          <h3>{t('scene-tour.tour3.opentime1')}</h3>
+          <div>{t('scene-tour.tour3.opentime2')}</div>
+          <div>{t('scene-tour.tour3.opentime3')}</div>
+          <div>{t('scene-tour.tour3.opentime4')}</div>
+        </div>
       </div>
+
+      {/* STORE */}
       <div className="tour-content-store">
         <h2>
           <img src={IconStore} alt="Icon About" className="tour-content-icon" />
-          「大港倉」在地商家
+          {t('scene-tour.tour3.attraction_title')}
         </h2>
 
         {/* 選倉 */}
         <div className="tour-chooseHouse">
           <button className={chooseHouse === 0 ? 'active' : ''} onClick={() => setChooseHouse(0)}>
-            全部
+            {t('scene-tour.tour3.store.c1')}
           </button>
 
           <button className={chooseHouse === 1 ? 'active' : ''} onClick={() => setChooseHouse(1)}>
-            倉7
+            {t('scene-tour.tour3.store.c2')}
           </button>
 
           <button className={chooseHouse === 2 ? 'active' : ''} onClick={() => setChooseHouse(2)}>
-            倉8
+            {t('scene-tour.tour3.store.c3')}
           </button>
 
           <button className={chooseHouse === 3 ? 'active' : ''} onClick={() => setChooseHouse(3)}>
-            倉9
+            {t('scene-tour.tour3.store.c4')}
           </button>
 
           <button className={chooseHouse === 4 ? 'active' : ''} onClick={() => setChooseHouse(4)}>
-            倉10
+            {t('scene-tour.tour3.store.c5')}
           </button>
         </div>
 
@@ -97,19 +108,25 @@ const Tour03 = () => {
         <div className={`tour-store-container ${chooseHouse === 1 || chooseHouse === 0 ? 'active' : ''}`}>
           <h3>
             <img src={IconHouse} alt="Icon Shopping" />
-            倉7
+            {t('scene-tour.tour3.store.c2')}
           </h3>
 
           <div className="tour-store-enjoy">
             <h4>
               <img src={IconRestaurant} alt="Icon Restaurant" />
-              美食佳餚
+              {t('scene-tour.tour3.store.title1')}
             </h4>
             <div className="tour-store-box-special">
               <div className="tour-store-box-item">
                 <img src={TourC701} alt="Tour C701" />
-                <h5>永心浮島</h5>
-                <p>全新海鮮餐酒餐廳 弛放生活新節奏</p>
+                <h5>
+                  {t('scene-tour.tour3.store.c1_item.h5_1')}
+                </h5>
+                <p>
+                  {t('scene-tour.tour3.store.c1_item.p_1_1')}
+                  <br />
+                  {t('scene-tour.tour3.store.c1_item.p_1_2')}
+                </p>
               </div>
             </div>
           </div>
@@ -117,44 +134,60 @@ const Tour03 = () => {
           <div className="tour-store-enjoy">
             <h4>
               <img src={IconShopping} alt="IconShopping" />
-              樂享購物
+              {t('scene-tour.tour3.store.title2')}
             </h4>
             <div className="tour-store-box-special">
               <div className="tour-store-box-item">
                 <img src={TourC702} alt="Tour C702" />
-                <h5>olivo LIFE</h5>
+                <h5>
+                  {t('scene-tour.tour3.store.c1_item.h5_2')}
+                </h5>
                 <p>
-                  正式又休閒的<br />
-                  都市休閒風穿著性格
+                  {t('scene-tour.tour3.store.c1_item.p_2_1')}
+                  <br />
+                  {t('scene-tour.tour3.store.c1_item.p_2_2')}
                 </p>
               </div>
               <div className="tour-store-box-item">
                 <img src={TourC703} alt="Tour C703" />
-                <h5>E-WEAR</h5>
-                <p>平易近人的個性魅力</p>
+                <h5>
+                  {t('scene-tour.tour3.store.c1_item.h5_3')}
+                </h5>
+                <p>
+                  {t('scene-tour.tour3.store.c1_item.p_3')}
+                </p>
               </div>
               <div className="tour-store-box-item">
                 <img src={TourC704} alt="Tour C704" />
-                <h5>KISS KISS 選物店</h5>
+                <h5>
+                  {t('scene-tour.tour3.store.c1_item.h5_4')}
+                </h5>
                 <p>
-                  就是要你幸福的<br />
-                  首選飾品
+                  {t('scene-tour.tour3.store.c1_item.p_4_1')}
+                  <br />
+                  {t('scene-tour.tour3.store.c1_item.p_4_2')}
                 </p>
               </div>
               <div className="tour-store-box-item">
                 <img src={TourC705} alt="Tour C705" />
-                <h5>yunique Backyard</h5>
+                <h5>
+                  {t('scene-tour.tour3.store.c1_item.h5_5')}
+                </h5>
                 <p>
-                  以自然萬物為設計主軸<br />
-                  給喜歡精緻工藝的妳
+                  {t('scene-tour.tour3.store.c1_item.p_5_1')}
+                  <br />
+                  {t('scene-tour.tour3.store.c1_item.p_5_2')}
                 </p>
               </div>
               <div className="tour-store-box-item">
                 <img src={TourC706} alt="Tour C706" />
-                <h5>IPANEMA</h5>
+                <h5>
+                  {t('scene-tour.tour3.store.c1_item.h5_6')}
+                </h5>
                 <p>
-                  穿上Ipanema<br />
-                  找到最輕鬆美好的自己
+                  {t('scene-tour.tour3.store.c1_item.p_6_1')}
+                  <br />
+                  {t('scene-tour.tour3.store.c1_item.p_6_2')}
                 </p>
               </div>
             </div>
@@ -167,14 +200,14 @@ const Tour03 = () => {
         <div className={`tour-store-container ${chooseHouse === 2 || chooseHouse === 0 ? 'active' : ''}`}>
           <h3>
             <img src={IconHouse} alt="Icon Shopping" />
-            倉8
+            {t('scene-tour.tour3.store.c3')}
           </h3>
 
           {/*美食佳餚  */}
           <div className="tour-store-enjoy">
             <h4>
               <img src={IconRestaurant} alt="Icon Restaurant" />
-              美食佳餚
+              {t('scene-tour.tour3.store.title1')}
             </h4>
             <div className="tour-store-box-special">
               <div className="tour-store-box-item">
@@ -194,7 +227,7 @@ const Tour03 = () => {
           <div className="tour-store-enjoy">
             <h4>
               <img src={IconShopping} alt="IconShopping" />
-              樂享購物
+              {t('scene-tour.tour3.store.title2')}
             </h4>
             <div className="tour-store-box-special">
               <div className="tour-store-box-item">
@@ -226,14 +259,14 @@ const Tour03 = () => {
         <div className={`tour-store-container ${chooseHouse === 3 || chooseHouse === 0 ? 'active' : ''}`}>
           <h3>
             <img src={IconHouse} alt="Icon Shopping" />
-            倉9
+            {t('scene-tour.tour3.store.c4')}
           </h3>
 
           {/*美食佳餚  */}
           <div className="tour-store-enjoy">
             <h4>
               <img src={IconRestaurant} alt="Icon Restaurant" />
-              美食佳餚
+              {t('scene-tour.tour3.store.title1')}
             </h4>
             <div className="tour-store-box-special">
               <div className="tour-store-box-item">
@@ -248,7 +281,7 @@ const Tour03 = () => {
           <div className="tour-store-enjoy">
             <h4>
               <img src={IconShopping} alt="IconShopping" />
-              樂享購物
+              {t('scene-tour.tour3.store.title2')}
             </h4>
             <div className="tour-store-box-special">
               <div className="tour-store-box-item">
@@ -290,14 +323,14 @@ const Tour03 = () => {
         <div className={`tour-store-container ${chooseHouse === 4 || chooseHouse === 0 ? 'active' : ''}`}>
           <h3>
             <img src={IconHouse} alt="Icon Shopping" />
-            倉10
+            {t('scene-tour.tour3.store.c5')}
           </h3>
 
           {/*美食佳餚  */}
           <div className="tour-store-enjoy">
             <h4>
               <img src={IconRestaurant} alt="Icon Restaurant" />
-              美食佳餚
+              {t('scene-tour.tour3.store.title1')}
             </h4>
             <div className="tour-store-box-special">
               <div className="tour-store-box-item">
@@ -360,7 +393,7 @@ const Tour03 = () => {
           <div className="tour-store-enjoy">
             <h4>
               <img src={IconShopping} alt="IconShopping" />
-              樂享購物
+              {t('scene-tour.tour3.store.title2')}
             </h4>
             <div className="tour-store-box-special">
               <div className="tour-store-box-item">

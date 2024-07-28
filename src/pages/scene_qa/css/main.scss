@@ -114,7 +114,7 @@
     padding: 20px 30px;
     border-radius: 10px;
     border: 2px solid #000;
-    height: 75dvh;
+    min-height: 75dvh;
     position: relative;
     z-index: 6;
 
@@ -157,6 +157,7 @@
       justify-content: space-between;
       align-items: center;
       height: 95%;
+      min-height: 65dvh;
 
       .qa-answer {
         width: 100%;

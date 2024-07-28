@@ -1,13 +1,18 @@
 import './css/modal-exchange-confirm.scss';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import BtnCancel from './../../assets/img/btn/btn-cancel.png';
 import BtnUse from './../../assets/img/btn/btn-use.png';
+import EnBtnCancel from './../../assets/img/btn/en/btn-cancel.png';
+import EnBtnUse from './../../assets/img/btn/en/btn-use.png';
 import IconSuccess from './../../assets/img/icon/icon-success.png';
 
 const ModalConfirmExchange = (props) => {
+  const { i18n, t } = useTranslation();
   const [exchangeSuccess, setExchangeSuccess] = useState(false);
+  const [lang, setLang] = useState('');
 
   function exchange() {
     setExchangeSuccess(true);
@@ -30,6 +35,18 @@ const ModalConfirmExchange = (props) => {
 
   }
 
+  useEffect(() => {
+    // 取得語言
+    const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
+    if (currentLanguage) {
+      if (currentLanguage === 'en') {
+        i18n.changeLanguage('en');
+        setLang('en');
+      }
+    }
+
+  }, [lang]);
+
   return (
     <>
       {
@@ -37,26 +54,47 @@ const ModalConfirmExchange = (props) => {
           // Modal Mask
           <div className="modal-mask modal-exchange-custom">
             <div className="modal-intro">
-              <div className="modal-content">
+              <div className={`modal-content ${lang === 'en' ? 'en' : ''}`}>
                 <p>
-                  確定使用「10點獎章」兌換<span>高雄亞灣5G AIoT AR導覽體驗-限定好禮</span>嗎？ ＊請將畫面交由工作人員操作，一經核銷將無法返還！
+                  {t('modal-redeem.p1_1')}
+                  <span>{t('modal-redeem.p1_2')}</span>
+                  {t('modal-redeem.p1_3')}
+                  <div className="text_custom">{t('modal-redeem.p2')}</div>
                 </p>
 
                 <div className="modal-btn-box">
                   <button onClick={exchange}>
-                    <img src={BtnUse} alt="Use" />
+                    {
+                      lang === 'en' ? (
+                        <img src={EnBtnUse} alt="Use" />
+                      ) : (
+                        <img src={BtnUse} alt="Use" />
+                      )
+                      // <img src={BtnUse} alt="Use" />
+                    }
+
                   </button>
                   <button onClick={props.closeExchangeModal}>
-                    <img src={BtnCancel} alt="Cancel" />
+                    {
+                      lang === 'en' ? (
+                        <img src={EnBtnCancel} alt="Cancel" />
+                      ) : (
+                        <img src={BtnCancel} alt="Cancel" />
+                      )
+                      // <img src={BtnCancel} alt="Cancel" />
+                    }
                   </button>
                 </div>
               </div>
 
               {
                 exchangeSuccess ? (
-                  <div className="exchange-success">
+                  <div className={`exchange-success ${lang === 'en' ? 'en' : ''}`}>
+
                     <img src={IconSuccess} alt="Success" />
-                    <p>兌換成功！</p>
+                    <p>
+                      {t('modal-redeem.p3')}
+                    </p>
                   </div>
                 ) : null
               }
