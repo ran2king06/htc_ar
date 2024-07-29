@@ -239,6 +239,7 @@ const SceneCollection = () => {
               <img src={btnComplete} alt="Complete" className="box-complete" />
               :
               <button onClick={() => testEarnPoints(1)}>
+                *測試得分*
                 <img src={btnChallenge} alt="Challenge" />
               </button>
           }
@@ -289,7 +290,7 @@ const SceneCollection = () => {
             missionCompleteB1 ?
               <img src={btnComplete} alt="Complete" className="box-complete" />
               :
-              <button onClick={() => clearPoints()}>
+              <button>
                 <img src={btnChallenge} alt="Challenge" />
               </button>
           }

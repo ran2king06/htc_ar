@@ -188,5 +188,70 @@
       "p_5": "5-min walk",
       "p_6": "KW2 brings together talented artisans and iconic Taiwanese brands to create and achieve their dreams in this historic space where old meets new. It's a brand-new waterfront shopping and leisure experience in Kaohsiung Harbor, unlike anything you've seen before!"
     }
+  },
+
+  "scene-qa": {
+    "title": "QA Challenge",
+    "correct": "Congratulations, you earned a medal. Keep it up!",
+    "wrong": "So close, try again!",
+    "alert": "Please select an answer",
+    "done": "OK",
+    "showResult": "Explanation",
+
+    "qa_place1": "Port of Kaohsiung",
+    "qa_place2": "Great Harbor Bridge",
+    "qa_place3": "Kaohsiung Port Depot",
+    "qa_place4": "Kaohsiung Harbor Museum",
+    "qa_place5": "Kao Port Park",
+
+    "qa1": {
+      "question": "After its completion in 1925, what were the main exports of Kaohsiung Port?",
+      "options": [
+        "Tea and cotton",
+        "Rice and sugar",
+        "Iron ore and copper",
+        "Timber and rubber"
+      ],
+      "answer": "The Penglai Commercial Harbor area of Kaohsiung Harbor was part of the Takao Port plan during the Japanese colonial period. Originally salt fields, it was transformed into a commercial port and Yancheng District through dredging and land reclamation. By 1925, the harbor was completed and became a key port in southern Taiwan, mainly exporting rice and sugar. After wartime destruction and recovery, Kaohsiung Harbor surpassed Keelung Harbor in the 1960s to become Taiwan's largest port."
+    },
+
+    "qa2": {
+      "question": "Great Harbor Bridge is a horizontally rotating bridge with a sleek, pure white design. What inspired its design?",
+      "options": [
+        "Whales and seaweed",
+        "Starfish and coral",
+        "Shells and dolphins",
+        "Fish and kelp"
+      ],
+      "answer": "Taiwan's First Horizontal Rotating Bridge The pure white Great Harbor Bridge is 110 meters long and 5 to 11 meters wide. It completes a horizontal rotation in just 3 minutes, allowing 550 people and bicycles to cross at the same time. It's Taiwan's first horizontal rotating bridge and the longest rotating bridge in Asia."
+    },
+
+    "qa3": {
+      "question": "Kaohsiung Port Depot 410 retains historical elements in its renovation, preserving part of the original structure. What is the preserved structure?",
+      "options": [
+        "Old ship hull",
+        "Old factory chimney",
+        "Old lighthouse tower",
+        "Old warehouse beams and columns"
+      ],
+      "answer": "Indulge Your Senses:A culinary journey awaits Kaohsiung Port Depot 410 is located near Kaohsiung Port, Great Harbor Bridge, Pier-2 Art Center, and the Kaohsiung Music Center. It includes warehouses KD7 to KD10. The renovation preserves the old beams and columns, transforming brick walls into glass and metal storefronts. The former storage warehouses have been transformed into artisan eateries, trendy shops, and a garden, blending the charm of the harbor with the historical wharf area for a delightful waterfront experience."
+    },
+
+    "qa4": {
+      "question": "Built in 1914, the Harbor Museum features red and white walls and an asymmetrical design. What is its architectural style?",
+      "options": ["Gothic", "Renaissance", "Baroque", "Neoclassical"],
+      "answer": "Asymmetrical Harmony The Harbor Museum, known as the 'Red House,' is a two-story Baroque-style building with red and white walls, arched doorways, and white decorative bands. Its asymmetrical design features mismatched walls and varying window styles, creating a unique and harmonious aesthetic."
+    },
+
+    "qa5": {
+      "question": "What is the name of the beautiful design at the entrance of Kao Port Park?",
+      "options": [
+        "Sunlight Tree",
+        "Fairy Fountain",
+        "Dream Arch",
+        "Rainbow Bridge"
+      ],
+      "answer": "Located behind Piers 3 to 5 at Kaohsiung Port, Kao Port Park spans 4,300 ping and features over 50,000 plants. Inspired by a marine garden city, it incorporates air raid shelters and existing vegetation to create a hidden forest oasis. \n\n Enter through the Sunlight Tree Hole to feel as if you are stepping into a tropical urban forest. The park includes a waterfall forest, Forget Worries Pond and Bridge, tree archways, exploration paths, heart-shaped stone weirs, and clover windmills."
+    }
   }
 }

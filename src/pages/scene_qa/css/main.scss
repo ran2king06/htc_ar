@@ -89,7 +89,7 @@
     display: block;
 
     .ans-result {
-      height: 50px;
+      height: 40px;
       margin-bottom: 10px;
     }
 
@@ -133,6 +133,17 @@
       transform: translateX(-50%);
       width: 250px;
       top: -30px;
+
+      &.en {
+        width: auto !important;
+        height: 45px !important;
+
+        img {
+          height: 100% !important;
+          max-width: initial !important;
+        }
+
+      }
 
       h2 {
         position: absolute;
@@ -236,6 +247,7 @@
       font-size: 14px;
       text-align: left;
       line-height: 1.5;
+      white-space: break-spaces;
     }
   }
 }
