@@ -15,6 +15,7 @@
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.24.1",
     "react-scripts": "5.0.1",
+    "react-unity-webgl": "^9.5.2",
     "sass": "^1.77.6",
     "swiper": "^11.1.5",
     "web-vitals": "^2.1.4"
