@@ -105,7 +105,8 @@ span.span-blue {
     z-index: 1;
     left: 50%;
     height: 100dvh;
-    width: 480px;
+    max-width: 480px;
+    width: 100%;
     top: 0;
     transform: translate(-50%, 0);
   }
