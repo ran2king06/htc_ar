@@ -3,7 +3,6 @@ import './css/main.scss';
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
-import { Unity, useUnityContext } from 'react-unity-webgl';
 
 import BtnBack from './../../assets/img/btn/btn-back.png';
 import BtnNotify from './../../assets/img/btn/btn-notify.png';
@@ -19,6 +18,7 @@ import ModalIntro from './../../components/modal/ModalIntro';
 import ModalNews from './../../components/modal/ModalNews';
 
 
+
 const Scene_Intro = () => {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
@@ -30,16 +30,6 @@ const Scene_Intro = () => {
   const [btnCollect, setBtnCollect] = React.useState(ZhBtnCollect);
   const [btnIntro, setBtnIntro] = React.useState(ZhBtnIntro);
   const [btnStart, setBtnStart] = React.useState(ZhBtnStart);
-
-  const { unityProvider, isLoaded, loadingProgression } = useUnityContext({
-    loaderUrl: "./webgl/Build/Build.loader.js",
-    dataUrl: "./webgl/Build/Build.data",
-    frameworkUrl: "./webgl/Build/Build.framework.js",
-    codeUrl: "./webgl/Build/Build.wasm",
-  });
-
-  const loadingPercentage = Math.round(loadingProgression * 100);
-
 
   useEffect(() => {
     // 取得語言
@@ -108,19 +98,6 @@ const Scene_Intro = () => {
 
   return (
     <div className="scene-intro">
-      {isLoaded === false && (
-        // We'll conditionally render the loading overlay if the Unity
-        // Application is not loaded.
-        <div className="loading-overlay">
-          <p>Loading... ({loadingPercentage}%)</p>
-        </div>
-      )}
-
-
-      {/* WEBGL BEAR */}
-      <Unity unityProvider={unityProvider} />;
-
-
       <header>
         <Link to={modeStart}>
           <img src={BtnBack} alt="Back" />
