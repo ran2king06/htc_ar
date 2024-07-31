@@ -1,8 +1,7 @@
 import './App.scss';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { Unity, useUnityContext } from 'react-unity-webgl';
 
 import i18n from './i18n';
 import ImagePreloader from './imageLoaded';
@@ -15,21 +14,22 @@ import SceneReward from './pages/scene_reward/main';
 import SceneStart from './pages/scene_start/main';
 import SceneTour from './pages/scene_tour/main';
 
+// import { Unity, useUnityContext } from 'react-unity-webgl';
+
 function App() {
   const [loading, setLoading] = useState(true);
 
   // 取得localStorage的語言設定
   const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
 
+  // const { unityProvider, isLoaded, loadingProgression, sendMessage } = useUnityContext({
+  //   loaderUrl: "./Build/Build.loader.js",
+  //   dataUrl: "./Build/Build.data",
+  //   frameworkUrl: "./Build/Build.framework.js",
+  //   codeUrl: "./Build/Build.wasm",
+  // });
 
-  const { unityProvider, isLoaded, loadingProgression } = useUnityContext({
-    loaderUrl: "./webgl/Build/Build.loader.js",
-    dataUrl: "./webgl/Build/Build.data",
-    frameworkUrl: "./webgl/Build/Build.framework.js",
-    codeUrl: "./webgl/Build/Build.wasm",
-  });
-
-  const loadingPercentage = Math.round(loadingProgression * 100);
+  // const loadingPercentage = Math.round(loadingProgression * 100);
 
   useEffect(() => {
     if (currentLanguage) {
@@ -45,27 +45,37 @@ function App() {
     window.location.reload();
   }
 
+  // 進入AR場景
+  const enterAR = useCallback(() => {
+    // sendMessage('WebGLAPI', 'ChangeScene', '1');
+    // }, [isLoaded]);
+  }, []);
+
   return (
     <div className="App">
       <div className='app-container'>
-        {isLoaded === false && (
-          // We'll conditionally render the loading overlay if the Unity
-          // Application is not loaded.
+        {/* {isLoaded === false && (
           <div className="loading-overlay">
             <p>Loading... ({loadingPercentage}%)</p>
           </div>
-        )}
+        )} */}
 
         <div className="app-canvas">
+          <div id="unity-container" className="unity-desktop">
+          </div>
           {/* WEBGL BEAR */}
-          <Unity unityProvider={unityProvider} />;
+          {/* <Unity unityProvider={unityProvider} />; */}
+          <iframe id="unityWEBGL" title="unity" src={`${process.env.PUBLIC_URL}/webgl/index.html`} className="unity-mobile" />
         </div>
 
         <div className="app-router-container">
           <Router>
             <Routes>
               <Route path="/" element={<SceneStart />} />
-              <Route path="/intro" element={<SceneIntro />} />
+              <Route
+                path="/intro"
+                element={<SceneIntro enterAR={enterAR} />}
+              />
               <Route path="/tour" element={<SceneTour />} />
               <Route path="/collection" element={<SceneCollection />} />
               <Route path="/reward" element={<SceneReward />} />

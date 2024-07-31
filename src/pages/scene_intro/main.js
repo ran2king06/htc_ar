@@ -18,8 +18,7 @@ import ModalIntro from './../../components/modal/ModalIntro';
 import ModalNews from './../../components/modal/ModalNews';
 
 
-
-const Scene_Intro = () => {
+const Scene_Intro = ({ enterAR }) => {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
 
@@ -30,6 +29,8 @@ const Scene_Intro = () => {
   const [btnCollect, setBtnCollect] = React.useState(ZhBtnCollect);
   const [btnIntro, setBtnIntro] = React.useState(ZhBtnIntro);
   const [btnStart, setBtnStart] = React.useState(ZhBtnStart);
+
+  const [modeIndex, setModeIndex] = React.useState(null);
 
   useEffect(() => {
     // 取得語言
@@ -81,6 +82,12 @@ const Scene_Intro = () => {
     navigate('/collection' + modeStart)
   };
 
+  const goToAr = () => {
+    // enterAR();
+    // window.enterARScene();
+    document.getElementById("unityWEBGL").contentWindow.enterARScene();
+  };
+
   useEffect(() => {
     // 取得 param query
     const queryString = window.location.search;
@@ -92,9 +99,10 @@ const Scene_Intro = () => {
     } else {
       setIsOpenNews(true);
     }
+    setModeIndex(mode);
 
     setModeStart('/?mode=' + mode);
-  }, []);
+  }, [modeIndex]);
 
   return (
     <div className="scene-intro">
@@ -120,7 +128,7 @@ const Scene_Intro = () => {
         <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToCollection}>
           <img src={btnCollect} alt="Collect" />
         </button>
-        <button style={{ width: '30%', maxWidth: '90px' }}>
+        <button style={{ width: '30%', maxWidth: '90px' }} onClick={() => goToAr()}>
           <img src={btnStart} alt="Start" />
         </button>
       </div>
