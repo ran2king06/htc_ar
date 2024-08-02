@@ -44,6 +44,8 @@ const Scene_Start = () => {
     const ar = urlParams.get('mode');
     if (ar) {
       setChooseMode(parseInt(ar));
+    } else {
+      setChooseMode(1);
     }
 
     switch (chooseMode) {
@@ -89,6 +91,12 @@ const Scene_Start = () => {
   const chooseLanguage = (lng, mode) => {
     localStorage.setItem('i18nextLng_htc_ar', lng);
     i18n.changeLanguage(lng);
+
+    if (lng === 'en') {
+      document.getElementById("unityWEBGL").contentWindow.setLocalization('en');
+    } else {
+      document.getElementById("unityWEBGL").contentWindow.setLocalization('zh-tw');
+    }
   }
 
   return (

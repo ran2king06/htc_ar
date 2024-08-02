@@ -18,7 +18,7 @@ import ModalIntro from './../../components/modal/ModalIntro';
 import ModalNews from './../../components/modal/ModalNews';
 
 
-const Scene_Intro = ({ enterAR }) => {
+const Scene_Intro = ({ enterAR, backToStart }) => {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
 
@@ -31,6 +31,8 @@ const Scene_Intro = ({ enterAR }) => {
   const [btnStart, setBtnStart] = React.useState(ZhBtnStart);
 
   const [modeIndex, setModeIndex] = React.useState(null);
+
+  const [enterARScene, setEnterARScene] = React.useState(false);
 
   useEffect(() => {
     // 取得語言
@@ -85,6 +87,9 @@ const Scene_Intro = ({ enterAR }) => {
   const goToAr = () => {
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
       document.getElementById("unityWEBGL").contentWindow.enterARScene();
+
+      enterAR();
+      setEnterARScene(true);
     }
   };
 
@@ -104,37 +109,55 @@ const Scene_Intro = ({ enterAR }) => {
     setModeStart('/?mode=' + mode);
   }, [modeIndex]);
 
+  const enterStartScene = () => {
+
+    // 進入開始畫面
+    document.getElementById("unityWEBGL").contentWindow.enterStartScene();
+    backToStart();
+  }
+
   return (
     <div className="scene-intro">
       <header>
-        <Link to={modeStart}>
+        <Link to={modeStart} onClick={() => enterStartScene()}>
           <img src={BtnBack} alt="Back" />
         </Link>
         <div className="header-right">
-          <button onClick={openNewsModal}>
-            <img src={BtnNotify} alt="Notify" />
-          </button>
-
+          {
+            !enterARScene ?
+              <button onClick={openNewsModal}>
+                <img src={BtnNotify} alt="Notify" />
+              </button>
+              : <></>
+          }
           <button onClick={openModal}>
             <img src={BtnQa} alt="Q&A" />
           </button>
         </div>
       </header>
 
-      <div className="btn-container">
-        <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToTour}>
-          <img src={btnIntro} alt="Intro" />
-        </button>
-        <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToCollection}>
-          <img src={btnCollect} alt="Collect" />
-        </button>
-        <button style={{ width: '30%', maxWidth: '90px' }} onClick={() => goToAr()}>
-          <img src={btnStart} alt="Start" />
-        </button>
-      </div>
+      {
+        !enterARScene ?
 
-      <Footer />
+          <div className="btn-container">
+            <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToTour}>
+              <img src={btnIntro} alt="Intro" />
+            </button>
+            <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToCollection}>
+              <img src={btnCollect} alt="Collect" />
+            </button>
+            <button style={{ width: '30%', maxWidth: '90px' }} onClick={() => goToAr()}>
+              <img src={btnStart} alt="Start" />
+            </button>
+          </div>
+          : <></>
+      }
 
+      {
+        !enterARScene ?
+          <Footer />
+          : <></>
+      }
 
       {/* Modal 最新消息 */}
       <ModalNews
