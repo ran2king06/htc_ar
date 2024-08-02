@@ -83,9 +83,9 @@ const Scene_Intro = ({ enterAR }) => {
   };
 
   const goToAr = () => {
-    // enterAR();
-    // window.enterARScene();
-    document.getElementById("unityWEBGL").contentWindow.enterARScene();
+    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+      document.getElementById("unityWEBGL").contentWindow.enterARScene();
+    }
   };
 
   useEffect(() => {
