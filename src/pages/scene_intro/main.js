@@ -33,6 +33,8 @@ const Scene_Intro = ({ enterAR, backToStart, openIntroModal }) => {
 
   const [enterARScene, setEnterARScene] = React.useState(false);
 
+  const [alertCameraPermission, setAlertCameraPermission] = React.useState(false);
+
   useEffect(() => {
     // 取得語言
     const lng = localStorage.getItem('i18nextLng_htc_ar');
@@ -76,16 +78,16 @@ const Scene_Intro = ({ enterAR, backToStart, openIntroModal }) => {
 
   const goToAr = () => {
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
-      document.getElementById("unityWEBGL").contentWindow.enterARScene();
-
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: false })
         .then(() => {
+          document.getElementById("unityWEBGL").contentWindow.enterARScene();
           enterAR();
           setEnterARScene(true);
         })
         .catch((err) => {
-          console.error(`An error occurred: ${err}`);
+          // alert('您的瀏覽器不支援 WebRTC，請使用支援 WebRTC 的瀏覽器。');
+          setAlertCameraPermission(true);
         });
     }
   };
@@ -154,6 +156,22 @@ const Scene_Intro = ({ enterAR, backToStart, openIntroModal }) => {
         !enterARScene ?
           <Footer />
           : <></>
+      }
+
+      {/* 請開啟相機權限 */}
+      {
+        alertCameraPermission &&
+        <div>
+          <div className="camera-permission">
+            <div className="camera-permission__content">
+              <h2>請開啟相機權限</h2>
+              <p>此體驗需使用相機，請開啟權限同意在網頁上使用手機相機。</p>
+              <button onClick={() => setAlertCameraPermission(false)}>
+                我知道了
+              </button>
+            </div>
+          </div>
+        </div>
       }
 
       {/* Modal 最新消息 */}

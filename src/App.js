@@ -1,6 +1,6 @@
 import './App.scss';
 
-import { ref, useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import SearchingBear1 from './assets/img/ar/1.png';
@@ -8,6 +8,7 @@ import ARDetecting from './assets/img/ar/detect.png';
 import BtnCapture from './assets/img/btn/btn-capture.png';
 import BtnGood from './assets/img/btn/btn-good.png';
 import BtnNoProblem from './assets/img/btn/btn-noProblem.png';
+import ImgCongrats from './assets/img/collection/congrat.png';
 import ModalIntro from './components/modal/ModalIntro';
 import i18n from './i18n';
 import ImagePreloader from './imageLoaded';
@@ -20,7 +21,6 @@ import SceneReward from './pages/scene_reward/main';
 import SceneStart from './pages/scene_start/main';
 import SceneTour from './pages/scene_tour/main';
 
-// import { Unity, useUnityContext } from 'react-unity-webgl';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -36,6 +36,7 @@ function App() {
   const [showCaptureResult, setShowCaptureResult] = useState(false);
 
   const [capturePhoto, setCapturePhoto] = useState(null);
+  const [captureDone, setCaptureDone] = useState(false);
 
   // 取得localStorage的語言設定
   const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
@@ -168,6 +169,17 @@ function App() {
     document.getElementById("unityWEBGL").contentWindow.triggerRandomCurrentTargetEffect();
   }
 
+  const reCapture = () => {
+    setShowCaptureResult(false);
+    setShowCapture(true);
+  }
+
+  const captureDoneBtn = () => {
+    setShowCaptureResult(false);
+    setShowDialog(true);
+    setNextDialog(2);
+  }
+
   // 回到開始畫面
   const backToStart = useCallback(() => {
     setFirstTimeScan(true);
@@ -178,6 +190,19 @@ function App() {
     setShowCapture(false);
     // document.getElementById("unityWEBGL").contentWindow.backToStart();
   }, []);
+
+  // 任務完成
+  const endMission = () => {
+    setCaptureDone(true);
+    setShowDialog(false);
+  }
+
+  // 前往集點冊
+  function goToCollectionScene() {
+    // navigate('/collection');
+    window.location.href = '/collection';
+  }
+
 
   return (
     <div className="App">
@@ -224,12 +249,17 @@ function App() {
                     歡迎來到高港水花園AR導覽體驗，<br />
                     很開心見到你！
                   </>
-                  :
-                  <>
-                    一起完成在高港水花園的任務吧！ <br />
-                    和我拍張照片留念，<br />
-                    就可以獲得獎章哦！
-                  </>
+                  : nextDialog === 1 ?
+                    <>
+                      一起完成在高港水花園的任務吧！ <br />
+                      和我拍張照片留念，<br />
+                      就可以獲得獎章哦！
+                    </>
+                    :
+                    <>
+                      真好看呢！ <br />
+                      你真是攝影天才
+                    </>
               }
 
             </p>
@@ -239,10 +269,16 @@ function App() {
                 <button onClick={() => setNextDialog(1)}>
                   <img src={BtnGood} alt="Good" />
                 </button>
-                :
-                <button onClick={() => closeDialog()}>
-                  <img src={BtnNoProblem} alt="Next" />
-                </button>
+                : nextDialog === 1 && showDialog ?
+                  <button onClick={() => closeDialog()}>
+                    <img src={BtnNoProblem} alt="Next" />
+                  </button>
+                  : nextDialog === 2 && showDialog ?
+                    <button onClick={() => endMission()} className="btn-thanks">
+                      謝謝誇獎
+                    </button>
+                    :
+                    <></>
             }
 
           </div>
@@ -310,13 +346,28 @@ function App() {
           </p>
 
           <div className="cs-btn">
-            <button>
+            <button onClick={() => reCapture()}>
               重拍
             </button>
-            <button>
+            <button onClick={() => captureDoneBtn()}>
               拍完了
             </button>
           </div>
+        </div>
+      }
+
+      {/* 任務完成 */}
+      {/* 移到 scene_intro */}
+      {
+        captureDone &&
+        <div className="mission-complete">
+          <p>
+            任務完成，獲得獎章！
+          </p>
+          <img src={ImgCongrats} alt="Congrats" />
+          <button onClick={() => goToCollectionScene()}>
+            查看集點冊
+          </button>
         </div>
       }
 
