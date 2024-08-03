@@ -80,6 +80,7 @@ function triggerNextCurrentTargetEffect() {
  * AR場景-隨機觸發當前觸發到的圖片的效果(隨機切換角色表演動作)
  */
 function triggerRandomCurrentTargetEffect() {
+    console.log('triggerRandomCurrentTargetEffect');
     window.unityInstance.SendMessage("ARManager", "TriggerRandomCurrentTargetEffect", "effect");
 }
 

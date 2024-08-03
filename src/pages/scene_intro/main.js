@@ -14,15 +14,14 @@ import EnBtnStart from './../../assets/img/btn/en/start.png';
 import ZhBtnIntro from './../../assets/img/btn/intro.png';
 import ZhBtnStart from './../../assets/img/btn/start.png';
 import Footer from './../../components/footer';
-import ModalIntro from './../../components/modal/ModalIntro';
 import ModalNews from './../../components/modal/ModalNews';
 
 
-const Scene_Intro = ({ enterAR, backToStart }) => {
+const Scene_Intro = ({ enterAR, backToStart, openIntroModal }) => {
   const navigate = useNavigate();
   const { i18n } = useTranslation();
 
-  const [modalIsOpen, setIsOpen] = React.useState(false);
+
   const [modalNewsIsOpen, setIsOpenNews] = React.useState(null);
   const [modeStart, setModeStart] = React.useState('');
 
@@ -64,16 +63,7 @@ const Scene_Intro = ({ enterAR, backToStart }) => {
   }
 
   function openModal() {
-    setIsOpen(true);
-  }
-
-  function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    // subtitle.style.color = '#f00';
-  }
-
-  function closeModal() {
-    setIsOpen(false);
+    openIntroModal(true);
   }
 
   const goToTour = () => {
@@ -88,8 +78,15 @@ const Scene_Intro = ({ enterAR, backToStart }) => {
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
       document.getElementById("unityWEBGL").contentWindow.enterARScene();
 
-      enterAR();
-      setEnterARScene(true);
+      navigator.mediaDevices
+        .getUserMedia({ video: true, audio: false })
+        .then(() => {
+          enterAR();
+          setEnterARScene(true);
+        })
+        .catch((err) => {
+          console.error(`An error occurred: ${err}`);
+        });
     }
   };
 
@@ -166,12 +163,6 @@ const Scene_Intro = ({ enterAR, backToStart }) => {
         closeModal={closeNewsModalNews}
       />
 
-      {/* Modal 介紹 */}
-      <ModalIntro
-        modalIsOpen={modalIsOpen}
-        afterOpenModal={afterOpenModal}
-        closeModal={closeModal}
-      />
     </div>
   );
 }

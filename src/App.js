@@ -8,6 +8,7 @@ import ARDetecting from './assets/img/ar/detect.png';
 import BtnCapture from './assets/img/btn/btn-capture.png';
 import BtnGood from './assets/img/btn/btn-good.png';
 import BtnNoProblem from './assets/img/btn/btn-noProblem.png';
+import ModalIntro from './components/modal/ModalIntro';
 import i18n from './i18n';
 import ImagePreloader from './imageLoaded';
 import imageSources from './imageSources';
@@ -31,6 +32,10 @@ function App() {
   const [showDialog, setShowDialog] = useState(false);
   const [nextDialog, setNextDialog] = useState(0);
   const [showCapture, setShowCapture] = useState(false);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [showCaptureResult, setShowCaptureResult] = useState(false);
+
+  const [capturePhoto, setCapturePhoto] = useState(null);
 
   // 取得localStorage的語言設定
   const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
@@ -116,6 +121,7 @@ function App() {
       unityWEBGL.contentWindow.document.addEventListener("unityWebGL_onImageTargetLost", function () {
         setDetectingAR(false);
         setSearchingBear(true);
+        setShowCapture(false);
       });
     }
 
@@ -125,10 +131,41 @@ function App() {
     setShowDialog(true);
   }
 
+  const clickCapture = async () => {
+    // console.log('clickCapture');
+    setShowCapture(false);
+    setShowCaptureResult(true);
+
+    // 熊拍照 takeScreenshot
+    const textBase64 = await document.getElementById("unityWEBGL").contentWindow.takeScreenshot();
+    const imgBlob = base64ToBlob(textBase64, 'image/jpg');
+    setCapturePhoto(URL.createObjectURL(imgBlob));
+  }
+
+  function base64ToBlob(base64, contentType = '') {
+    const byteCharacters = atob(base64);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += 512) {
+      const slice = byteCharacters.slice(offset, offset + 512);
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    return new Blob(byteArrays, { type: contentType });
+  }
+
   const closeDialog = () => {
     setShowDialog(false);
     setNextDialog(0);
     setShowCapture(true);
+
+    // 熊隨機擺拍姿勢 triggerRandomCurrentTargetEffect
+    document.getElementById("unityWEBGL").contentWindow.triggerRandomCurrentTargetEffect();
   }
 
   // 回到開始畫面
@@ -165,7 +202,7 @@ function App() {
               <Route path="/" element={<SceneStart />} />
               <Route
                 path="/intro"
-                element={<SceneIntro enterAR={enterAR} backToStart={backToStart} />}
+                element={<SceneIntro enterAR={enterAR} backToStart={backToStart} openIntroModal={setIsOpen} />}
               />
               <Route path="/tour" element={<SceneTour />} />
               <Route path="/collection" element={<SceneCollection />} />
@@ -219,7 +256,7 @@ function App() {
 
       {/* 辨識中... */}
       {
-        detectingAR && firstTimeScan ?
+        (detectingAR && firstTimeScan && !showDialog && !showCapture) ?
           <div className="detecting-ar">
             <img src={ARDetecting} alt="Detecting AR" />
             <p>辨識中...</p>
@@ -231,7 +268,7 @@ function App() {
 
       {/* 尋找圖像 */}
       {
-        searchingBear ?
+        (searchingBear && !showCaptureResult) ?
           <div className="searching-bear">
             <p>尋找圖像</p>
             <img src={SearchingBear1} alt="Searching Bear" />
@@ -243,7 +280,7 @@ function App() {
 
       {/* 點擊區域 */}
       {
-        activateClickArea &&
+        (activateClickArea && !showDialog && !showCapture) &&
         <div className="click-area" onClick={clickBear}>
         </div>
       }
@@ -252,7 +289,7 @@ function App() {
       {
         showCapture &&
         <div className="show-capture">
-          <button onClick={() => setShowCapture(false)}>
+          <button onClick={() => clickCapture()}>
             <img src={BtnCapture} alt="capture" />
           </button>
           <p>
@@ -260,6 +297,34 @@ function App() {
           </p>
         </div>
       }
+
+      {/* 拍完照視窗 */}
+      {
+        (showCaptureResult) &&
+        <div className="capture-result">
+          <div className="capture-img">
+            <img src={capturePhoto} alt="Capture" />
+          </div>
+          <p>
+            拍得真好！長按可以儲存圖片哦
+          </p>
+
+          <div className="cs-btn">
+            <button>
+              重拍
+            </button>
+            <button>
+              拍完了
+            </button>
+          </div>
+        </div>
+      }
+
+      {/* Modal 介紹 */}
+      <ModalIntro
+        modalIsOpen={modalIsOpen}
+        closeModal={() => setIsOpen(false)}
+      />
 
       {/* 載入畫面 */}
       {
