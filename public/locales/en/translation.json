@@ -253,5 +253,20 @@
       ],
       "answer": "Located behind Piers 3 to 5 at Kaohsiung Port, Kao Port Park spans 4,300 ping and features over 50,000 plants. Inspired by a marine garden city, it incorporates air raid shelters and existing vegetation to create a hidden forest oasis. \n\n Enter through the Sunlight Tree Hole to feel as if you are stepping into a tropical urban forest. The park includes a waterfall forest, Forget Worries Pond and Bridge, tree archways, exploration paths, heart-shaped stone weirs, and clover windmills."
     }
+  },
+
+  "ar": {
+    "detecting": "Scanning...",
+    "findImage": "Find the image",
+    "findAgain": "Try finding the image again!",
+
+    "openAr_camera_title": "Camera permission required",
+    "openAr_camera_content": "This experience needs to access your camera. Please enable camera access.",
+    "openAr_camera_btn": "Got it!",
+
+    "thank_you": "Thank You!",
+
+    "success_content": "Mission accomplished, you earned a medal!",
+    "success_btn": "Check Medal Collection"
   }
 }

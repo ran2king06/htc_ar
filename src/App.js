@@ -1,6 +1,7 @@
 import './App.scss';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import SearchingBear1 from './assets/img/ar/1.png';
@@ -23,6 +24,9 @@ import SceneTour from './pages/scene_tour/main';
 
 
 function App() {
+  const sceneIntroRef = useRef();
+  const { t } = useTranslation();
+
   const [loading, setLoading] = useState(true);
   const [unityLoading, setUnityLoading] = useState(true);
   const [detectingAR, setDetectingAR] = useState(false);
@@ -34,6 +38,7 @@ function App() {
   const [showCapture, setShowCapture] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
   const [showCaptureResult, setShowCaptureResult] = useState(false);
+  const [sceneMode, setSceneMode] = useState(1);
 
   const [capturePhoto, setCapturePhoto] = useState(null);
   const [captureDone, setCaptureDone] = useState(false);
@@ -49,6 +54,29 @@ function App() {
   // });
 
   // const loadingPercentage = Math.round(loadingProgression * 100);
+
+  // 建立locaStorage資料
+  useEffect(() => {
+    // htcAr_localStorgeData 資料結構，會有 
+    // rewardPoints, missionA_1, missionA_2, missionB_1, missionB_2, missionC_1, missionC_2, missionD_1, missionD_2, missionE_1, missionE_2
+    const userData = localStorage.getItem('htcAr_localStorgeData');
+    if (!userData) {
+      localStorage.setItem('htcAr_localStorgeData', JSON.stringify({
+        rewardPoints: 0,
+        exchangeSuccess: false,
+        missionA_1: false,
+        missionA_2: false,
+        missionB_1: false,
+        missionB_2: false,
+        missionC_1: false,
+        missionC_2: false,
+        missionD_1: false,
+        missionD_2: false,
+        missionE_1: false,
+        missionE_2: false
+      }));
+    }
+  }, []);
 
   useEffect(() => {
     if (currentLanguage) {
@@ -178,7 +206,54 @@ function App() {
     setShowCaptureResult(false);
     setShowDialog(true);
     setNextDialog(2);
+
+    // 給分
+    saveScore();
   }
+
+  // 根據模式給1分，并且儲存到localStorage
+  const saveScore = () => {
+    // 取得 query string
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const mode = urlParams.get('mode');
+    setSceneMode(parseInt(mode));
+
+    const data = JSON.parse(localStorage.getItem('htcAr_localStorgeData')) || [];
+    const points = 1;
+
+    if (!data) {
+      return;
+    }
+
+    // 獲得獎章
+    data.rewardPoints += points;
+
+    // 根據模式解鎖任務
+    switch (parseInt(mode)) {
+      case 1:
+        data.missionA_1 = true;
+        break;
+      case 2:
+        data.missionAB_1 = true;
+        break;
+      case 3:
+        data.missionC_1 = true;
+        break;
+      case 4:
+        data.missionD_1 = true;
+        break;
+      case 5:
+        data.missionE_1 = true;
+        break;
+      default:
+        break;
+    }
+
+    // 更新 localStorage
+    localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
+  }
+
 
   // 回到開始畫面
   const backToStart = useCallback(() => {
@@ -200,8 +275,15 @@ function App() {
   // 前往集點冊
   function goToCollectionScene() {
     // navigate('/collection');
-    window.location.href = '/collection';
+    window.location.href = `/collection?mode=${sceneMode}`;
   }
+
+  // function openARScene() {
+  //   // set time out to wait for unity to load
+  //   setTimeout(() => {
+  //     sceneIntroRef.current.openAR();
+  //   }, 500);
+  // }
 
 
   return (
@@ -227,7 +309,7 @@ function App() {
               <Route path="/" element={<SceneStart />} />
               <Route
                 path="/intro"
-                element={<SceneIntro enterAR={enterAR} backToStart={backToStart} openIntroModal={setIsOpen} />}
+                element={<SceneIntro ref={sceneIntroRef} enterAR={enterAR} backToStart={backToStart} openIntroModal={setIsOpen} />}
               />
               <Route path="/tour" element={<SceneTour />} />
               <Route path="/collection" element={<SceneCollection />} />
@@ -275,7 +357,7 @@ function App() {
                   </button>
                   : nextDialog === 2 && showDialog ?
                     <button onClick={() => endMission()} className="btn-thanks">
-                      謝謝誇獎
+                      {t('ar.thank_you')}
                     </button>
                     :
                     <></>
@@ -295,7 +377,9 @@ function App() {
         (detectingAR && firstTimeScan && !showDialog && !showCapture) ?
           <div className="detecting-ar">
             <img src={ARDetecting} alt="Detecting AR" />
-            <p>辨識中...</p>
+            <p>
+              {t('ar.detecting')}
+            </p>
           </div>
 
           :
@@ -306,7 +390,16 @@ function App() {
       {
         (searchingBear && !showCaptureResult) ?
           <div className="searching-bear">
-            <p>尋找圖像</p>
+            {
+              firstTimeScan ?
+                <p>
+                  {t('ar.findImage')}
+                </p>
+                :
+                <p>
+                  {t('ar.findAgain')}
+                </p>
+            }
             <img src={SearchingBear1} alt="Searching Bear" />
           </div>
 
@@ -362,11 +455,11 @@ function App() {
         captureDone &&
         <div className="mission-complete">
           <p>
-            任務完成，獲得獎章！
+            {t('ar.success_content')}
           </p>
           <img src={ImgCongrats} alt="Congrats" />
           <button onClick={() => goToCollectionScene()}>
-            查看集點冊
+            {t('ar.success_btn')}
           </button>
         </div>
       }

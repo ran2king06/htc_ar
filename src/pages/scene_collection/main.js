@@ -1,6 +1,6 @@
 import './css/main.scss';
 
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -29,7 +29,7 @@ import Bear03 from './img/bear3.png';
 import Bear04 from './img/bear4.png';
 import Bear05 from './img/bear5.png';
 
-const SceneCollection = () => {
+const SceneCollection = ({ arScene }) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
@@ -84,6 +84,8 @@ const SceneCollection = () => {
     // htcAr_localStorgeData 資料結構，會有 
     // rewardPoints, missionA_1, missionA_2, missionB_1, missionB_2, missionC_1, missionC_2, missionD_1, missionD_2, missionE_1, missionE_2
     const userData = localStorage.getItem('htcAr_localStorgeData');
+
+    console.log('userData', userData);
 
     if (userData) {
       const data = JSON.parse(userData);
@@ -167,6 +169,18 @@ const SceneCollection = () => {
 
     // 更新 localStorage
     localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
+  }
+
+  const goToARScene = (index) => {
+    // 去 /intro 頁面, 並帶入 mode 參數, 然後打開 scene_intro 的 goToAr()
+    // const queryString = window.location.search;
+    // const urlParams = new URLSearchParams(queryString);
+    // const mode = urlParams.get('mode');
+
+    navigate(`/intro?mode=${index}&newsModal=false&openAR=true`);
+
+    // 打開 AR Scene
+    // arScene();
   }
 
   const goToQA = (qa) => {
@@ -290,7 +304,7 @@ const SceneCollection = () => {
             missionCompleteB1 ?
               <img src={btnComplete} alt="Complete" className="box-complete" />
               :
-              <button>
+              <button onClick={() => goToARScene(2)}>
                 <img src={btnChallenge} alt="Challenge" />
               </button>
           }
@@ -341,7 +355,7 @@ const SceneCollection = () => {
             missionCompleteC1 ?
               <img src={btnComplete} alt="Complete" className="box-complete" />
               :
-              <button>
+              <button onClick={() => goToARScene(3)}>
                 <img src={btnChallenge} alt="Challenge" />
               </button>
           }
@@ -392,7 +406,7 @@ const SceneCollection = () => {
             missionCompleteD1 ?
               <img src={btnComplete} alt="Complete" className="box-complete" />
               :
-              <button>
+              <button onClick={() => goToARScene(4)}>
                 <img src={btnChallenge} alt="Challenge" />
               </button>
           }
@@ -443,7 +457,7 @@ const SceneCollection = () => {
             missionCompleteE1 ?
               <img src={btnComplete} alt="Complete" className="box-complete" />
               :
-              <button>
+              <button onClick={() => goToARScene(5)}>
                 <img src={btnChallenge} alt="Challenge" />
               </button>
           }

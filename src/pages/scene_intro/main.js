@@ -1,6 +1,6 @@
 import './css/main.scss';
 
-import React, { useEffect } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -17,9 +17,10 @@ import Footer from './../../components/footer';
 import ModalNews from './../../components/modal/ModalNews';
 
 
-const Scene_Intro = ({ enterAR, backToStart, openIntroModal }) => {
+
+const Scene_Intro = forwardRef(({ enterAR, backToStart, openIntroModal }, ref) => {
   const navigate = useNavigate();
-  const { i18n } = useTranslation();
+  const { i18n, t } = useTranslation();
 
 
   const [modalNewsIsOpen, setIsOpenNews] = React.useState(null);
@@ -48,6 +49,17 @@ const Scene_Intro = ({ enterAR, backToStart, openIntroModal }) => {
       setBtnCollect(ZhBtnCollect);
       setBtnIntro(ZhBtnIntro);
       setBtnStart(ZhBtnStart);
+    }
+  }, []);
+
+  useEffect(() => {
+    // 取得 param query
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const openAR = urlParams.get('openAR');
+
+    if (openAR === 'true') {
+      goToAr();
     }
   }, []);
 
@@ -115,6 +127,14 @@ const Scene_Intro = ({ enterAR, backToStart, openIntroModal }) => {
     backToStart();
   }
 
+  useImperativeHandle(ref, () => {
+    return {
+      openAR: () => {
+        goToAr();
+      }
+    }
+  }, []);
+
   return (
     <div className="scene-intro">
       <header>
@@ -164,10 +184,15 @@ const Scene_Intro = ({ enterAR, backToStart, openIntroModal }) => {
         <div>
           <div className="camera-permission">
             <div className="camera-permission__content">
-              <h2>請開啟相機權限</h2>
-              <p>此體驗需使用相機，請開啟權限同意在網頁上使用手機相機。</p>
+              <h2>
+                {t('ar.openAr_camera_title')}
+                <br />
+              </h2>
+              <p>
+                {t('ar.openAr_camera_content')}
+              </p>
               <button onClick={() => setAlertCameraPermission(false)}>
-                我知道了
+                {t('ar.openAr_camera_btn')}
               </button>
             </div>
           </div>
@@ -183,6 +208,6 @@ const Scene_Intro = ({ enterAR, backToStart, openIntroModal }) => {
 
     </div>
   );
-}
+});
 
 export default Scene_Intro;
