@@ -74,13 +74,13 @@ const Scene_Start = () => {
         setUiShowBear(Bear4);
         break;
       case 5:
-        setDynamicBGColor('#FBE3D2');
+        setDynamicBGColor('#FFFFD1');
         setDynamicBG(StartBG5);
         setDynamicLocation(Location5);
         setUiShowBear(Bear5);
         break;
       default:
-        setDynamicBGColor('#FFFFD1');
+        setDynamicBGColor('#D1D8EE');
         setDynamicBG(StartBG1);
         setDynamicLocation(Location1);
         setUiShowBear(Bear1);

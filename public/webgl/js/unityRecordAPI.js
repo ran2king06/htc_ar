@@ -1,20 +1,4 @@
 /**
- * unity 是否讀取完畢
- */
-let isUnityReady = false;
-
-async function waitUntilUnityReady() {
-    return new Promise(r => {
-        const checkInterval = setInterval(() => {
-            if (window.unityInstance != null && isUnityReady) {
-                clearInterval(checkInterval);
-                r();
-            }
-        }, 100);
-    });
-}
-
-/**
  * 開始錄製影片
  */
 function startRecordVideo() {
@@ -71,11 +55,6 @@ function takeScreenshot() {
         window.unityInstance.SendMessage("WebGLAPI", "TakeScreenshot");
     });
 }
-
-//當unity準備完成，將狀態設為true
-document.addEventListener("unityWebGL_onReady", function () {
-    isUnityReady = true;
-});
 
 function base64ToBlob(base64, contentType = '') {
     const byteCharacters = atob(base64);

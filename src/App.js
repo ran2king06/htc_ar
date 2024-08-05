@@ -17,6 +17,7 @@ import imageSources from './imageSources';
 import Loading from './pages/loading/main';
 import SceneCollection from './pages/scene_collection/main';
 import SceneIntro from './pages/scene_intro/main';
+import ScenePlay from './pages/scene_play/main';
 import SceneQA from './pages/scene_qa/main';
 import SceneReward from './pages/scene_reward/main';
 import SceneStart from './pages/scene_start/main';
@@ -42,6 +43,7 @@ function App() {
 
   const [capturePhoto, setCapturePhoto] = useState(null);
   const [captureDone, setCaptureDone] = useState(false);
+  const [enterARBegin, setEnterARBegin] = useState(false);
 
   // 取得localStorage的語言設定
   const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
@@ -92,26 +94,26 @@ function App() {
     window.location.reload();
   }
 
-  // 進入AR場景
-  const enterAR = useCallback(() => {
-    console.log('enterAR');
-    setSearchingBear(true);
-    // sendMessage('WebGLAPI', 'ChangeScene', '1');
-    // }, [isLoaded]);
-  }, []);
-
   useEffect(() => {
     // if id unityWEBGL is loaded
     const unityWEBGL = document.getElementById('unityWEBGL');
     unityWEBGL.onload = () => {
-      console.log('unityWebGL_ready');
-
-      console.log(unityWEBGL.contentWindow.addEventListener);
 
       // 偵聽unityWebGL_onReady事件
       unityWEBGL.contentWindow.document.addEventListener("unityWebGL_onReady", function () {
+
+        if (!enterARBegin) {
+          // 進入開始畫面
+          document.getElementById("unityWEBGL").contentWindow.enterStartScene();
+          setSearchingBear(false);
+
+        } else {
+          // 進入AR場景
+          document.getElementById("unityWEBGL").contentWindow.enterARScene();
+          setSearchingBear(true);
+        }
+
         setUnityLoading(false);
-        setSearchingBear(false);
 
         // 設定語言
         if (currentLanguage === 'en') {
@@ -121,12 +123,15 @@ function App() {
         }
 
         // 隨機模式
-        // const randomMode = Math.floor(Math.random() * 5) + 1;
-        // document.getElementById("unityWEBGL").contentWindow.setGameMode(randomMode);
+        const randomMode = Math.floor(Math.random() * 5);
+        document.getElementById("unityWEBGL").contentWindow.setGameMode(randomMode);
+
+        console.log(randomMode);
       });
 
       // 偵聽 unityWebGL_onImageTargetTracked 事件
       unityWEBGL.contentWindow.document.addEventListener("unityWebGL_onImageTargetTracked", function (e) {
+        console.log(e);
         setDetectingAR(true);
         setActivateClickArea(true);
         setSearchingBear(false);
@@ -148,13 +153,17 @@ function App() {
 
       // 偵聽 unityWebGL_onImageTargetLost 事件
       unityWEBGL.contentWindow.document.addEventListener("unityWebGL_onImageTargetLost", function () {
+
+        // 重新定位
+        document.getElementById("unityWEBGL").contentWindow.setCurrentTargetToCamera();
+
         setDetectingAR(false);
         setSearchingBear(true);
         setShowCapture(false);
       });
     }
 
-  }, []);
+  }, [enterARBegin]);
 
   const clickBear = () => {
     setShowDialog(true);
@@ -193,6 +202,9 @@ function App() {
     setNextDialog(0);
     setShowCapture(true);
 
+    // 重新定位
+    document.getElementById("unityWEBGL").contentWindow.setCurrentTargetToCamera();
+
     // 熊隨機擺拍姿勢 triggerRandomCurrentTargetEffect
     document.getElementById("unityWEBGL").contentWindow.triggerRandomCurrentTargetEffect();
   }
@@ -206,6 +218,9 @@ function App() {
     setShowCaptureResult(false);
     setShowDialog(true);
     setNextDialog(2);
+
+    // 頒獎動作
+    document.getElementById("unityWEBGL").contentWindow.triggerRandomCurrentTargetReward();
 
     // 給分
     saveScore();
@@ -255,7 +270,7 @@ function App() {
   }
 
 
-  // 回到開始畫面
+  // 回到開始畫面 / 重置
   const backToStart = useCallback(() => {
     setFirstTimeScan(true);
     setDetectingAR(false);
@@ -270,6 +285,15 @@ function App() {
   const endMission = () => {
     setCaptureDone(true);
     setShowDialog(false);
+  }
+
+  // 播放對話
+  const playDialog = () => {
+    let next = nextDialog + 1;
+    setNextDialog(next);
+
+    // 熊動作
+    document.getElementById("unityWEBGL").contentWindow.triggerNextCurrentTargetEffect();
   }
 
   // 前往集點冊
@@ -309,9 +333,10 @@ function App() {
               <Route path="/" element={<SceneStart />} />
               <Route
                 path="/intro"
-                element={<SceneIntro ref={sceneIntroRef} enterAR={enterAR} backToStart={backToStart} openIntroModal={setIsOpen} />}
+                element={<SceneIntro ref={sceneIntroRef} setEnterARBegin={setEnterARBegin} backToStart={backToStart} openIntroModal={setIsOpen} />}
               />
               <Route path="/tour" element={<SceneTour />} />
+              <Route path="/play" element={<ScenePlay setEnterARBegin={setEnterARBegin} setSearchingBear={setSearchingBear} backToStart={backToStart} openIntroModal={setIsOpen} />} />
               <Route path="/collection" element={<SceneCollection />} />
               <Route path="/reward" element={<SceneReward />} />
               <Route path="/qa" element={<SceneQA />} />
@@ -328,14 +353,13 @@ function App() {
                 nextDialog === 0 ?
                   <>
                     嗨！我是高雄熊 <br />
-                    歡迎來到高港水花園AR導覽體驗，<br />
+                    歡迎來到高港水花園AR導覽體驗，
                     很開心見到你！
                   </>
                   : nextDialog === 1 ?
                     <>
                       一起完成在高港水花園的任務吧！ <br />
-                      和我拍張照片留念，<br />
-                      就可以獲得獎章哦！
+                      和我拍張照片留念，就可以獲得獎章哦！
                     </>
                     :
                     <>
@@ -348,7 +372,7 @@ function App() {
 
             {
               nextDialog === 0 && showDialog ?
-                <button onClick={() => setNextDialog(1)}>
+                <button onClick={() => playDialog()}>
                   <img src={BtnGood} alt="Good" />
                 </button>
                 : nextDialog === 1 && showDialog ?

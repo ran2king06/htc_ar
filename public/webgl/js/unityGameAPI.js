@@ -1,4 +1,26 @@
 /**
+ * unity 是否讀取完畢
+ */
+let isUnityReady = false;
+
+
+//當unity準備完成，將狀態設為true
+document.addEventListener("unityWebGL_onReady", function () {
+    isUnityReady = true;
+});
+
+async function waitUntilUnityReady() {
+    return new Promise(r => {
+        const checkInterval = setInterval(() => {
+            if (window.unityInstance != null && isUnityReady) {
+                clearInterval(checkInterval);
+                r();
+            }
+        }, 100);
+    });
+}
+
+/**
  * 切換到起始場景，並等待初始化完成
  */
 async function enterStartScene() {
@@ -80,7 +102,6 @@ function triggerNextCurrentTargetEffect() {
  * AR場景-隨機觸發當前觸發到的圖片的效果(隨機切換角色表演動作)
  */
 function triggerRandomCurrentTargetEffect() {
-    console.log('triggerRandomCurrentTargetEffect');
     window.unityInstance.SendMessage("ARManager", "TriggerRandomCurrentTargetEffect", "effect");
 }
 
@@ -90,7 +111,6 @@ function triggerRandomCurrentTargetEffect() {
 function triggerRandomCurrentTargetReward() {
     window.unityInstance.SendMessage("ARManager", "TriggerRandomCurrentTargetEffect", "reward");
 }
-
 
 /**
  * 主畫面-照順序觸發主畫面的效果(照順序切換角色表演動作)
@@ -107,11 +127,26 @@ function triggerRandomStartSceneEffect() {
 }
 
 /**
+ * AR場景-將當前觸發的圖片效果，放置到相機前方(只有在 圖片偵測丟失 的時候才有用)
+ */
+function setCurrentTargetToCamera() {
+    window.unityInstance.SendMessage("ARManager", "SetTrackerTransformToCamera");
+}
+
+/**
  * 設定語言 zh-tw/en
  * @param {string} lang 
  */
 function setLocalization(lang) {
     window.unityInstance.SendMessage("Localization", "LoadLocalization", lang);
+}
+
+/**
+ * 設定遊戲模式(第幾個地區)
+ * @param {number} mode 
+ */
+function setGameMode(mode) {
+    window.unityInstance.SendMessage("GameManager", "SetGameMode", `${mode}`);
 }
 
 // 只是測試用

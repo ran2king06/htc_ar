@@ -2,7 +2,7 @@ import './css/main.scss';
 
 import React, { forwardRef, useEffect, useImperativeHandle } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import BtnBack from './../../assets/img/btn/btn-back.png';
 import BtnNotify from './../../assets/img/btn/btn-notify.png';
@@ -18,22 +18,17 @@ import ModalNews from './../../components/modal/ModalNews';
 
 
 
-const Scene_Intro = forwardRef(({ enterAR, backToStart, openIntroModal }, ref) => {
+const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }, ref) => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation();
-
+  const location = useLocation();
 
   const [modalNewsIsOpen, setIsOpenNews] = React.useState(null);
   const [modeStart, setModeStart] = React.useState('');
-
   const [btnCollect, setBtnCollect] = React.useState(ZhBtnCollect);
   const [btnIntro, setBtnIntro] = React.useState(ZhBtnIntro);
   const [btnStart, setBtnStart] = React.useState(ZhBtnStart);
-
   const [modeIndex, setModeIndex] = React.useState(null);
-
-  const [enterARScene, setEnterARScene] = React.useState(false);
-
   const [alertCameraPermission, setAlertCameraPermission] = React.useState(false);
 
   useEffect(() => {
@@ -53,15 +48,16 @@ const Scene_Intro = forwardRef(({ enterAR, backToStart, openIntroModal }, ref) =
   }, []);
 
   useEffect(() => {
-    // 取得 param query
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const openAR = urlParams.get('openAR');
+    console.log('location');
+    backToStart();
+    setEnterARBegin(false);
 
-    if (openAR === 'true') {
-      goToAr();
+    // 如果是從 AR 頁面回來，要重新載入 Unity
+    if (document.getElementById("unityWEBGL").contentWindow.document.getElementById("unity-canvas")) {
+      document.getElementById("unityWEBGL").contentWindow.enterStartScene();
     }
-  }, []);
+
+  }, [location]);
 
   function openNewsModal() {
     setIsOpenNews(true);
@@ -89,13 +85,34 @@ const Scene_Intro = forwardRef(({ enterAR, backToStart, openIntroModal }, ref) =
   };
 
   const goToAr = () => {
+
+    if (typeof DeviceMotionEvent.requestPermission === 'function') {
+      // Handle iOS 13+ devices.
+      DeviceMotionEvent.requestPermission()
+        .then((state) => {
+          if (state === 'granted') {
+            // window.addEventListener('devicemotion', handleOrientation);
+            joinGame();
+          } else {
+            // console.error('Request to access the orientation was rejected');
+            joinGame();
+          }
+        })
+        .catch(console.error);
+    } else {
+      // Handle regular non iOS 13+ devices.
+      // window.addEventListener('devicemotion', handleOrientation);
+      joinGame();
+    }
+  };
+
+  const joinGame = () => {
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
       navigator.mediaDevices
         .getUserMedia({ video: true, audio: false })
         .then(() => {
           document.getElementById("unityWEBGL").contentWindow.enterARScene();
-          enterAR();
-          setEnterARScene(true);
+          navigate('/play' + modeStart);
         })
         .catch((err) => {
           // alert('您的瀏覽器不支援 WebRTC，請使用支援 WebRTC 的瀏覽器。');
@@ -103,6 +120,8 @@ const Scene_Intro = forwardRef(({ enterAR, backToStart, openIntroModal }, ref) =
         });
     }
   };
+
+
 
   useEffect(() => {
     // 取得 param query
@@ -117,14 +136,16 @@ const Scene_Intro = forwardRef(({ enterAR, backToStart, openIntroModal }, ref) =
     }
     setModeIndex(mode);
 
-    setModeStart('/?mode=' + mode);
+    setModeStart('?mode=' + mode);
   }, [modeIndex]);
 
-  const enterStartScene = () => {
+  const backToStartScene = () => {
 
     // 進入開始畫面
     document.getElementById("unityWEBGL").contentWindow.enterStartScene();
     backToStart();
+
+    navigate(`/${modeStart}`);
   }
 
   useImperativeHandle(ref, () => {
@@ -138,45 +159,33 @@ const Scene_Intro = forwardRef(({ enterAR, backToStart, openIntroModal }, ref) =
   return (
     <div className="scene-intro">
       <header>
-        <Link to={modeStart} onClick={() => enterStartScene()}>
+        <button onClick={() => backToStartScene()}>
           <img src={BtnBack} alt="Back" />
-        </Link>
+        </button>
         <div className="header-right">
-          {
-            !enterARScene ?
-              <button onClick={openNewsModal}>
-                <img src={BtnNotify} alt="Notify" />
-              </button>
-              : <></>
-          }
+          <button onClick={openNewsModal}>
+            <img src={BtnNotify} alt="Notify" />
+          </button>
+
           <button onClick={openModal}>
             <img src={BtnQa} alt="Q&A" />
           </button>
         </div>
       </header>
 
-      {
-        !enterARScene ?
+      <div className="btn-container">
+        <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToTour}>
+          <img src={btnIntro} alt="Intro" />
+        </button>
+        <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToCollection}>
+          <img src={btnCollect} alt="Collect" />
+        </button>
+        <button style={{ width: '30%', maxWidth: '90px' }} onClick={() => goToAr()}>
+          <img src={btnStart} alt="Start" />
+        </button>
+      </div>
 
-          <div className="btn-container">
-            <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToTour}>
-              <img src={btnIntro} alt="Intro" />
-            </button>
-            <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToCollection}>
-              <img src={btnCollect} alt="Collect" />
-            </button>
-            <button style={{ width: '30%', maxWidth: '90px' }} onClick={() => goToAr()}>
-              <img src={btnStart} alt="Start" />
-            </button>
-          </div>
-          : <></>
-      }
-
-      {
-        !enterARScene ?
-          <Footer />
-          : <></>
-      }
+      <Footer />
 
       {/* 請開啟相機權限 */}
       {

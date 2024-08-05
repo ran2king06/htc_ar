@@ -136,8 +136,14 @@ span.span-blue {
       position: relative;
       z-index: 0;
       left: 50%;
+      top: 0;
       transform: translate(-50%, 0);
       overflow: hidden;
+      border: none;
+      font-size: 0;
+      margin: 0;
+      padding: 0;
+      line-height: 0;
     }
 
   }
