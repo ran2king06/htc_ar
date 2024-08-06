@@ -248,6 +248,12 @@ function App() {
     const mode = urlParams.get('mode');
     setSceneMode(parseInt(mode));
 
+    // 大港橋 GreatHarborBridge
+    // 大港倉 KaoPortDepot
+    // 高雄港 KaoHarbor
+    // 港史館 KaoHarborMuseum
+    // 水花園 KaoPortPark
+
     const data = JSON.parse(localStorage.getItem('htcAr_localStorgeData')) || [];
     const points = 1;
 

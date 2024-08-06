@@ -148,6 +148,10 @@ const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }
     navigate(`/${modeStart}`);
   }
 
+  const triggerDialogBear = () => {
+    document.getElementById("unityWEBGL").contentWindow.triggerNextStartSceneEffect();
+  }
+
   useImperativeHandle(ref, () => {
     return {
       openAR: () => {
@@ -158,6 +162,13 @@ const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }
 
   return (
     <div className="scene-intro">
+      {/* 觸控範圍 */}
+      <div className="touch-area" onClick={() => triggerDialogBear()}>
+
+      </div>
+
+
+
       <header>
         <button onClick={() => backToStartScene()}>
           <img src={BtnBack} alt="Back" />
