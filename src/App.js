@@ -10,7 +10,7 @@ import BtnCapture from './assets/img/btn/btn-capture.png';
 import BtnGood from './assets/img/btn/btn-good.png';
 import BtnNoProblem from './assets/img/btn/btn-noProblem.png';
 import ImgCongrats from './assets/img/collection/congrat.png';
-import NoScene from './assets/img/onload.jpg';
+import NoScene from './assets/img/no-scene.png';
 import ModalIntro from './components/modal/ModalIntro';
 import i18n from './i18n';
 import ImagePreloader from './imageLoaded';
@@ -34,7 +34,7 @@ function App() {
   const [detectingAR, setDetectingAR] = useState(false);
   const [firstTimeScan, setFirstTimeScan] = useState(true);
   const [searchingBear, setSearchingBear] = useState(false);
-  const [activateClickArea, setActivateClickArea] = useState(false);
+  // const [activateClickArea, setActivateClickArea] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [nextDialog, setNextDialog] = useState(0);
   const [showCapture, setShowCapture] = useState(false);
@@ -45,6 +45,7 @@ function App() {
   const [capturePhoto, setCapturePhoto] = useState(null);
   const [captureDone, setCaptureDone] = useState(false);
   const [enterARBegin, setEnterARBegin] = useState(false);
+  const [showRepo, setShowRepo] = useState(false);
 
   // 取得localStorage的語言設定
   const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
@@ -142,42 +143,45 @@ function App() {
         unityWEBGL.contentWindow.document.addEventListener("unityWebGL_onImageTargetTracked", function (e) {
           console.log(e);
           setDetectingAR(true);
-          setActivateClickArea(true);
+          // setActivateClickArea(true);
           setSearchingBear(false);
+
+          // 重新定位
+          setShowRepo(false);
 
           setTimeout(() => {
             // 播放熊
             document.getElementById("unityWEBGL").contentWindow.playCurrentTrackedImage();
             setDetectingAR(false);
-            setFirstTimeScan(false);
+            setShowDialog(true);
 
             // 播放熊動作
-            setTimeout(() => {
-              document.getElementById("unityWEBGL").contentWindow.playCurrentTrackedImage();
-            }, 1000);
+            // setTimeout(() => {
+            //   document.getElementById("unityWEBGL").contentWindow.playCurrentTrackedImage();
+            // }, 1000);
 
           }, 3000);
-
         });
 
         // 偵聽 unityWebGL_onImageTargetLost 事件
         unityWEBGL.contentWindow.document.addEventListener("unityWebGL_onImageTargetLost", function () {
 
-          // 重新定位
-          document.getElementById("unityWEBGL").contentWindow.setCurrentTargetToCamera();
 
-          setDetectingAR(false);
-          setSearchingBear(true);
-          setShowCapture(false);
+          // 重新定位
+          setShowRepo(true);
+
+          // setDetectingAR(false);
+          // setSearchingBear(true);
+          // setShowCapture(false);
         });
       });
     }
 
   }, [enterARBegin]);
 
-  const clickBear = () => {
-    setShowDialog(true);
-  }
+  // const clickBear = () => {
+  //   setShowDialog(true);
+  // }
 
   const clickCapture = async () => {
     // console.log('clickCapture');
@@ -285,7 +289,7 @@ function App() {
     setFirstTimeScan(true);
     setDetectingAR(false);
     setSearchingBear(false);
-    setActivateClickArea(false);
+    // setActivateClickArea(false);
     setShowDialog(false);
     setShowCapture(false);
     // document.getElementById("unityWEBGL").contentWindow.backToStart();
@@ -319,6 +323,12 @@ function App() {
   //   }, 500);
   // }
 
+  // 隨機模式
+  const randomMode = () => {
+    const randomMode = Math.floor(Math.random() * 5);
+    document.getElementById("unityWEBGL").contentWindow.setGameMode(randomMode);
+  }
+
 
   return (
     <div className="App">
@@ -346,7 +356,7 @@ function App() {
                 element={<SceneIntro ref={sceneIntroRef} setEnterARBegin={setEnterARBegin} backToStart={backToStart} openIntroModal={setIsOpen} />}
               />
               <Route path="/tour" element={<SceneTour />} />
-              <Route path="/play" element={<ScenePlay setEnterARBegin={setEnterARBegin} setSearchingBear={setSearchingBear} backToStart={backToStart} openIntroModal={setIsOpen} />} />
+              <Route path="/play" element={<ScenePlay setEnterARBegin={setEnterARBegin} showRepo={showRepo} setSearchingBear={setSearchingBear} backToStart={backToStart} openIntroModal={setIsOpen} />} />
               <Route path="/collection" element={<SceneCollection />} />
               <Route path="/reward" element={<SceneReward />} />
               <Route path="/qa" element={<SceneQA />} />
@@ -356,7 +366,7 @@ function App() {
 
         {/* 點擊熊 */}
         {
-          showDialog &&
+          (showDialog && !showCapture && !showCaptureResult && !captureDone) &&
           <div className="modal-click-bear">
             <p>
               {
@@ -381,7 +391,7 @@ function App() {
             </p>
 
             {
-              nextDialog === 0 && showDialog ?
+              nextDialog === 0 && showDialog && !showCapture ?
                 <button onClick={() => playDialog()}>
                   <img src={BtnGood} alt="Good" />
                 </button>
@@ -406,6 +416,11 @@ function App() {
         Clear Score
       </button>
 
+      {/* 隨機模式 */}
+      <button className="test-random" onClick={randomMode}>
+        隨機模式
+      </button>
+
       {/* 辨識中... */}
       {
         (detectingAR && firstTimeScan && !showDialog && !showCapture) ?
@@ -424,7 +439,7 @@ function App() {
       {
         (searchingBear && !showCaptureResult) ?
           <div className="searching-bear">
-            {
+            {/* {
               firstTimeScan ?
                 <p>
                   {t('ar.findImage')}
@@ -433,7 +448,11 @@ function App() {
                 <p>
                   {t('ar.findAgain')}
                 </p>
-            }
+            } */}
+            <p>
+              {t('ar.findImage')}
+            </p>
+
             <img src={SearchingBear1} alt="Searching Bear" />
           </div>
 
@@ -442,11 +461,11 @@ function App() {
       }
 
       {/* 點擊區域 */}
-      {
+      {/* {
         (activateClickArea && !showDialog && !showCapture) &&
         <div className="click-area" onClick={clickBear}>
         </div>
-      }
+      } */}
 
       {/* 顯示拍照 */}
       {

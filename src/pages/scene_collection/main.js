@@ -177,7 +177,7 @@ const SceneCollection = ({ arScene }) => {
     // const urlParams = new URLSearchParams(queryString);
     // const mode = urlParams.get('mode');
 
-    navigate(`/intro?mode=${index}&newsModal=false&openAR=true`);
+    navigate(`/play?mode=${index}&newsModal=false&openAR=true`);
 
     // 打開 AR Scene
     // arScene();
