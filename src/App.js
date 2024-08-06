@@ -10,6 +10,7 @@ import BtnCapture from './assets/img/btn/btn-capture.png';
 import BtnGood from './assets/img/btn/btn-good.png';
 import BtnNoProblem from './assets/img/btn/btn-noProblem.png';
 import ImgCongrats from './assets/img/collection/congrat.png';
+import NoScene from './assets/img/onload.jpg';
 import ModalIntro from './components/modal/ModalIntro';
 import i18n from './i18n';
 import ImagePreloader from './imageLoaded';
@@ -81,6 +82,14 @@ function App() {
   }, []);
 
   useEffect(() => {
+    // 取得 query string
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const mode = urlParams.get('mode');
+    setSceneMode(parseInt(mode));
+  }, []);
+
+  useEffect(() => {
     if (currentLanguage) {
       i18n.changeLanguage(currentLanguage);
     }
@@ -127,39 +136,40 @@ function App() {
         document.getElementById("unityWEBGL").contentWindow.setGameMode(randomMode);
 
         console.log(randomMode);
-      });
 
-      // 偵聽 unityWebGL_onImageTargetTracked 事件
-      unityWEBGL.contentWindow.document.addEventListener("unityWebGL_onImageTargetTracked", function (e) {
-        console.log(e);
-        setDetectingAR(true);
-        setActivateClickArea(true);
-        setSearchingBear(false);
 
-        setTimeout(() => {
-          // 播放熊
-          document.getElementById("unityWEBGL").contentWindow.playCurrentTrackedImage();
-          setDetectingAR(false);
-          setFirstTimeScan(false);
+        // 偵聽 unityWebGL_onImageTargetTracked 事件
+        unityWEBGL.contentWindow.document.addEventListener("unityWebGL_onImageTargetTracked", function (e) {
+          console.log(e);
+          setDetectingAR(true);
+          setActivateClickArea(true);
+          setSearchingBear(false);
 
-          // 播放熊動作
           setTimeout(() => {
+            // 播放熊
             document.getElementById("unityWEBGL").contentWindow.playCurrentTrackedImage();
-          }, 1000);
+            setDetectingAR(false);
+            setFirstTimeScan(false);
 
-        }, 3000);
+            // 播放熊動作
+            setTimeout(() => {
+              document.getElementById("unityWEBGL").contentWindow.playCurrentTrackedImage();
+            }, 1000);
 
-      });
+          }, 3000);
 
-      // 偵聽 unityWebGL_onImageTargetLost 事件
-      unityWEBGL.contentWindow.document.addEventListener("unityWebGL_onImageTargetLost", function () {
+        });
 
-        // 重新定位
-        document.getElementById("unityWEBGL").contentWindow.setCurrentTargetToCamera();
+        // 偵聽 unityWebGL_onImageTargetLost 事件
+        unityWEBGL.contentWindow.document.addEventListener("unityWebGL_onImageTargetLost", function () {
 
-        setDetectingAR(false);
-        setSearchingBear(true);
-        setShowCapture(false);
+          // 重新定位
+          document.getElementById("unityWEBGL").contentWindow.setCurrentTargetToCamera();
+
+          setDetectingAR(false);
+          setSearchingBear(true);
+          setShowCapture(false);
+        });
       });
     }
 
@@ -502,6 +512,14 @@ function App() {
           :
           <Loading />
 
+      }
+
+      {/* 沒畫面 */}
+      {
+        ((sceneMode < 0 || sceneMode > 5) || !sceneMode) &&
+        <div className="no-scene">
+          <img src={NoScene} alt="No Scene" />
+        </div>
       }
       <ImagePreloader srcArray={imageSources} loadStatus={status => setLoading(status.every(s => s))} />
     </div >
