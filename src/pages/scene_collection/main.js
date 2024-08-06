@@ -17,7 +17,6 @@ import EnTitle4 from './../../assets/img/collection/4.png';
 import EnTitle5 from './../../assets/img/collection/5.png';
 import EnBtnExchange from './../../assets/img/collection/btn-redeem.png';
 import IconComplete from './../../assets/img/icon/icon-complete.png';
-import IconNew from './../../assets/img/icon/icon-new.png';
 import IconPrizeSilver from './../../assets/img/icon/icon-prize-silver.png';
 import IconPrize from './../../assets/img/icon/icon-prize.png';
 import IconWhite from './../../assets/img/icon/icon-white.png';
@@ -242,8 +241,13 @@ const SceneCollection = ({ arScene }) => {
         </div>
         <div className={` collection-box ${missionCompleteA1 ? 'complete' : ''}`}>
           <div className="box-metal">
-            <img src={IconPrize} alt="Prize" className="box-iconPrize" />
-            <img src={IconNew} alt="New" className="box-iconNew" />
+            {
+              missionCompleteA1 ?
+                <img src={IconPrize} alt="Prize" className="box-iconPrize" />
+                :
+                <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            }
+            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
           </div>
           <span>
             {t('scene-collection.mission1')}
@@ -260,7 +264,13 @@ const SceneCollection = ({ arScene }) => {
         </div>
         <div className="collection-box">
           <div className="box-metal">
-            <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            {
+              missionCompleteA2 ?
+                <img src={IconPrize} alt="Prize" className="box-iconPrize" />
+                :
+                <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            }
+            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
           </div>
           <span>
             {t('scene-collection.mission2')}
@@ -294,8 +304,13 @@ const SceneCollection = ({ arScene }) => {
         </div>
         <div className={` collection-box ${missionCompleteA1 ? 'complete' : ''}`}>
           <div className="box-metal">
-            <img src={IconPrize} alt="Prize" className="box-iconPrize" />
-            <img src={IconNew} alt="New" className="box-iconNew" />
+            {
+              missionCompleteB1 ?
+                <img src={IconPrize} alt="Prize" className="box-iconPrize" />
+                :
+                <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            }
+            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
           </div>
           <span>
             {t('scene-collection.mission1')}
@@ -311,7 +326,13 @@ const SceneCollection = ({ arScene }) => {
         </div>
         <div className="collection-box">
           <div className="box-metal">
-            <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            {
+              missionCompleteB2 ?
+                <img src={IconPrize} alt="Prize" className="box-iconPrize" />
+                :
+                <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            }
+            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
           </div>
           <span>
             {t('scene-collection.mission2')}
@@ -345,8 +366,13 @@ const SceneCollection = ({ arScene }) => {
         </div>
         <div className={` collection-box ${missionCompleteA1 ? 'complete' : ''}`}>
           <div className="box-metal">
-            <img src={IconPrize} alt="Prize" className="box-iconPrize" />
-            <img src={IconNew} alt="New" className="box-iconNew" />
+            {
+              missionCompleteC1 ?
+                <img src={IconPrize} alt="Prize" className="box-iconPrize" />
+                :
+                <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            }
+            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
           </div>
           <span>
             {t('scene-collection.mission1')}
@@ -362,7 +388,13 @@ const SceneCollection = ({ arScene }) => {
         </div>
         <div className="collection-box">
           <div className="box-metal">
-            <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            {
+              missionCompleteC2 ?
+                <img src={IconPrize} alt="Prize" className="box-iconPrize" />
+                :
+                <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            }
+            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
           </div>
           <span>
             {t('scene-collection.mission2')}
@@ -396,8 +428,13 @@ const SceneCollection = ({ arScene }) => {
         </div>
         <div className={` collection-box ${missionCompleteA1 ? 'complete' : ''}`}>
           <div className="box-metal">
-            <img src={IconPrize} alt="Prize" className="box-iconPrize" />
-            <img src={IconNew} alt="New" className="box-iconNew" />
+            {
+              missionCompleteD1 ?
+                <img src={IconPrize} alt="Prize" className="box-iconPrize" />
+                :
+                <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            }
+            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
           </div>
           <span>
             {t('scene-collection.mission1')}
@@ -413,7 +450,13 @@ const SceneCollection = ({ arScene }) => {
         </div>
         <div className="collection-box">
           <div className="box-metal">
-            <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            {
+              missionCompleteD2 ?
+                <img src={IconPrize} alt="Prize" className="box-iconPrize" />
+                :
+                <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            }
+            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
           </div>
           <span>
             {t('scene-collection.mission2')}
@@ -447,8 +490,13 @@ const SceneCollection = ({ arScene }) => {
         </div>
         <div className={` collection-box ${missionCompleteA1 ? 'complete' : ''}`}>
           <div className="box-metal">
-            <img src={IconPrize} alt="Prize" className="box-iconPrize" />
-            <img src={IconNew} alt="New" className="box-iconNew" />
+            {
+              missionCompleteE1 ?
+                <img src={IconPrize} alt="Prize" className="box-iconPrize" />
+                :
+                <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            }
+            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
           </div>
           <span>
             {t('scene-collection.mission1')}
@@ -464,7 +512,13 @@ const SceneCollection = ({ arScene }) => {
         </div>
         <div className="collection-box">
           <div className="box-metal">
-            <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            {
+              missionCompleteE2 ?
+                <img src={IconPrize} alt="Prize" className="box-iconPrize" />
+                :
+                <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
+            }
+            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
           </div>
           <span>
             {t('scene-collection.mission2')}
