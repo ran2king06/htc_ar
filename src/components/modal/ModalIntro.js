@@ -3,7 +3,6 @@ import './css/modal-intro.scss';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-import BtnIKnow from './../../assets/img/btn/btn-iknow.png';
 import IconCamera from './../../assets/img/icon/icon-camera.png';
 import IconMap from './../../assets/img/icon/icon-map.png';
 import IconPrize from './../../assets/img/icon/icon-prize.png';
@@ -64,8 +63,8 @@ const ModalIntro = (props) => {
                   </section>
                 </div>
                 <div className="modal-footer">
-                  <button>
-                    <img src={BtnIKnow} alt="I Know" onClick={props.closeModal} />
+                  <button onClick={props.closeModal}>
+                    {t('modal-intro.i-know')}
                   </button>
                 </div>
               </div>

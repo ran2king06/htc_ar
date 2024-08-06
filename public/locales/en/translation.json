@@ -20,7 +20,9 @@
 
     "text1": "Tap 'Tour Spot Info' to see descriptions, store details, and a mini-map of all 5 tour spots!",
     "text2": "Tap 'Explore', find and scan the image to learn about Kaohsiung with Kaohsiung Bear!",
-    "text3": "Tap 'Medal Collection' to check your progress. Explore AR spots to unlock quizzes and collect medals for exclusive gifts!"
+    "text3": "Tap 'Medal Collection' to check your progress. Explore AR spots to unlock quizzes and collect medals for exclusive gifts!",
+
+    "i-know": "Got it!"
   },
 
   "modal-redeem": {

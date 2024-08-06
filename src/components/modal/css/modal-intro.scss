@@ -86,11 +86,19 @@
 
     .modal-footer {
       button {
-
-        img {
-          max-height: 45px;
-          height: 100%;
-        }
+        margin: 0 auto 15px auto;
+        color: #000;
+        text-align: center;
+        font-size: 20px;
+        display: block;
+        border: 2px solid #000;
+        border-radius: 10px;
+        padding: 10px 40px;
+        background-color: #59C0E0;
+        box-sizing: border-box;
+        box-shadow: 2px 2px 0px 0px rgb(0, 0, 0);
+        -webkit-box-shadow: 2px 2px 0px 0px rgb(0, 0, 0);
+        -moz-box-shadow: 2px 2px 0px 0px rgb(0, 0, 0);
       }
     }
   }
