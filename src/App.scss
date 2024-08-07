@@ -140,7 +140,7 @@ span.span-blue {
     }
 
     iframe {
-      height: 100dvh;
+      height: 101dvh; // 1dvh for the 遮住露餡的部分
       width: 100dvw;
       max-width: 480px;
       position: relative;

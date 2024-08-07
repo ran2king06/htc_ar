@@ -403,6 +403,14 @@ function App() {
     backToStart();
   }
 
+  // 進入AR場景 from Collection
+  const enterSceneFromCollection = (index) => {
+    // 進入AR場景
+    setEnterARBegin(true);
+    setSearchingBear(true);
+    setSceneMode(index);
+  }
+
   // function openARScene() {
   //   // set time out to wait for unity to load
   //   setTimeout(() => {
@@ -447,7 +455,7 @@ function App() {
               <Route path="/play"
                 element={<ScenePlay ref={scenePlayRef} setEnterARBegin={setEnterARBegin} showRepo={showRepo} setSearchingBear={setSearchingBear} backToStart={backToStart} openIntroModal={setIsOpen} />}
               />
-              <Route path="/collection" element={<SceneCollection />} />
+              <Route path="/collection" element={<SceneCollection arScene={enterSceneFromCollection} />} />
               <Route path="/reward" element={<SceneReward />} />
               <Route path="/qa" element={<SceneQA />} />
             </Routes>
