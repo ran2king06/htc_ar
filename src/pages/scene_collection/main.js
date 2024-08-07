@@ -1,6 +1,6 @@
 import './css/main.scss';
 
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -17,6 +17,7 @@ import EnTitle4 from './../../assets/img/collection/4.png';
 import EnTitle5 from './../../assets/img/collection/5.png';
 import EnBtnExchange from './../../assets/img/collection/btn-redeem.png';
 import IconComplete from './../../assets/img/icon/icon-complete.png';
+import IconNew from './../../assets/img/icon/icon-new.png';
 import IconPrizeSilver from './../../assets/img/icon/icon-prize-silver.png';
 import IconPrize from './../../assets/img/icon/icon-prize.png';
 import IconWhite from './../../assets/img/icon/icon-white.png';
@@ -32,24 +33,34 @@ const SceneCollection = ({ arScene }) => {
   const { t, i18n } = useTranslation();
   const navigate = useNavigate();
 
-  const [modeStart, setModeStart] = React.useState('');
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [missionCompleteA1, setMissionCompleteA1] = React.useState(false);
-  const [missionCompleteA2, setMissionCompleteA2] = React.useState(false);
-  const [missionCompleteB1, setMissionCompleteB1] = React.useState(false);
-  const [missionCompleteB2, setMissionCompleteB2] = React.useState(false);
-  const [missionCompleteC1, setMissionCompleteC1] = React.useState(false);
-  const [missionCompleteC2, setMissionCompleteC2] = React.useState(false);
-  const [missionCompleteD1, setMissionCompleteD1] = React.useState(false);
-  const [missionCompleteD2, setMissionCompleteD2] = React.useState(false);
-  const [missionCompleteE1, setMissionCompleteE1] = React.useState(false);
-  const [missionCompleteE2, setMissionCompleteE2] = React.useState(false);
+  const [modeStart, setModeStart] = useState('');
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [getNewScoreA1, setGetNewScoreA1] = useState(false);
+  const [getNewScoreA2, setGetNewScoreA2] = useState(false);
+  const [getNewScoreB1, setGetNewScoreB1] = useState(false);
+  const [getNewScoreB2, setGetNewScoreB2] = useState(false);
+  const [getNewScoreC1, setGetNewScoreC1] = useState(false);
+  const [getNewScoreC2, setGetNewScoreC2] = useState(false);
+  const [getNewScoreD1, setGetNewScoreD1] = useState(false);
+  const [getNewScoreD2, setGetNewScoreD2] = useState(false);
+  const [getNewScoreE1, setGetNewScoreE1] = useState(false);
+  const [getNewScoreE2, setGetNewScoreE2] = useState(false);
+  const [missionCompleteA1, setMissionCompleteA1] = useState(false);
+  const [missionCompleteA2, setMissionCompleteA2] = useState(false);
+  const [missionCompleteB1, setMissionCompleteB1] = useState(false);
+  const [missionCompleteB2, setMissionCompleteB2] = useState(false);
+  const [missionCompleteC1, setMissionCompleteC1] = useState(false);
+  const [missionCompleteC2, setMissionCompleteC2] = useState(false);
+  const [missionCompleteD1, setMissionCompleteD1] = useState(false);
+  const [missionCompleteD2, setMissionCompleteD2] = useState(false);
+  const [missionCompleteE1, setMissionCompleteE1] = useState(false);
+  const [missionCompleteE2, setMissionCompleteE2] = useState(false);
 
-  const [btnChallenge, setBtnChallenge] = React.useState(BtnChallenge);
-  const [btnComplete, setBtnComplete] = React.useState(IconComplete);
+  const [btnChallenge, setBtnChallenge] = useState(BtnChallenge);
+  const [btnComplete, setBtnComplete] = useState(IconComplete);
 
-  const [rewardPoints, setRewardPoints] = React.useState(0);
-  const [lang, setLang] = React.useState('');
+  const [rewardPoints, setRewardPoints] = useState(0);
+  const [lang, setLang] = useState('');
 
   const openModal = () => {
     setIsOpen(true);
@@ -89,7 +100,16 @@ const SceneCollection = ({ arScene }) => {
     if (userData) {
       const data = JSON.parse(userData);
       setRewardPoints(data.rewardPoints);
-
+      setGetNewScoreA1(data.getNewScoreA_1);
+      setGetNewScoreA2(data.getNewScoreA_2);
+      setGetNewScoreB1(data.getNewScoreB_1);
+      setGetNewScoreB2(data.getNewScoreB_2);
+      setGetNewScoreC1(data.getNewScoreC_1);
+      setGetNewScoreC2(data.getNewScoreC_2);
+      setGetNewScoreD1(data.getNewScoreD_1);
+      setGetNewScoreD2(data.getNewScoreD_2);
+      setGetNewScoreE1(data.getNewScoreE_1);
+      setGetNewScoreE2(data.getNewScoreE_2);
       setMissionCompleteA1(data.missionA_1);
       setMissionCompleteA2(data.missionA_2);
       setMissionCompleteB1(data.missionB_1);
@@ -106,6 +126,16 @@ const SceneCollection = ({ arScene }) => {
       localStorage.setItem('htcAr_localStorgeData', JSON.stringify({
         rewardPoints: 0,
         exchangeSuccess: false,
+        getNewScoreA_1: false,
+        getNewScoreA_2: false,
+        getNewScoreB_1: false,
+        getNewScoreB_2: false,
+        getNewScoreC_1: false,
+        getNewScoreC_2: false,
+        getNewScoreD_1: false,
+        getNewScoreD_2: false,
+        getNewScoreE_1: false,
+        getNewScoreE_2: false,
         missionA_1: false,
         missionA_2: false,
         missionB_1: false,
@@ -118,6 +148,24 @@ const SceneCollection = ({ arScene }) => {
         missionE_2: false
       }));
     }
+
+
+    return () => {
+      if (userData) {
+        const data = JSON.parse(userData);
+        data.getNewScoreA_1 = false;
+        data.getNewScoreA_2 = false;
+        data.getNewScoreB_1 = false;
+        data.getNewScoreB_2 = false;
+        data.getNewScoreC_1 = false;
+        data.getNewScoreC_2 = false;
+        data.getNewScoreD_1 = false;
+        data.getNewScoreD_2 = false;
+        data.getNewScoreE_1 = false;
+        data.getNewScoreE_2 = false;
+        localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
+      }
+    }
   }, []);
 
   useEffect(() => {
@@ -127,7 +175,6 @@ const SceneCollection = ({ arScene }) => {
       i18n.changeLanguage(currentLanguage);
       setLang(currentLanguage);
 
-
       if (currentLanguage === 'en') {
         setBtnChallenge(EnBtnChallenge);
         setBtnComplete(EnIconComplete);
@@ -135,8 +182,6 @@ const SceneCollection = ({ arScene }) => {
         setBtnChallenge(BtnChallenge);
         setBtnComplete(IconComplete);
       }
-
-
     }
   }, [lang]);
 
@@ -157,18 +202,18 @@ const SceneCollection = ({ arScene }) => {
     localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
   }
 
-  const clearPoints = () => {
-    // localStorage 取得獎章數量
-    const userData = localStorage.getItem('htcAr_localStorgeData');
-    const data = JSON.parse(userData);
+  // const clearPoints = () => {
+  //   // localStorage 取得獎章數量
+  //   const userData = localStorage.getItem('htcAr_localStorgeData');
+  //   const data = JSON.parse(userData);
 
-    // 清空獎章
-    data.rewardPoints = 0;
-    setRewardPoints(data.rewardPoints);
+  //   // 清空獎章
+  //   data.rewardPoints = 0;
+  //   setRewardPoints(data.rewardPoints);
 
-    // 更新 localStorage
-    localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
-  }
+  //   // 更新 localStorage
+  //   localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
+  // }
 
   const goToARScene = (index) => {
     // 去 /intro 頁面, 並帶入 mode 參數, 然後打開 scene_intro 的 goToAr()
@@ -247,7 +292,12 @@ const SceneCollection = ({ arScene }) => {
                 :
                 <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
             }
-            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
+            {
+              getNewScoreA1 ?
+                <img src={IconNew} alt="New" className="box-iconNew" />
+                :
+                null
+            }
           </div>
           <span>
             {t('scene-collection.mission1')}
@@ -270,14 +320,19 @@ const SceneCollection = ({ arScene }) => {
                 :
                 <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
             }
-            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
+            {
+              getNewScoreA2 ?
+                <img src={IconNew} alt="New" className="box-iconNew" />
+                :
+                null
+            }
           </div>
           <span>
             {t('scene-collection.mission2')}
           </span>
           {
             missionCompleteA2 ?
-              <img src={btnComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" onClick={() => goToQA(1)} />
               :
               <button onClick={() => goToQA(1)}>
                 <img src={btnChallenge} alt="Challenge" />
@@ -310,7 +365,12 @@ const SceneCollection = ({ arScene }) => {
                 :
                 <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
             }
-            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
+            {
+              getNewScoreB1 ?
+                <img src={IconNew} alt="New" className="box-iconNew" />
+                :
+                null
+            }
           </div>
           <span>
             {t('scene-collection.mission1')}
@@ -332,14 +392,19 @@ const SceneCollection = ({ arScene }) => {
                 :
                 <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
             }
-            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
+            {
+              getNewScoreB2 ?
+                <img src={IconNew} alt="New" className="box-iconNew" />
+                :
+                null
+            }
           </div>
           <span>
             {t('scene-collection.mission2')}
           </span>
           {
             missionCompleteB2 ?
-              <img src={btnComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" onClick={() => goToQA(2)} />
               :
               <button onClick={() => goToQA(2)}>
                 <img src={btnChallenge} alt="Challenge" />
@@ -372,7 +437,12 @@ const SceneCollection = ({ arScene }) => {
                 :
                 <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
             }
-            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
+            {
+              getNewScoreC1 ?
+                <img src={IconNew} alt="New" className="box-iconNew" />
+                :
+                null
+            }
           </div>
           <span>
             {t('scene-collection.mission1')}
@@ -394,14 +464,19 @@ const SceneCollection = ({ arScene }) => {
                 :
                 <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
             }
-            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
+            {
+              getNewScoreC2 ?
+                <img src={IconNew} alt="New" className="box-iconNew" />
+                :
+                null
+            }
           </div>
           <span>
             {t('scene-collection.mission2')}
           </span>
           {
             missionCompleteC2 ?
-              <img src={btnComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" onClick={() => goToQA(3)} />
               :
               <button onClick={() => goToQA(3)}>
                 <img src={btnChallenge} alt="Challenge" />
@@ -434,7 +509,12 @@ const SceneCollection = ({ arScene }) => {
                 :
                 <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
             }
-            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
+            {
+              getNewScoreD1 ?
+                <img src={IconNew} alt="New" className="box-iconNew" />
+                :
+                null
+            }
           </div>
           <span>
             {t('scene-collection.mission1')}
@@ -456,14 +536,19 @@ const SceneCollection = ({ arScene }) => {
                 :
                 <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
             }
-            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
+            {
+              getNewScoreD2 ?
+                <img src={IconNew} alt="New" className="box-iconNew" />
+                :
+                null
+            }
           </div>
           <span>
             {t('scene-collection.mission2')}
           </span>
           {
             missionCompleteD2 ?
-              <img src={btnComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" onClick={() => goToQA(4)} />
               :
               <button onClick={() => goToQA(4)}>
                 <img src={btnChallenge} alt="Challenge" />
@@ -496,7 +581,12 @@ const SceneCollection = ({ arScene }) => {
                 :
                 <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
             }
-            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
+            {
+              getNewScoreE1 ?
+                <img src={IconNew} alt="New" className="box-iconNew" />
+                :
+                null
+            }
           </div>
           <span>
             {t('scene-collection.mission1')}
@@ -518,14 +608,19 @@ const SceneCollection = ({ arScene }) => {
                 :
                 <img src={IconPrizeSilver} alt="Prize" className="box-iconPrize" />
             }
-            {/* <img src={IconNew} alt="New" className="box-iconNew" /> */}
+            {
+              getNewScoreE2 ?
+                <img src={IconNew} alt="New" className="box-iconNew" />
+                :
+                null
+            }
           </div>
           <span>
             {t('scene-collection.mission2')}
           </span>
           {
             missionCompleteE2 ?
-              <img src={btnComplete} alt="Complete" className="box-complete" />
+              <img src={btnComplete} alt="Complete" className="box-complete" onClick={() => goToQA(5)} />
               :
               <button onClick={() => goToQA(5)}>
                 <img src={btnChallenge} alt="Challenge" />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import BtnBack from './../../assets/img/btn/btn-back.png';
@@ -7,7 +7,10 @@ import BthReposition from './../../assets/img/btn/btn-reposition.png';
 
 // import { useTranslation } from 'react-i18next';
 
-const ScenePlay = ({ showRepo, setEnterARBegin, setSearchingBear, backToStart, openIntroModal }) => {
+let modeStart = '';
+let modeCollect = '';
+
+const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, backToStart, openIntroModal }, ref) => {
   const navigate = useNavigate();
   // const { i18n, t } = useTranslation();
   const [showReposition, setShowReposition] = useState(false);
@@ -16,15 +19,19 @@ const ScenePlay = ({ showRepo, setEnterARBegin, setSearchingBear, backToStart, o
     setShowReposition(showRepo);
   }, [showRepo]);
 
-  const [modeStart, setModeStart] = useState('');
 
   useEffect(() => {
     // 取得query string
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const mode = urlParams.get('mode');
+
     const openAR = urlParams.get('openAR');
-    setModeStart(`/intro?mode=${mode}`);
+    modeStart = `/intro?mode=${mode}`;
+    modeCollect = `/collection?mode=${mode}`;
+
+    console.log('mode', mode);
+    console.log('openAR', modeCollect);
 
     setEnterARBegin(true);
     setSearchingBear(true);
@@ -32,13 +39,14 @@ const ScenePlay = ({ showRepo, setEnterARBegin, setSearchingBear, backToStart, o
     if (openAR) {
       document.getElementById("unityWEBGL").contentWindow.enterARScene();
     }
+  }, []);
 
+  useEffect(() => {
     return () => {
       const unityWEBGL = document.getElementById('unityWEBGL');
       unityWEBGL.onload = () => {
 
         setEnterARBegin(false)
-        // 偵聽unityWebGL_onReady事件
         document.getElementById("unityWEBGL").contentWindow.enterStartScene();
       };
     }
@@ -55,10 +63,27 @@ const ScenePlay = ({ showRepo, setEnterARBegin, setSearchingBear, backToStart, o
 
   const enterStart = () => {
     // 進入開始畫面
-    document.getElementById("unityWEBGL").contentWindow.enterStartScene();
-    backToStart();
     navigate(modeStart);
+    backToStart();
+    document.getElementById("unityWEBGL").contentWindow.enterStartScene();
+
   }
+
+  const goToCollect = () => {
+    console.log(modeCollect);
+    // 進入收集畫面
+    navigate(modeCollect);
+    backToStart();
+    document.getElementById("unityWEBGL").contentWindow.enterStartScene();
+  }
+
+  useImperativeHandle(ref, () => {
+    return {
+      goCollection: () => {
+        goToCollect();
+      }
+    }
+  }, []);
 
   return (
     <div className="scene-intro">
@@ -84,6 +109,6 @@ const ScenePlay = ({ showRepo, setEnterARBegin, setSearchingBear, backToStart, o
       </header>
     </div>
   );
-};
+});
 
 export default ScenePlay;

@@ -53,13 +53,30 @@ const SceneQA = () => {
     const quiz = urlParams.get('qa');
     setModeStart('/collection?mode=' + mode);
 
-    console.log(quiz);
+    // console.log(quiz);
+
+    // 取得 local storage , 是否已經作答過
+    const userData = localStorage.getItem('htcAr_localStorgeData');
+    if (userData) {
+      const user = JSON.parse(userData);
+
+      if (
+        (quiz === '1' && user.missionA_2) ||
+        (quiz === '2' && user.missionB_2) ||
+        (quiz === '3' && user.missionC_2) ||
+        (quiz === '4' && user.missionD_2) ||
+        (quiz === '5' && user.missionE_2)
+      ) {
+        setShowResult(true);
+        setAnwCorrect(true);
+      }
+    }
 
     if (quiz) {
       setQaQuestion(parseInt(quiz));
     }
 
-  }, [qaQuestion]);
+  }, [qaQuestion, showResult, anwCorrect]);
 
   const pickAnswer = (answer) => {
     if (showResult) {
@@ -105,30 +122,35 @@ const SceneQA = () => {
       if (qaQuestion === 1 && answer === 1 && !userData.missionA_2) {
         user.missionA_2 = true;
         user.rewardPoints = user.rewardPoints + 1;
+        user.getNewScoreA_2 = true;
         localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
       }
 
       if (qaQuestion === 2 && answer === 2 && !userData.missionB_2) {
         user.missionB_2 = true;
         user.rewardPoints = user.rewardPoints + 1;
+        user.getNewScoreB_2 = true;
         localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
       }
 
       if (qaQuestion === 3 && answer === 3 && !userData.missionC_2) {
         user.missionC_2 = true;
         user.rewardPoints = user.rewardPoints + 1;
+        user.getNewScoreC_2 = true;
         localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
       }
 
       if (qaQuestion === 4 && answer === 2 && !userData.missionD_2) {
         user.missionD_2 = true;
         user.rewardPoints = user.rewardPoints + 1;
+        user.getNewScoreD_2 = true;
         localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
       }
 
       if (qaQuestion === 5 && answer === 0 && !userData.missionE_2) {
         user.missionE_2 = true;
         user.rewardPoints = user.rewardPoints + 1;
+        user.getNewScoreE_2 = true;
         localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
       }
     }

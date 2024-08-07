@@ -5,6 +5,10 @@ import { useTranslation } from 'react-i18next';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import SearchingBear1 from './assets/img/ar/1.png';
+import SearchingBear2 from './assets/img/ar/2.png';
+import SearchingBear3 from './assets/img/ar/3.png';
+import SearchingBear4 from './assets/img/ar/4.png';
+import SearchingBear5 from './assets/img/ar/5.png';
 import ARDetecting from './assets/img/ar/detect.png';
 import BtnCapture from './assets/img/btn/btn-capture.png';
 import BtnGood from './assets/img/btn/btn-good.png';
@@ -27,6 +31,7 @@ import SceneTour from './pages/scene_tour/main';
 
 function App() {
   const sceneIntroRef = useRef();
+  const scenePlayRef = useRef();
   const { t } = useTranslation();
 
   const [loading, setLoading] = useState(true);
@@ -35,7 +40,7 @@ function App() {
   const [firstTimeScan, setFirstTimeScan] = useState(true);
   const [searchingBear, setSearchingBear] = useState(false);
   // const [activateClickArea, setActivateClickArea] = useState(false);
-  const [showDialog, setShowDialog] = useState(false);
+  const [showDialog, setShowDialog] = useState(false); // 對話框
   const [nextDialog, setNextDialog] = useState(0);
   const [showCapture, setShowCapture] = useState(false);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -68,6 +73,16 @@ function App() {
       localStorage.setItem('htcAr_localStorgeData', JSON.stringify({
         rewardPoints: 0,
         exchangeSuccess: false,
+        getNewScoreA_1: false,
+        getNewScoreA_2: false,
+        getNewScoreB_1: false,
+        getNewScoreB_2: false,
+        getNewScoreC_1: false,
+        getNewScoreC_2: false,
+        getNewScoreD_1: false,
+        getNewScoreD_2: false,
+        getNewScoreE_1: false,
+        getNewScoreE_2: false,
         missionA_1: false,
         missionA_2: false,
         missionB_1: false,
@@ -105,6 +120,11 @@ function App() {
   }
 
   useEffect(() => {
+    // 取得 query string
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    let gameMode = urlParams.get('mode');
+
     // if id unityWEBGL is loaded
     const unityWEBGL = document.getElementById('unityWEBGL');
     unityWEBGL.onload = () => {
@@ -133,11 +153,37 @@ function App() {
         }
 
         // 隨機模式
-        const randomMode = Math.floor(Math.random() * 5);
-        document.getElementById("unityWEBGL").contentWindow.setGameMode(randomMode);
+        // const randomMode = Math.floor(Math.random() * 5);
+        // document.getElementById("unityWEBGL").contentWindow.setGameMode(randomMode);
 
-        console.log(randomMode);
+        // TODO: 根據模式設定 / 要修改
+        // 高雄港 KaoHarbor = 1 = ar2
+        // 大港橋 GreatHarborBridge = 2 = ar4
+        // 大港倉 KaoPortDepot = 3 = ar3
+        // 港史館 KaoHarborMuseum = 4 = ar1
+        // 水花園 KaoPortPark = 5 = ar0
+        // 根據模式設定
+        console.log(gameMode);
 
+        switch (parseInt(gameMode)) {
+          case 1:
+            document.getElementById("unityWEBGL").contentWindow.setGameMode(2);
+            break;
+          case 2:
+            document.getElementById("unityWEBGL").contentWindow.setGameMode(4);
+            break;
+          case 3:
+            document.getElementById("unityWEBGL").contentWindow.setGameMode(3);
+            break;
+          case 4:
+            document.getElementById("unityWEBGL").contentWindow.setGameMode(1);
+            break;
+          case 5:
+            document.getElementById("unityWEBGL").contentWindow.setGameMode(0);
+            break;
+          default:
+            break;
+        }
 
         // 偵聽 unityWebGL_onImageTargetTracked 事件
         unityWEBGL.contentWindow.document.addEventListener("unityWebGL_onImageTargetTracked", function (e) {
@@ -213,8 +259,8 @@ function App() {
 
   const closeDialog = () => {
     setShowDialog(false);
-    setNextDialog(0);
     setShowCapture(true);
+    setNextDialog(0);
 
     // 重新定位
     document.getElementById("unityWEBGL").contentWindow.setCurrentTargetToCamera();
@@ -231,7 +277,7 @@ function App() {
   const captureDoneBtn = () => {
     setShowCaptureResult(false);
     setShowDialog(true);
-    setNextDialog(2);
+    setNextDialog(4);
 
     // 頒獎動作
     document.getElementById("unityWEBGL").contentWindow.triggerRandomCurrentTargetReward();
@@ -248,14 +294,29 @@ function App() {
     const mode = urlParams.get('mode');
     setSceneMode(parseInt(mode));
 
-    // 大港橋 GreatHarborBridge
-    // 大港倉 KaoPortDepot
-    // 高雄港 KaoHarbor
-    // 港史館 KaoHarborMuseum
-    // 水花園 KaoPortPark
+    const gameMode = parseInt(mode);
+
+    // 高雄港 KaoHarbor = 1
+    // 大港橋 GreatHarborBridge = 2
+    // 大港倉 KaoPortDepot = 3
+    // 港史館 KaoHarborMuseum = 4
+    // 水花園 KaoPortPark = 5
 
     const data = JSON.parse(localStorage.getItem('htcAr_localStorgeData')) || [];
-    const points = 1;
+
+    let points = 0;
+    // 如果已經拿過分數，就不再給分
+    if (
+      (gameMode === 1 && data.missionA_1) ||
+      (gameMode === 2 && data.missionB_1) ||
+      (gameMode === 3 && data.missionC_1) ||
+      (gameMode === 4 && data.missionD_1) ||
+      (gameMode === 5 && data.missionE_1)
+    ) {
+      return;
+    } else {
+      points = 1;
+    }
 
     if (!data) {
       return;
@@ -268,18 +329,23 @@ function App() {
     switch (parseInt(mode)) {
       case 1:
         data.missionA_1 = true;
+        data.getNewScoreA_1 = true;
         break;
       case 2:
-        data.missionAB_1 = true;
+        data.missionB_1 = true;
+        data.getNewScoreB_1 = true;
         break;
       case 3:
         data.missionC_1 = true;
+        data.getNewScoreC_1 = true;
         break;
       case 4:
         data.missionD_1 = true;
+        data.getNewScoreD_1 = true;
         break;
       case 5:
         data.missionE_1 = true;
+        data.getNewScoreE_1 = true;
         break;
       default:
         break;
@@ -298,6 +364,12 @@ function App() {
     // setActivateClickArea(false);
     setShowDialog(false);
     setShowCapture(false);
+    setShowCaptureResult(false);
+    setCaptureDone(false);
+    setCapturePhoto(null);
+
+    setNextDialog(0);
+
     // document.getElementById("unityWEBGL").contentWindow.backToStart();
   }, []);
 
@@ -310,7 +382,13 @@ function App() {
   // 播放對話
   const playDialog = () => {
     let next = nextDialog + 1;
+
     setNextDialog(next);
+
+    if (next === 3) {
+      setShowDialog(false);
+      setShowCapture(true);
+    }
 
     // 熊動作
     document.getElementById("unityWEBGL").contentWindow.triggerNextCurrentTargetEffect();
@@ -318,8 +396,11 @@ function App() {
 
   // 前往集點冊
   function goToCollectionScene() {
-    // navigate('/collection');
-    window.location.href = `/collection?mode=${sceneMode}`;
+    // 進入收集畫面
+    scenePlayRef.current.goCollection();
+
+    // 重置
+    backToStart();
   }
 
   // function openARScene() {
@@ -332,6 +413,7 @@ function App() {
   // 隨機模式
   const randomMode = () => {
     const randomMode = Math.floor(Math.random() * 5);
+    console.log(randomMode);
     document.getElementById("unityWEBGL").contentWindow.setGameMode(randomMode);
   }
 
@@ -362,7 +444,9 @@ function App() {
                 element={<SceneIntro ref={sceneIntroRef} setEnterARBegin={setEnterARBegin} backToStart={backToStart} openIntroModal={setIsOpen} />}
               />
               <Route path="/tour" element={<SceneTour />} />
-              <Route path="/play" element={<ScenePlay setEnterARBegin={setEnterARBegin} showRepo={showRepo} setSearchingBear={setSearchingBear} backToStart={backToStart} openIntroModal={setIsOpen} />} />
+              <Route path="/play"
+                element={<ScenePlay ref={scenePlayRef} setEnterARBegin={setEnterARBegin} showRepo={showRepo} setSearchingBear={setSearchingBear} backToStart={backToStart} openIntroModal={setIsOpen} />}
+              />
               <Route path="/collection" element={<SceneCollection />} />
               <Route path="/reward" element={<SceneReward />} />
               <Route path="/qa" element={<SceneQA />} />
@@ -376,36 +460,150 @@ function App() {
           <div className="modal-click-bear">
             <p>
               {
-                nextDialog === 0 ?
+                sceneMode === 1 ?
+                  // 大港橋 GreatHarborBridge
                   <>
-                    嗨！我是高雄熊 <br />
-                    歡迎來到高港水花園AR導覽體驗，
-                    很開心見到你！
+                    {
+                      nextDialog === 0 ?
+                        <>
+                          {t('ar_dialog.mode_1.dialog_1')}
+                        </>
+                        : nextDialog === 1 ?
+                          <>
+                            {t('ar_dialog.mode_1.dialog_2')}
+                          </>
+                          : nextDialog === 2 ?
+                            <>
+                              {t('ar_dialog.mode_1.dialog_3')}
+                            </>
+                            :
+                            <>
+                              {t('ar_dialog.mode_1.dialog_4')}
+                            </>
+                    }
                   </>
-                  : nextDialog === 1 ?
-                    <>
-                      一起完成在高港水花園的任務吧！ <br />
-                      和我拍張照片留念，就可以獲得獎章哦！
-                    </>
-                    :
-                    <>
-                      真好看呢！ <br />
-                      你真是攝影天才
-                    </>
+                  :
+                  <></>
+              }
+              {
+                sceneMode === 2 ?
+                  // 大港倉 KaoPortDepot
+                  <>
+                    {
+                      nextDialog === 0 ?
+                        <>
+                          {t('ar_dialog.mode_2.dialog_1')}
+                        </>
+                        : nextDialog === 1 ?
+                          <>
+                            {t('ar_dialog.mode_2.dialog_2')}
+                          </>
+                          : nextDialog === 2 ?
+                            <>
+                              {t('ar_dialog.mode_2.dialog_3')}
+                            </>
+                            :
+                            <>
+                              {t('ar_dialog.mode_2.dialog_4')}
+                            </>
+                    }
+                  </>
+                  :
+                  <></>
+              }
+              {
+                sceneMode === 3 ?
+                  // 高雄港 KaoHarbor
+                  <>
+                    {
+                      nextDialog === 0 ?
+                        <>
+                          {t('ar_dialog.mode_3.dialog_1')}
+                        </>
+                        : nextDialog === 1 ?
+                          <>
+                            {t('ar_dialog.mode_3.dialog_2')}
+                          </>
+                          : nextDialog === 2 ?
+                            <>
+                              {t('ar_dialog.mode_3.dialog_3')}
+                            </>
+                            :
+                            <>
+                              {t('ar_dialog.mode_3.dialog_4')}
+                            </>
+                    }
+                  </>
+                  :
+                  <></>
+              }
+              {
+                sceneMode === 4 ?
+                  // 港史館 KaoHarborMuseum
+                  <>
+                    {
+                      nextDialog === 0 ?
+                        <>
+                          {t('ar_dialog.mode_4.dialog_1')}
+                        </>
+                        : nextDialog === 1 ?
+                          <>
+                            {t('ar_dialog.mode_4.dialog_2')}
+                          </>
+                          : nextDialog === 2 ?
+                            <>
+                              {t('ar_dialog.mode_4.dialog_3')}
+                            </>
+                            :
+                            <>
+                              {t('ar_dialog.mode_4.dialog_4')}
+                            </>
+                    }
+                  </>
+                  :
+                  <></>
+              }
+              {
+                sceneMode === 5 ?
+                  // 水花園 KaoPortPark
+                  <>
+                    {
+                      nextDialog === 0 ?
+                        <>
+                          {t('ar_dialog.mode_5.dialog_1')}
+                        </>
+                        : nextDialog === 1 ?
+                          <>
+                            {t('ar_dialog.mode_5.dialog_2')}
+                          </>
+                          : nextDialog === 2 ?
+                            <>
+                              {t('ar_dialog.mode_5.dialog_3')}
+                            </>
+                            :
+                            <>
+                              {t('ar_dialog.mode_5.dialog_4')}
+                            </>
+                    }
+                  </>
+                  :
+                  <></>
               }
 
             </p>
 
             {
-              nextDialog === 0 && showDialog && !showCapture ?
+              (nextDialog >= 0 && nextDialog < 3) && showDialog && !showCapture ?
                 <button onClick={() => playDialog()}>
+                  {/* TODO: 換成文字 */}
                   <img src={BtnGood} alt="Good" />
+
                 </button>
-                : nextDialog === 1 && showDialog ?
+                : nextDialog === 3 && showDialog ?
                   <button onClick={() => closeDialog()}>
                     <img src={BtnNoProblem} alt="Next" />
                   </button>
-                  : nextDialog === 2 && showDialog ?
+                  : nextDialog === 4 && showDialog ?
                     <button onClick={() => endMission()} className="btn-thanks">
                       {t('ar.thank_you')}
                     </button>
@@ -458,8 +656,19 @@ function App() {
             <p>
               {t('ar.findImage')}
             </p>
-
-            <img src={SearchingBear1} alt="Searching Bear" />
+            {
+              sceneMode === 1 ?
+                <img src={SearchingBear1} alt="Searching Bear" />
+                : sceneMode === 2 ?
+                  <img src={SearchingBear2} alt="Searching Bear" />
+                  : sceneMode === 3 ?
+                    <img src={SearchingBear3} alt="Searching Bear" />
+                    : sceneMode === 4 ?
+                      <img src={SearchingBear4} alt="Searching Bear" />
+                      : sceneMode === 5 ?
+                        <img src={SearchingBear5} alt="Searching Bear" />
+                        : <></>
+            }
           </div>
 
           :
@@ -488,7 +697,7 @@ function App() {
 
       {/* 拍完照視窗 */}
       {
-        (showCaptureResult) &&
+        showCaptureResult &&
         <div className="capture-result">
           <div className="capture-img">
             <img src={capturePhoto} alt="Capture" />

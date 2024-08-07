@@ -270,5 +270,58 @@
 
     "success_content": "Mission accomplished, you earned a medal!",
     "success_btn": "Check Medal Collection"
+  },
+
+  "ar_dialog": {
+    "mode_1": {
+      "dialog_1": "Hi, I'm Kaohsiung Bear! This awesome white bridge next to you is the pride of Kaohsiung!",
+      "dialog_2": "It's the longest pedestrian swing bridge in all of Asia! It even puts on a show every day at 3 PM.",
+      "dialog_3": "Let's take a selfie! Strike your best pose and make this Kaohsiung trip unforgettable!",
+      "dialog_4": "So happy we took this picture together! Here's your medal!",
+      "btn_1": "Awesome!",
+      "btn_2": "Cool!",
+      "btn_3": "Ready!",
+      "btn_4": "Thank you!"
+    },
+    "mode_2": {
+      "dialog_1": "Phew, finally found you! Kaohsiung Port Depot is amazing, I'm loaded with goodies! How about you? Show me your loot!",
+      "dialog_2": "KD 7 to 10 are a treasure trove! Food, clothes, accessories, souvenirs... you name it! I almost went broke!",
+      "dialog_3": "Come on, let's take a photo with the shopping expert, Kaohsiung Bear! Prove you're a shopping pro too!",
+      "dialog_4": "This picture is so cute, I want to give it a bear hug! Here's your medal!",
+      "btn_1": "What did you buy?",
+      "btn_2": "I want to go too!",
+      "btn_3": "Ready!",
+      "btn_4": "Thank you!"
+    },
+    "mode_3": {
+      "dialog_1": "Salute! Welcome to Kaohsiung Harbor! I'm Kaohsiung Bear, your awesome tour guide and fun buddy!",
+      "dialog_2": "Look over there! That's the legendary KW7! It's full of amazing VR games, you'll never want to leave!",
+      "dialog_3": "Let's take an awesome photo together and make everyone on social media jealous!",
+      "dialog_4": "I'm going to treasure this photo forever! I'll look at it whenever I miss you. Here's your medal!",
+      "btn_1": "Awesome!",
+      "btn_2": "I want to play too!",
+      "btn_3": "Ready!",
+      "btn_4": "Thank you!"
+    },
+    "mode_4": {
+      "dialog_1": "Hello! I'm Dr. Kaohsiung Bear, the smart and cute guide at the Kaohsiung Harbor Museum!",
+      "dialog_2": "Beautiful historic building, cute me, and most importantly, YOU! This is perfect!",
+      "dialog_3": "Let's take a photo together at this beautiful museum! Strike your cutest pose!",
+      "dialog_4": "Wow, you look amazing in this photo! I love it! Here's your medal!",
+      "btn_1": "Hello!",
+      "btn_2": "Awesome!",
+      "btn_3": "Ready!",
+      "btn_4": "Thank you!"
+    },
+    "mode_5": {
+      "dialog_1": "Hi! I'm Kaohsiung Bear. Welcome to Kao Port Park! Nice to meet you!",
+      "dialog_2": "Visiting this park always makes me feel relaxed. How about you?",
+      "dialog_3": "Here's a little mission for you! Take a photo with me and you'll get a medal!",
+      "dialog_4": "You're a photography master! Your skills are amazing, I want to learn from you! Here's your medal!",
+      "btn_1": "Hello!",
+      "btn_2": "I like it too!",
+      "btn_3": "Ready!",
+      "btn_4": "Thank you!"
+    }
   }
 }
