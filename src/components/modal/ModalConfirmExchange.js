@@ -59,7 +59,7 @@ const ModalConfirmExchange = (props) => {
                   {t('modal-redeem.p1_1')}
                   <span>{t('modal-redeem.p1_2')}</span>
                   {t('modal-redeem.p1_3')}
-                  <div className="text_custom">{t('modal-redeem.p2')}</div>
+                  <span className="text_custom">{t('modal-redeem.p2')}</span>
                 </p>
 
                 <div className="modal-btn-box">

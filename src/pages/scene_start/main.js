@@ -30,7 +30,7 @@ import StartTitle from './img/title.png';
 const Scene_Start = () => {
   const { i18n } = useTranslation();
   const [dynamicBG, setDynamicBG] = React.useState(StartBG1);
-  const [dynamicBGColor, setDynamicBGColor] = React.useState('#FFD8D8');
+  const [dynamicBGColor, setDynamicBGColor] = React.useState('#D2FFFF');
   const [dynamicLocation, setDynamicLocation] = React.useState(Location1);
 
   const [uiShowBear, setUiShowBear] = React.useState(Bear1);
@@ -50,19 +50,19 @@ const Scene_Start = () => {
 
     switch (chooseMode) {
       case 1:
-        setDynamicBGColor('#D1D8EE');
+        setDynamicBGColor('#D2FFFF');
         setDynamicBG(StartBG1);
         setDynamicLocation(Location1);
         setUiShowBear(Bear1);
         break;
       case 2:
-        setDynamicBGColor('#FFE8F0');
+        setDynamicBGColor('#D1D8EE');
         setDynamicBG(StartBG2);
         setDynamicLocation(Location2);
         setUiShowBear(Bear2);
         break;
       case 3:
-        setDynamicBGColor('#D2FFFF');
+        setDynamicBGColor('#FFE8F0');
         setDynamicBG(StartBG3);
         setDynamicLocation(Location3);
         setUiShowBear(Bear3);

@@ -3,9 +3,15 @@
     "organization": "Organizer"
   },
 
+  "take_photo": "Take a photo",
+  "take_good": "Great shot! Long press to save the photo.",
+  "take_again": "Retake",
+  "take_done": "Done",
+
   "modal-news": {
     "title": "News"
   },
+
   "modal-intro": {
     "title1": "Asia New Bay Area 5G AIoT ",
     "title2": "",
@@ -274,6 +280,16 @@
 
   "ar_dialog": {
     "mode_1": {
+      "dialog_1": "Salute! Welcome to Kaohsiung Harbor! I'm Kaohsiung Bear, your awesome tour guide and fun buddy!",
+      "dialog_2": "Look over there! That's the legendary KW7! It's full of amazing VR games, you'll never want to leave!",
+      "dialog_3": "Let's take an awesome photo together and make everyone on social media jealous!",
+      "dialog_4": "I'm going to treasure this photo forever! I'll look at it whenever I miss you. Here's your medal!",
+      "btn_1": "Awesome!",
+      "btn_2": "I want to play too!",
+      "btn_3": "Ready!",
+      "btn_4": "Thank you!"
+    },
+    "mode_2": {
       "dialog_1": "Hi, I'm Kaohsiung Bear! This awesome white bridge next to you is the pride of Kaohsiung!",
       "dialog_2": "It's the longest pedestrian swing bridge in all of Asia! It even puts on a show every day at 3 PM.",
       "dialog_3": "Let's take a selfie! Strike your best pose and make this Kaohsiung trip unforgettable!",
@@ -283,23 +299,13 @@
       "btn_3": "Ready!",
       "btn_4": "Thank you!"
     },
-    "mode_2": {
+    "mode_3": {
       "dialog_1": "Phew, finally found you! Kaohsiung Port Depot is amazing, I'm loaded with goodies! How about you? Show me your loot!",
       "dialog_2": "KD 7 to 10 are a treasure trove! Food, clothes, accessories, souvenirs... you name it! I almost went broke!",
       "dialog_3": "Come on, let's take a photo with the shopping expert, Kaohsiung Bear! Prove you're a shopping pro too!",
       "dialog_4": "This picture is so cute, I want to give it a bear hug! Here's your medal!",
       "btn_1": "What did you buy?",
       "btn_2": "I want to go too!",
-      "btn_3": "Ready!",
-      "btn_4": "Thank you!"
-    },
-    "mode_3": {
-      "dialog_1": "Salute! Welcome to Kaohsiung Harbor! I'm Kaohsiung Bear, your awesome tour guide and fun buddy!",
-      "dialog_2": "Look over there! That's the legendary KW7! It's full of amazing VR games, you'll never want to leave!",
-      "dialog_3": "Let's take an awesome photo together and make everyone on social media jealous!",
-      "dialog_4": "I'm going to treasure this photo forever! I'll look at it whenever I miss you. Here's your medal!",
-      "btn_1": "Awesome!",
-      "btn_2": "I want to play too!",
       "btn_3": "Ready!",
       "btn_4": "Thank you!"
     },

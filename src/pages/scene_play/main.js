@@ -37,7 +37,10 @@ const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, bac
     setSearchingBear(true);
 
     if (openAR) {
-      document.getElementById("unityWEBGL").contentWindow.enterARScene();
+      const unityWEBGL = document.getElementById('unityWEBGL');
+      unityWEBGL.onload = () => {
+        document.getElementById("unityWEBGL").contentWindow.enterARScene();
+      }
     }
   }, []);
 

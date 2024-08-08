@@ -11,7 +11,6 @@ import SearchingBear4 from './assets/img/ar/4.png';
 import SearchingBear5 from './assets/img/ar/5.png';
 import ARDetecting from './assets/img/ar/detect.png';
 import BtnCapture from './assets/img/btn/btn-capture.png';
-import BtnGood from './assets/img/btn/btn-good.png';
 import BtnNoProblem from './assets/img/btn/btn-noProblem.png';
 import ImgCongrats from './assets/img/collection/congrat.png';
 import NoScene from './assets/img/no-scene.png';
@@ -27,7 +26,6 @@ import SceneQA from './pages/scene_qa/main';
 import SceneReward from './pages/scene_reward/main';
 import SceneStart from './pages/scene_start/main';
 import SceneTour from './pages/scene_tour/main';
-
 
 function App() {
   const sceneIntroRef = useRef();
@@ -167,19 +165,19 @@ function App() {
 
         switch (parseInt(gameMode)) {
           case 1:
-            document.getElementById("unityWEBGL").contentWindow.setGameMode(2);
+            document.getElementById("unityWEBGL").contentWindow.setGameMode(0);
             break;
           case 2:
-            document.getElementById("unityWEBGL").contentWindow.setGameMode(4);
-            break;
-          case 3:
-            document.getElementById("unityWEBGL").contentWindow.setGameMode(3);
-            break;
-          case 4:
             document.getElementById("unityWEBGL").contentWindow.setGameMode(1);
             break;
+          case 3:
+            document.getElementById("unityWEBGL").contentWindow.setGameMode(2);
+            break;
+          case 4:
+            document.getElementById("unityWEBGL").contentWindow.setGameMode(3);
+            break;
           case 5:
-            document.getElementById("unityWEBGL").contentWindow.setGameMode(0);
+            document.getElementById("unityWEBGL").contentWindow.setGameMode(4);
             break;
           default:
             break;
@@ -396,6 +394,7 @@ function App() {
 
   // 前往集點冊
   function goToCollectionScene() {
+    console.log(scenePlayRef);
     // 進入收集畫面
     scenePlayRef.current.goCollection();
 
@@ -419,11 +418,11 @@ function App() {
   // }
 
   // 隨機模式
-  const randomMode = () => {
-    const randomMode = Math.floor(Math.random() * 5);
-    console.log(randomMode);
-    document.getElementById("unityWEBGL").contentWindow.setGameMode(randomMode);
-  }
+  // const randomMode = () => {
+  //   const randomMode = Math.floor(Math.random() * 5);
+  //   console.log(randomMode);
+  //   document.getElementById("unityWEBGL").contentWindow.setGameMode(randomMode);
+  // }
 
 
   return (
@@ -604,12 +603,92 @@ function App() {
               (nextDialog >= 0 && nextDialog < 3) && showDialog && !showCapture ?
                 <button onClick={() => playDialog()}>
                   {/* TODO: 換成文字 */}
-                  <img src={BtnGood} alt="Good" />
-
+                  {/* <img src={BtnGood} alt="Good" /> */}
+                  {
+                    sceneMode === 1 ?
+                      <>
+                        {
+                          nextDialog === 0 ?
+                            t('ar_dialog.mode_1.btn_1')
+                            : nextDialog === 1 ?
+                              t('ar_dialog.mode_1.btn_2')
+                              : nextDialog === 2 ?
+                                t('ar_dialog.mode_1.btn_3')
+                                : <></>
+                        }
+                      </>
+                      :
+                      <></>
+                  }
+                  {
+                    sceneMode === 2 ?
+                      <>
+                        {
+                          nextDialog === 0 ?
+                            t('ar_dialog.mode_2.btn_1')
+                            : nextDialog === 1 ?
+                              t('ar_dialog.mode_2.btn_2')
+                              : nextDialog === 2 ?
+                                t('ar_dialog.mode_2.btn_3')
+                                : <></>
+                        }
+                      </>
+                      :
+                      <></>
+                  }
+                  {
+                    sceneMode === 3 ?
+                      <>
+                        {
+                          nextDialog === 0 ?
+                            t('ar_dialog.mode_3.btn_1')
+                            : nextDialog === 1 ?
+                              t('ar_dialog.mode_3.btn_2')
+                              : nextDialog === 2 ?
+                                t('ar_dialog.mode_3.btn_3')
+                                : <></>
+                        }
+                      </>
+                      :
+                      <></>
+                  }
+                  {
+                    sceneMode === 4 ?
+                      <>
+                        {
+                          nextDialog === 0 ?
+                            t('ar_dialog.mode_4.btn_1')
+                            : nextDialog === 1 ?
+                              t('ar_dialog.mode_4.btn_2')
+                              : nextDialog === 2 ?
+                                t('ar_dialog.mode_4.btn_3')
+                                : <></>
+                        }
+                      </>
+                      :
+                      <></>
+                  }
+                  {
+                    sceneMode === 5 ?
+                      <>
+                        {
+                          nextDialog === 0 ?
+                            t('ar_dialog.mode_5.btn_1')
+                            : nextDialog === 1 ?
+                              t('ar_dialog.mode_5.btn_2')
+                              : nextDialog === 2 ?
+                                t('ar_dialog.mode_5.btn_3')
+                                : <></>
+                        }
+                      </>
+                      :
+                      <></>
+                  }
                 </button>
                 : nextDialog === 3 && showDialog ?
                   <button onClick={() => closeDialog()}>
                     <img src={BtnNoProblem} alt="Next" />
+
                   </button>
                   : nextDialog === 4 && showDialog ?
                     <button onClick={() => endMission()} className="btn-thanks">
@@ -629,9 +708,9 @@ function App() {
       </button>
 
       {/* 隨機模式 */}
-      <button className="test-random" onClick={randomMode}>
+      {/* <button className="test-random" onClick={randomMode}>
         隨機模式
-      </button>
+      </button> */}
 
       {/* 辨識中... */}
       {
@@ -698,7 +777,8 @@ function App() {
             <img src={BtnCapture} alt="capture" />
           </button>
           <p>
-            和高雄熊拍張照
+            {/* 和高雄熊拍張照 */}
+            {t('take_photo')}
           </p>
         </div>
       }
@@ -711,15 +791,16 @@ function App() {
             <img src={capturePhoto} alt="Capture" />
           </div>
           <p>
-            拍得真好！長按可以儲存圖片哦
+            {/* 拍得真好！長按可以儲存圖片哦 */}
+            {t('take_good')}
           </p>
 
           <div className="cs-btn">
             <button onClick={() => reCapture()}>
-              重拍
+              {t('take_again')}
             </button>
             <button onClick={() => captureDoneBtn()}>
-              拍完了
+              {t('take_done')}
             </button>
           </div>
         </div>

@@ -259,7 +259,19 @@ span.span-blue {
   }
 
   button {
-    max-width: 140px;
+    background-color: #59C0E0;
+    margin: 0 auto;
+    color: #000;
+    text-align: center;
+    font-size: 20px;
+    display: block;
+    border: 2px solid #000;
+    border-radius: 10px;
+    padding: 10px 25px;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 0px 0px rgb(0, 0, 0);
+    -webkit-box-shadow: 2px 2px 0px 0px rgb(0, 0, 0);
+    -moz-box-shadow: 2px 2px 0px 0px rgb(0, 0, 0);
   }
 }
 
@@ -296,12 +308,12 @@ span.span-blue {
   border: 2.5px solid #000;
   border-radius: 10px;
   padding: 20px;
-  max-width: 300px;
-  width: 90%;
+  max-width: 320px;
+  width: 80%;
 
   .capture-img {
     width: 100%;
-    min-height: 350px;
+    min-height: 345px;
     background-color: #f0f0f0;
     border-radius: 2.5px;
     overflow: hidden;
