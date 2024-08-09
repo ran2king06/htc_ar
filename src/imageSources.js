@@ -85,6 +85,22 @@ import Location4 from './pages/scene_start/img/location/4.png';
 import Location5 from './pages/scene_start/img/location/5.png';
 import StartTitle from './pages/scene_start/img/title.png';
 
+import GetRewardBanner from './assets/img/collection/btn-redeem.png'
+import GetRewardCongrat from './assets/img/collection/congrat.png'
+
+import QABear1 from './assets/img/collection/1.png'
+import QABear2 from './assets/img/collection/2.png'
+import QABear3 from './assets/img/collection/3.png'
+import QABear4 from './assets/img/collection/4.png'
+import QABear5 from './assets/img/collection/5.png'
+
+import ArBanner1 from './assets/img/ar/1.png'
+import ArBanner2 from './assets/img/ar/2.png'
+import ArBanner3 from './assets/img/ar/3.png'
+import ArBanner4 from './assets/img/ar/4.png'
+import ArBanner5 from './assets/img/ar/5.png'
+
+import ArDetect from './assets/img/ar/detect.png'
 
 // 匯入所有圖片
 // 將所有圖片放入陣列
@@ -173,7 +189,19 @@ const ImageSources = [
   TourImageE4,
   TourImageE5,
   TourImageE6,
-
+  GetRewardBanner,
+  GetRewardCongrat,
+  QABear1,
+  QABear2,
+  QABear3,
+  QABear4,
+  QABear5,
+  ArBanner1,
+  ArBanner2,
+  ArBanner3,
+  ArBanner4,
+  ArBanner5,
+  ArDetect
 ]
 
 export default ImageSources;
