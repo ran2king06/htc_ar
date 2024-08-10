@@ -31,16 +31,13 @@ const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, bac
     modeCollect = `/collection?mode=${mode}`;
 
     console.log('mode', mode);
-    console.log('openAR', modeCollect);
+    console.log('openAR', openAR);
 
     setEnterARBegin(true);
     setSearchingBear(true);
 
     if (openAR) {
-      const unityWEBGL = document.getElementById('unityWEBGL');
-      unityWEBGL.onload = () => {
-        document.getElementById("unityWEBGL").contentWindow.enterARScene();
-      }
+      document.getElementById("unityWEBGL").contentWindow.enterARScene();
     }
   }, []);
 
