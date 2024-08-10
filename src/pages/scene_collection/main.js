@@ -66,10 +66,6 @@ const SceneCollection = ({ arScene }) => {
     setIsOpen(true);
   };
 
-  const afterOpenModal = () => {
-    console.log('afterOpenModal');
-  }
-
   const closeModal = () => {
     setIsOpen(false);
   }
@@ -94,8 +90,6 @@ const SceneCollection = ({ arScene }) => {
     // htcAr_localStorgeData 資料結構，會有 
     // rewardPoints, missionA_1, missionA_2, missionB_1, missionB_2, missionC_1, missionC_2, missionD_1, missionD_2, missionE_1, missionE_2
     const userData = localStorage.getItem('htcAr_localStorgeData');
-
-    console.log('userData', userData);
 
     if (userData) {
       const data = JSON.parse(userData);
@@ -633,7 +627,6 @@ const SceneCollection = ({ arScene }) => {
 
         <ModalIntro
           modalIsOpen={modalIsOpen}
-          afterOpenModal={afterOpenModal}
           closeModal={closeModal}
         />
 
@@ -641,7 +634,7 @@ const SceneCollection = ({ arScene }) => {
 
       </div>
       {/* 測試加分 */}
-      <div className="test-add" onClick={() => testEarnPoints(1)}>測試加分</div>
+      {/* <div className="test-add" onClick={() => testEarnPoints(1)}>測試加分</div> */}
     </>
   );
 }
