@@ -150,7 +150,7 @@ const SceneTour = () => {
         </div>
       </header>
 
-      <div className="tour-container">
+      <div className={`tour-container ${lang === 'en' ? 'en' : ''}`}>
         <section className="tour-map" style={{ backgroundColor: bgColor }}>
           <span className={`placeName placeA ${choosePlace === 0 ? 'active' : ''}`} onClick={() => setChoosePlace(0)}>{t('scene-tour.location1')}</span>
           <span className={`placeName placeB ${choosePlace === 1 ? 'active' : ''}`} onClick={() => setChoosePlace(1)}>{t('scene-tour.location2')}</span>

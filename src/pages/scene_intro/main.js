@@ -185,13 +185,13 @@ const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }
       </header>
 
       <div className="btn-container">
-        <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToTour}>
+        <button style={{ width: '35%', maxWidth: '120px' }} onClick={goToTour}>
           <img src={btnIntro} alt="Intro" />
         </button>
-        <button style={{ width: '35%', maxWidth: '105px' }} onClick={goToCollection}>
+        <button style={{ width: '35%', maxWidth: '120px' }} onClick={goToCollection}>
           <img src={btnCollect} alt="Collect" />
         </button>
-        <button style={{ width: '30%', maxWidth: '90px' }} onClick={() => goToAr()}>
+        <button style={{ width: '30%', maxWidth: '115px' }} onClick={() => goToAr()}>
           <img src={btnStart} alt="Start" />
         </button>
       </div>

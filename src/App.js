@@ -110,12 +110,12 @@ function App() {
   }, [currentLanguage]);
 
   // Clear htcAr_localStorgeData
-  function clearLocalStorageData() {
-    localStorage.removeItem('htcAr_localStorgeData')
+  // function clearLocalStorageData() {
+  //   localStorage.removeItem('htcAr_localStorgeData')
 
-    // refresh page
-    window.location.reload();
-  }
+  //   // refresh page
+  //   window.location.reload();
+  // }
 
   useEffect(() => {
     // 取得 query string
@@ -703,9 +703,9 @@ function App() {
       </div>
 
       {/* 開發階段用：清空LocalStorage */}
-      <button className="test-clear" onClick={clearLocalStorageData}>
+      {/* <button className="test-clea/r" onClick={clearLocalStorageData}>
         Clear Score
-      </button>
+      </button> */}
 
       {/* 隨機模式 */}
       {/* <button className="test-random" onClick={randomMode}>

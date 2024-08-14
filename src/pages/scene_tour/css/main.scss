@@ -66,6 +66,14 @@
     left: 50%;
     transform: translateX(-50%);
     position: relative;
+
+    &.en {
+      .tour-map {
+        .placeName {
+          padding: 7.5px 10px;
+        }
+      }
+    }
   }
 
   section.tour-map {
