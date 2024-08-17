@@ -13,11 +13,11 @@ let modeCollect = '';
 const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, backToStart, openIntroModal }, ref) => {
   const navigate = useNavigate();
   // const { i18n, t } = useTranslation();
-  const [showReposition, setShowReposition] = useState(false);
+  // const [showReposition, setShowReposition] = useState(false);
 
-  useEffect(() => {
-    setShowReposition(showRepo);
-  }, [showRepo]);
+  // useEffect(() => {
+  //   setShowReposition(showRepo);
+  // }, [showRepo]);
 
 
   useEffect(() => {
@@ -93,7 +93,7 @@ const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, bac
         </button>
         <div className="header-right">
           {
-            showReposition &&
+            showRepo &&
             <button onClick={triggerReposition} className="btn-reposition">
               <img src={BthReposition} alt="triggerReposition" />
               <span>

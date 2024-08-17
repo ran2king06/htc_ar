@@ -13,6 +13,7 @@ import ARDetecting from './assets/img/ar/detect.png';
 import BtnCapture from './assets/img/btn/btn-capture.png';
 import BtnNoProblem from './assets/img/btn/btn-noProblem.png';
 import ImgCongrats from './assets/img/collection/congrat.png';
+import LoadingSVG from './assets/img/loading.svg';
 import NoScene from './assets/img/no-scene.png';
 import ModalIntro from './components/modal/ModalIntro';
 import i18n from './i18n';
@@ -49,6 +50,8 @@ function App() {
   const [captureDone, setCaptureDone] = useState(false);
   const [enterARBegin, setEnterARBegin] = useState(false);
   const [showRepo, setShowRepo] = useState(false);
+
+  const [captureLoading, setCaptureLoading] = useState(false)
 
   // 取得localStorage的語言設定
   const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
@@ -227,15 +230,22 @@ function App() {
   //   setShowDialog(true);
   // }
 
+  // 按下拍照
   const clickCapture = async () => {
     // console.log('clickCapture');
     setShowCapture(false);
     setShowCaptureResult(true);
 
+    setCaptureLoading(true);
+
     // 熊拍照 takeScreenshot
     const textBase64 = await document.getElementById("unityWEBGL").contentWindow.takeScreenshot();
     const imgBlob = base64ToBlob(textBase64, 'image/jpg');
     setCapturePhoto(URL.createObjectURL(imgBlob));
+
+    setTimeout(() => {
+      setCaptureLoading(false);
+    }, 1000);
   }
 
   function base64ToBlob(base64, contentType = '') {
@@ -365,6 +375,8 @@ function App() {
     setShowCaptureResult(false);
     setCaptureDone(false);
     setCapturePhoto(null);
+    setShowRepo(false);
+    setCaptureLoading(false);
 
     setNextDialog(0);
 
@@ -788,7 +800,17 @@ function App() {
         showCaptureResult &&
         <div className="capture-result">
           <div className="capture-img">
-            <img src={capturePhoto} alt="Capture" />
+
+            {/* TODO: 加上Loading 效果 */}
+            {
+              captureLoading ?
+                <div className="capture-loading">
+                  <img src={LoadingSVG} alt="loading" />
+                </div>
+                :
+                <img src={capturePhoto} alt="Capture" />
+            }
+
           </div>
           <p>
             {/* 拍得真好！長按可以儲存圖片哦 */}
