@@ -27,12 +27,21 @@ async function enterStartScene() {
     await changeScene(0);
 }
 
+let isAREnable = false;
+
 /**
  * 切換到AR場景，並等待初始化完成
  */
 async function enterARScene() {
+    if (!isAREnable) {
+        isAREnable = true;
+        window.startARCamera();
+        await sleep(500);
+    }
     await changeScene(1);
 }
+
+const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 /**
  * 切換Unity場景，可以透過 enterStartScene() 和 enterARScene() 切換就好

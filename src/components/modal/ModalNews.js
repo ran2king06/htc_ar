@@ -16,6 +16,8 @@ import NewsImage1 from './../../assets/img/news/01.jpg';
 import NewsImage2 from './../../assets/img/news/02.jpg';
 import NewsImage3 from './../../assets/img/news/03.png';
 
+
+
 const ModalNews = (props) => {
   const { t } = useTranslation();
 

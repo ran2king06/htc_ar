@@ -42,26 +42,13 @@
 	  imageTargetsStr += "</a-scene>";
 	  
 	  mindARStr += imageTargetsStr;
-	  
-	  container.insertAdjacentHTML('beforebegin', mindARStr);
-	  
-	  var uiScanning, uiLoading;
-	  
-	  var uiScanningInterval = setInterval(() => {
-	    uiLoading = document.getElementById('MindAR-scene').getAttribute('mindar-image').uiLoading;
-		uiScanning = document.getElementById('MindAR-scene').getAttribute('mindar-image').uiScanning;
-		if (uiScanning) {
-			clearInterval(uiScanningInterval);
-			if (uiScanning !== 'no') {
-				uiScanning = uiScanning === 'yes' ? document.querySelector('.mindar-ui-scanning') : document.querySelector(uiScanning);
-				uiScanning.classList.add('tmpHidden');
-			}
-			if (uiLoading !== 'no') {
-				uiLoading = uiLoading === 'yes' ? document.querySelector('.mindar-ui-loading') : document.querySelector(uiLoading);
-				uiLoading.classList.add('tmpHidden');
-			}
+
+	  function startARCamera() {
+			window.startARCamera = () => { };
+			console.log('add Camera');
+			container.insertAdjacentHTML('beforebegin', mindARStr);
 		}
-	  }, 0);
+	  window.startARCamera = startARCamera;
 	  
 	  /*finish mindar code*/
       
@@ -109,8 +96,6 @@
 			
 			/*mindar code*/
 			canvas.style.background = "transparent";
-			uiScanning.classList?.remove('tmpHidden');
-			uiLoading.classList?.remove('tmpHidden');
 			/*finish mindar code*/
 
 			window.unityInstance = ui;
