@@ -102,8 +102,29 @@ function App() {
     // 取得 query string
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const mode = urlParams.get('mode');
-    setSceneMode(parseInt(mode));
+    const modeQuery = urlParams.get('mode');
+
+
+    // setSceneMode(parseInt(mode));
+    let mode = 0;
+    if (modeQuery === 'KaoHarbor') {
+      mode = 1;
+    }
+    if (modeQuery === 'GreatHarborBridge') {
+      mode = 2;
+    }
+    if (modeQuery === 'KaoPortDepot') {
+      mode = 3;
+    }
+    if (modeQuery === 'KaoHarborMuseum') {
+      mode = 4;
+    }
+    if (modeQuery === 'KaoPortPark') {
+      mode = 5;
+    }
+
+    setSceneMode(mode);
+
   }, []);
 
   useEffect(() => {
@@ -124,7 +145,24 @@ function App() {
     // 取得 query string
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    let gameMode = urlParams.get('mode');
+    let modeQuery = urlParams.get('mode');
+
+    let gameMode = 0;
+    if (modeQuery === 'KaoHarbor') {
+      gameMode = 1;
+    }
+    if (modeQuery === 'GreatHarborBridge') {
+      gameMode = 2;
+    }
+    if (modeQuery === 'KaoPortDepot') {
+      gameMode = 3;
+    }
+    if (modeQuery === 'KaoHarborMuseum') {
+      gameMode = 4;
+    }
+    if (modeQuery === 'KaoPortPark') {
+      gameMode = 5;
+    }
 
     // if id unityWEBGL is loaded
     const unityWEBGL = document.getElementById('unityWEBGL');
@@ -299,11 +337,29 @@ function App() {
     // 取得 query string
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const mode = urlParams.get('mode');
-    setSceneMode(parseInt(mode));
+    const modeQuery = urlParams.get('mode');
 
-    const gameMode = parseInt(mode);
+    let mode = 0;
+    if (modeQuery === 'KaoHarbor') {
+      mode = 1;
+    }
+    if (modeQuery === 'GreatHarborBridge') {
+      mode = 2;
+    }
+    if (modeQuery === 'KaoPortDepot') {
+      mode = 3;
+    }
+    if (modeQuery === 'KaoHarborMuseum') {
+      mode = 4;
+    }
+    if (modeQuery === 'KaoPortPark') {
+      mode = 5;
+    }
 
+
+    setSceneMode(mode);
+
+    const gameMode = modeQuery;
     // 高雄港 KaoHarbor = 1
     // 大港橋 GreatHarborBridge = 2
     // 大港倉 KaoPortDepot = 3
@@ -315,11 +371,11 @@ function App() {
     let points = 0;
     // 如果已經拿過分數，就不再給分
     if (
-      (gameMode === 1 && data.missionA_1) ||
-      (gameMode === 2 && data.missionB_1) ||
-      (gameMode === 3 && data.missionC_1) ||
-      (gameMode === 4 && data.missionD_1) ||
-      (gameMode === 5 && data.missionE_1)
+      (gameMode === 'KaoHarbor' && data.missionA_1) ||
+      (gameMode === 'GreatHarborBridge' && data.missionB_1) ||
+      (gameMode === 'KaoPortDepot' && data.missionC_1) ||
+      (gameMode === 'KaoHarborMuseum' && data.missionD_1) ||
+      (gameMode === 'KaoPortPark' && data.missionE_1)
     ) {
       return;
     } else {

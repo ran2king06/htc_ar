@@ -36,6 +36,8 @@ const SceneQA = () => {
   const [anwCorrect, setAnwCorrect] = useState(false);
   const [language, setLanguage] = useState('');
 
+  const [queryUrl, setQueryUrl] = useState(null);
+
   useEffect(() => {
     // 取得 local storage 語系
     const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
@@ -49,9 +51,29 @@ const SceneQA = () => {
     // 取得 param query
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const mode = urlParams.get('mode');
+    const modeQuery = urlParams.get('mode');
     const quiz = urlParams.get('qa');
-    setModeStart('/collection?mode=' + mode);
+
+    setQueryUrl(modeQuery);
+
+    // let mode = 0;
+    // if (modeQuery === 'KaoHarbor') {
+    //   mode = 1;
+    // }
+    // if (modeQuery === 'GreatHarborBridge') {
+    //   mode = 2;
+    // }
+    // if (modeQuery === 'KaoPortDepot') {
+    //   mode = 3;
+    // }
+    // if (modeQuery === 'KaoHarborMuseum') {
+    //   mode = 4;
+    // }
+    // if (modeQuery === 'KaoPortPark') {
+    //   mode = 5;
+    // }
+
+    setModeStart('/collection?mode=' + modeQuery);
 
     // console.log(quiz);
 

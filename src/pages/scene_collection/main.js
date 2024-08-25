@@ -59,6 +59,8 @@ const SceneCollection = ({ arScene }) => {
   const [btnChallenge, setBtnChallenge] = useState(BtnChallenge);
   const [btnComplete, setBtnComplete] = useState(IconComplete);
 
+  const [queryUrl, setQueryUrl] = useState(null);
+
   const [rewardPoints, setRewardPoints] = useState(0);
   const [lang, setLang] = useState('');
 
@@ -74,9 +76,28 @@ const SceneCollection = ({ arScene }) => {
     // 取得 param query
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const mode = urlParams.get('mode');
+    const modeQuery = urlParams.get('mode');
 
-    navigate(`/reward?mode=${mode}`);
+    setQueryUrl(modeQuery);
+
+    // let mode = 0;
+    // if (modeQuery === 'KaoHarbor') {
+    //   mode = 1;
+    // }
+    // if (modeQuery === 'GreatHarborBridge') {
+    //   mode = 2;
+    // }
+    // if (modeQuery === 'KaoPortDepot') {
+    //   mode = 3;
+    // }
+    // if (modeQuery === 'KaoHarborMuseum') {
+    //   mode = 4;
+    // }
+    // if (modeQuery === 'KaoPortPark') {
+    //   mode = 5;
+    // }
+
+    navigate(`/reward?mode=${modeQuery}`);
   }
 
   useEffect(() => {
@@ -179,22 +200,22 @@ const SceneCollection = ({ arScene }) => {
     }
   }, [lang]);
 
-  const testEarnPoints = (points) => {
-    // localStorage 取得獎章數量
-    const userData = localStorage.getItem('htcAr_localStorgeData');
+  // const testEarnPoints = (points) => {
+  //   // localStorage 取得獎章數量
+  //   const userData = localStorage.getItem('htcAr_localStorgeData');
 
-    if (!userData) {
-      return;
-    }
-    const data = JSON.parse(userData);
+  //   if (!userData) {
+  //     return;
+  //   }
+  //   const data = JSON.parse(userData);
 
-    // 獲得獎章
-    data.rewardPoints += points;
-    setRewardPoints(data.rewardPoints);
+  //   // 獲得獎章
+  //   data.rewardPoints += points;
+  //   setRewardPoints(data.rewardPoints);
 
-    // 更新 localStorage
-    localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
-  }
+  //   // 更新 localStorage
+  //   localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
+  // }
 
   // const clearPoints = () => {
   //   // localStorage 取得獎章數量

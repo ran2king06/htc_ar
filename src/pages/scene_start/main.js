@@ -35,13 +35,33 @@ const Scene_Start = () => {
 
   const [uiShowBear, setUiShowBear] = React.useState(Bear1);
   const [chooseMode, setChooseMode] = React.useState(null);
+  const [queryUrl, setQueryUrl] = React.useState(null);
 
   // 取得 URL QUERY STRING
 
   React.useEffect(() => {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const ar = urlParams.get('mode');
+    const arQuery = urlParams.get('mode');
+    setQueryUrl(arQuery);
+
+    let ar = 0;
+    if (arQuery === 'KaoHarbor') {
+      ar = 1;
+    }
+    if (arQuery === 'GreatHarborBridge') {
+      ar = 2;
+    }
+    if (arQuery === 'KaoPortDepot') {
+      ar = 3;
+    }
+    if (arQuery === 'KaoHarborMuseum') {
+      ar = 4;
+    }
+    if (arQuery === 'KaoPortPark') {
+      ar = 5;
+    }
+
     if (ar) {
       setChooseMode(parseInt(ar));
     } else {
@@ -123,10 +143,10 @@ const Scene_Start = () => {
               </div>
               <div className='scene-start__container__btn'>
                 {/* LANGUAGE */}
-                <Link to={`/intro?mode=${chooseMode}`} onClick={() => chooseLanguage('en', chooseMode)}>
+                <Link to={`/intro?mode=${queryUrl}`} onClick={() => chooseLanguage('en', chooseMode)}>
                   <img src={BtnEn} alt='English' />
                 </Link>
-                <Link to={`/intro?mode=${chooseMode}`} onClick={() => chooseLanguage('zh', chooseMode)}>
+                <Link to={`/intro?mode=${queryUrl}`} onClick={() => chooseLanguage('zh', chooseMode)}>
                   <img src={BtnZn} alt='Chinese' />
                 </Link>
               </div>

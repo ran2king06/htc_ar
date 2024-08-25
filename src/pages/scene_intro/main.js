@@ -31,6 +31,8 @@ const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }
   const [modeIndex, setModeIndex] = React.useState(null);
   const [alertCameraPermission, setAlertCameraPermission] = React.useState(false);
 
+  const [queryUrl, setQueryUrl] = React.useState(null);
+
   useEffect(() => {
     // 取得語言
     const lng = localStorage.getItem('i18nextLng_htc_ar');
@@ -127,8 +129,28 @@ const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }
     // 取得 param query
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const mode = urlParams.get('mode');
+    const modeQuery = urlParams.get('mode');
     const newsModal = urlParams.get('newsModal');
+
+    setQueryUrl(modeQuery);
+
+    let mode = 0;
+    if (modeQuery === 'KaoHarbor') {
+      mode = 1;
+    }
+    if (modeQuery === 'GreatHarborBridge') {
+      mode = 2;
+    }
+    if (modeQuery === 'KaoPortDepot') {
+      mode = 3;
+    }
+    if (modeQuery === 'KaoHarborMuseum') {
+      mode = 4;
+    }
+    if (modeQuery === 'KaoPortPark') {
+      mode = 5;
+    }
+
     if (newsModal === 'false') {
       setIsOpenNews(false);
     } else {
@@ -136,8 +158,8 @@ const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }
     }
     setModeIndex(mode);
 
-    setModeStart('?mode=' + mode);
-  }, [modeIndex]);
+    setModeStart('?mode=' + queryUrl);
+  }, [modeIndex, queryUrl]);
 
   const backToStartScene = () => {
 

@@ -27,12 +27,34 @@ const SceneReward = () => {
   const [modalExchangeIsOpen, setModalExchangeIsOpen] = useState(false);
   const [lang, setLang] = useState('');
 
+  const [queryUrl, setQueryUrl] = React.useState(null);
+
   useEffect(() => {
     // 取得 param query
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const mode = urlParams.get('mode');
-    setModeStart('/collection?mode=' + mode);
+    const modeQuery = urlParams.get('mode');
+
+    setQueryUrl(modeQuery);
+
+    // let mode = 0;
+    // if (modeQuery === 'KaoHarbor') {
+    //   mode = 1;
+    // }
+    // if (modeQuery === 'GreatHarborBridge') {
+    //   mode = 2;
+    // }
+    // if (modeQuery === 'KaoPortDepot') {
+    //   mode = 3;
+    // }
+    // if (modeQuery === 'KaoHarborMuseum') {
+    //   mode = 4;
+    // }
+    // if (modeQuery === 'KaoPortPark') {
+    //   mode = 5;
+    // }
+
+    setModeStart('/collection?mode=' + modeQuery);
 
     // 取得獎勵點數
     const userData = localStorage.getItem('htcAr_localStorgeData');
