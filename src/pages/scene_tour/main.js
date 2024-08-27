@@ -45,6 +45,22 @@ const SceneTour = () => {
     const urlParams = new URLSearchParams(queryString);
     const mode = urlParams.get('mode');
     setModeStart('/intro?mode=' + mode + '&newsModal=false');
+
+    if (mode === 'KaoHarbor') {
+      setChoosePlace(0);
+    }
+    if (mode === 'GreatHarborBridge') {
+      setChoosePlace(1);
+    }
+    if (mode === 'KaoPortDepot') {
+      setChoosePlace(2);
+    }
+    if (mode === 'KaoHarborMuseum') {
+      setChoosePlace(3);
+    }
+    if (mode === 'KaoPortPark') {
+      setChoosePlace(4);
+    }
   }, []);
 
   useEffect(() => {
