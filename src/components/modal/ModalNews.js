@@ -40,10 +40,10 @@ const ModalNews = (props) => {
       modules: [Navigation, Pagination, Autoplay],
       loop: true,
       autoplay: {
-        delay: 5000000,
+        delay: 5000,
       },
       pagination: {
-        el: '.swiper-pagination',
+        el: '.swiper-news-pagination',
       },
       navigation: {
         nextEl: '.swiper-button-next',
@@ -113,33 +113,6 @@ const ModalNews = (props) => {
                         ))
                       }
 
-                      {/* <div className="swiper-slide">
-                        <div className="swiper-body">
-                          {
-                            newsData.length > 0 ? (
-                              <img src={newsData[0].img} alt="News 1" className="swiper-body-img" />
-                            ) : null
-                          }
-
-                          <div className="swiper-body-text">
-                            <h4>
-                              2024高雄海洋派對│大港倉/大港橋
-                            </h4>
-                            <p>
-                              2024高雄海洋派對將在8/17(六)-8/25於大港橋及愛河灣周邊水域辦理，為期長達9天的活動🥳嗨翻暑假🥳玩好玩滿，7大精彩活動報你知👇🏻  <br />
-                              2024海洋派對在高雄 大港橋造筏揚帆X最Chill水花樂園<br />
-                              ➊高雄水花樂園-全新訂製大型遊具首次亮相，高達14公尺高滑道最消暑 <br />
-                              ➋水上飛板秀-法國團隊首次來台，專屬高雄的客製化震撼演出🏂 <br />
-                              ➌海派遊艇展-最沒有距離的「賞船」體驗，近距離觀賞各式遊艇和動力小船，還有海洋Cosplay服裝可免費借用拍照喔🛥️ <br />
-                              ➍遊艇搭乘體驗-七夕過後的約會，海旅漫遊不要錯過⛵️ <br />
-                              ➎大港造筏競賽-探索自然、挑戰自我、發揮創意和團隊合作的機會來了👫 <br />
-                              ➏水域遊憩活動-SUP、水上腳踏車、獨木舟等免費活動，海玩一夏🏄🏻‍♀️ <br />
-                              ➐水域趣味競賽-「是的！船長船員接力賽」，挑戰你的友情默契度及平衡感🙌🏻 更多活動消息及報名資訊陸續釋出中❤️請持續鎖定 高雄海味地圖-高雄市政府海洋局
-                            </p>
-                          </div>
-                        </div>
-                      </div> */}
-
                     </div>
                   </div>
                 </div>
@@ -148,7 +121,7 @@ const ModalNews = (props) => {
                   <div className="swiper-button-prev">
                     <img src={IconArrowLeft} alt="Arrow Left" />
                   </div>
-                  <div className="swiper-pagination"></div>
+                  <div className="swiper-news-pagination"></div>
                   <div className="swiper-button-next">
                     <img src={IconArrowRight} alt="Arrow Right" />
                   </div>
