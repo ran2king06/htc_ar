@@ -26,51 +26,47 @@ const ModalNews = (props) => {
     fetch('/news.json')
       .then((response) => response.json())
       .then((data) => {
-        console.log('Success fetching JSON:', data);
         setNewsData(data);
+
+        // eslint-disable-next-line no-unused-vars
+        const swiper = new Swiper('.swiper-container', {
+          modules: [Navigation, Pagination, Autoplay],
+          loop: true,
+          autoplay: {
+            delay: 5000,
+          },
+          pagination: {
+            el: '.swiper-news-pagination',
+          },
+          navigation: {
+            nextEl: '.swiper-button-next-news',
+            prevEl: '.swiper-button-prev-news',
+          },
+        });
+
+
+        // If swiper-body-text scrolling, stop swiper autoplay
+        const swiperBodyText = document.querySelectorAll('.swiper-body-text');
+        swiperBodyText.forEach((element) => {
+          element.addEventListener('mouseenter', () => {
+            swiper.autoplay.stop();
+          });
+          element.addEventListener('mouseleave', () => {
+            swiper.autoplay.start();
+          });
+
+          element.addEventListener('touchstart', () => {
+            swiper.autoplay.stop();
+          });
+          element.addEventListener('touchend', () => {
+            swiper.autoplay.start();
+          });
+        });
+
       })
       .catch((error) => {
         console.error('Error fetching JSON:', error);
       });
-  }, []);
-
-  useEffect(() => {
-    // eslint-disable-next-line no-unused-vars
-    const swiper = new Swiper('.swiper-container', {
-      modules: [Navigation, Pagination, Autoplay],
-      loop: true,
-      autoplay: {
-        delay: 5000,
-      },
-      pagination: {
-        el: '.swiper-news-pagination',
-      },
-      navigation: {
-        nextEl: '.swiper-button-next-news',
-        prevEl: '.swiper-button-prev-news',
-      },
-    });
-
-
-    // If swiper-body-text scrolling, stop swiper autoplay
-    const swiperBodyText = document.querySelectorAll('.swiper-body-text');
-    swiperBodyText.forEach((element) => {
-      element.addEventListener('mouseenter', () => {
-        swiper.autoplay.stop();
-      });
-      element.addEventListener('mouseleave', () => {
-        swiper.autoplay.start();
-      });
-
-      element.addEventListener('touchstart', () => {
-        swiper.autoplay.stop();
-      });
-      element.addEventListener('touchend', () => {
-        swiper.autoplay.start();
-      });
-    });
-
-
   }, [props.modalIsOpen]);
 
   return (
