@@ -46,8 +46,8 @@ const ModalNews = (props) => {
         el: '.swiper-news-pagination',
       },
       navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next-news',
+        prevEl: '.swiper-button-prev-news',
       },
     });
 
@@ -118,11 +118,11 @@ const ModalNews = (props) => {
                 </div>
 
                 <div className="swiper-button-wrapper">
-                  <div className="swiper-button-prev">
+                  <div className="swiper-button-prev-news">
                     <img src={IconArrowLeft} alt="Arrow Left" />
                   </div>
                   <div className="swiper-news-pagination"></div>
-                  <div className="swiper-button-next">
+                  <div className="swiper-button-next-news">
                     <img src={IconArrowRight} alt="Arrow Right" />
                   </div>
                 </div>
