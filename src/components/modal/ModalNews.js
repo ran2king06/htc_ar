@@ -18,6 +18,9 @@ import IconNews from './../../assets/img/icon/icon-news.png';
 
 const ModalNews = (props) => {
   const { t } = useTranslation();
+  const queryString = window.location.search;
+  const urlParams = new URLSearchParams(queryString);
+  const modeQuery = urlParams.get('mode');
 
   const [newsData, setNewsData] = React.useState([]);
 
@@ -26,7 +29,13 @@ const ModalNews = (props) => {
     fetch('/news.json')
       .then((response) => response.json())
       .then((data) => {
-        setNewsData(data);
+
+        if (modeQuery) {
+          const fData = data.filter((child) => child.mode === modeQuery);
+          setNewsData(fData);
+        } else {
+          setNewsData(data);
+        }
 
         // eslint-disable-next-line no-unused-vars
         const swiper = new Swiper('.swiper-container', {
@@ -72,7 +81,7 @@ const ModalNews = (props) => {
   return (
     <>
       {
-        props.modalIsOpen ? (
+        newsData && props.modalIsOpen ? (
           // Modal Mask
           <div className="modal-mask modal-news-custom">
             <div className="modal-intro">
