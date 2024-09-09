@@ -77,8 +77,9 @@
         }
 
         img {
-          min-width: 35px;
+          width: 35px;
           height: auto;
+          max-width: initial;
         }
 
       }

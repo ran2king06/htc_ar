@@ -27,7 +27,6 @@ const ModalIntro = (props) => {
                     {t('modal-intro.content1')}
                     <br />
                     {t('modal-intro.content2')}
-                    <br />
                     {t('modal-intro.content3')}
                   </p>
                 </div>

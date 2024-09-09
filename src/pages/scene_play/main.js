@@ -1,4 +1,5 @@
 import React, { forwardRef, useEffect, useImperativeHandle, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import BtnBack from './../../assets/img/btn/btn-back.png';
@@ -12,7 +13,7 @@ let modeCollect = '';
 
 const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, backToStart, openIntroModal }, ref) => {
   const navigate = useNavigate();
-  // const { i18n, t } = useTranslation();
+  const { i18n, t } = useTranslation();
   // const [showReposition, setShowReposition] = useState(false);
 
   // useEffect(() => {
@@ -21,6 +22,7 @@ const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, bac
 
 
   useEffect(() => {
+
     // 取得query string
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -97,7 +99,8 @@ const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, bac
             <button onClick={triggerReposition} className="btn-reposition">
               <img src={BthReposition} alt="triggerReposition" />
               <span>
-                重新定位高雄熊
+                {t('reposition')}
+                {/* 重新定位高雄熊 */}
               </span>
             </button>
           }
