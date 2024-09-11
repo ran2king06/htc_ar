@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import BtnBack from './../../assets/img/btn/btn-back.png';
 import BtnQa from './../../assets/img/btn/btn-qa.png';
 import BthReposition from './../../assets/img/btn/btn-reposition.png';
+import BtnMusicOFF from './../../assets/img/btn/MusicOff.png';
+import BtnMusicON from './../../assets/img/btn/MusicOn.png';
 
 // import { useTranslation } from 'react-i18next';
 
@@ -19,6 +21,8 @@ const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, bac
   // useEffect(() => {
   //   setShowReposition(showRepo);
   // }, [showRepo]);
+
+  const [musicToggle, setMusicToggle] = useState(true);
 
 
   useEffect(() => {
@@ -87,6 +91,17 @@ const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, bac
     }
   }, []);
 
+  const toggleMusic = () => {
+    const bgm = document.getElementById("bgMusic");
+    if (bgm.paused) {
+      setMusicToggle(true);
+      bgm.play();
+    } else {
+      setMusicToggle(false);
+      bgm.pause();
+    }
+  }
+
   return (
     <div className="scene-intro">
       <header>
@@ -104,6 +119,16 @@ const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, bac
               </span>
             </button>
           }
+
+          <button onClick={() => toggleMusic()}>
+            {
+              musicToggle ?
+                <img src={BtnMusicON} alt="Music ON" />
+                :
+                <img src={BtnMusicOFF} alt="Music OFF" />
+            }
+          </button>
+
 
           <button onClick={openModal}>
             <img src={BtnQa} alt="Q&A" />

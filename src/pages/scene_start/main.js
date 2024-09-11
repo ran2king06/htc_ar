@@ -117,6 +117,11 @@ const Scene_Start = () => {
     } else {
       document.getElementById("unityWEBGL").contentWindow.setLocalization('zh-tw');
     }
+
+    // Play bg music
+    const bgMusic = document.getElementById('bgMusic');
+    if (bgMusic)
+      bgMusic.play();
   }
 
   return (

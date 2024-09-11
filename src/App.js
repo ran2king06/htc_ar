@@ -15,6 +15,7 @@ import BtnNoProblem from './assets/img/btn/btn-noProblem.png';
 import ImgCongrats from './assets/img/collection/congrat.png';
 import LoadingSVG from './assets/img/loading.svg';
 import NoScene from './assets/img/no-scene.png';
+import bgMusic from './assets/music/bg.mp3';
 import ModalIntro from './components/modal/ModalIntro';
 import i18n from './i18n';
 import ImagePreloader from './imageLoaded';
@@ -923,6 +924,11 @@ function App() {
         </div>
       }
       <ImagePreloader srcArray={imageSources} loadStatus={status => setLoading(status.every(s => s))} />
+
+      {/* BGMusic */}
+      <audio id="bgMusic" loop>
+        <source src={bgMusic} type="audio/mpeg" />
+      </audio>
     </div >
   );
 }

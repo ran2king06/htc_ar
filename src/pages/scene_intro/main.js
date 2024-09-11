@@ -12,6 +12,8 @@ import EnBtnCollect from './../../assets/img/btn/en/collect.png';
 import EnBtnIntro from './../../assets/img/btn/en/intro.png';
 import EnBtnStart from './../../assets/img/btn/en/start.png';
 import ZhBtnIntro from './../../assets/img/btn/intro.png';
+import BtnMusicOFF from './../../assets/img/btn/MusicOff.png';
+import BtnMusicON from './../../assets/img/btn/MusicOn.png';
 import ZhBtnStart from './../../assets/img/btn/start.png';
 import Footer from './../../components/footer';
 import ModalNews from './../../components/modal/ModalNews';
@@ -32,6 +34,7 @@ const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }
   const [alertCameraPermission, setAlertCameraPermission] = React.useState(false);
 
   const [queryUrl, setQueryUrl] = React.useState(null);
+  const [musicToggle, setMusicToggle] = React.useState(true);
 
   useEffect(() => {
     // 取得語言
@@ -182,6 +185,17 @@ const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }
     }
   }, []);
 
+  const toggleMusic = () => {
+    const bgm = document.getElementById("bgMusic");
+    if (bgm.paused) {
+      setMusicToggle(true);
+      bgm.play();
+    } else {
+      setMusicToggle(false);
+      bgm.pause();
+    }
+  }
+
   return (
     <div className="scene-intro">
       {/* 觸控範圍 */}
@@ -198,6 +212,15 @@ const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }
         <div className="header-right">
           <button onClick={openNewsModal}>
             <img src={BtnNotify} alt="Notify" />
+          </button>
+
+          <button onClick={() => toggleMusic()}>
+            {
+              musicToggle ?
+                <img src={BtnMusicON} alt="Music ON" />
+                :
+                <img src={BtnMusicOFF} alt="Music OFF" />
+            }
           </button>
 
           <button onClick={openModal}>
