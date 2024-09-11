@@ -189,9 +189,11 @@ const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }
     const bgm = document.getElementById("bgMusic");
     if (bgm.paused) {
       setMusicToggle(true);
+      bgm.setAttribute('data-playing', 'true');
       bgm.play();
     } else {
       setMusicToggle(false);
+      bgm.setAttribute('data-playing', 'false');
       bgm.pause();
     }
   }

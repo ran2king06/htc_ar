@@ -120,8 +120,10 @@ const Scene_Start = () => {
 
     // Play bg music
     const bgMusic = document.getElementById('bgMusic');
-    if (bgMusic)
+    if (bgMusic) {
+      bgMusic.setAttribute('data-playing', 'true');
       bgMusic.play();
+    }
   }
 
   return (

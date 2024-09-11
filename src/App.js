@@ -52,6 +52,8 @@ function App() {
   const [enterARBegin, setEnterARBegin] = useState(false);
   const [showRepo, setShowRepo] = useState(false);
 
+  const [isHidden, setIsHidden] = useState(false);
+
   const [captureLoading, setCaptureLoading] = useState(false)
 
   // 取得localStorage的語言設定
@@ -97,6 +99,27 @@ function App() {
         missionE_2: false
       }));
     }
+  }, []);
+
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      const hidden = document.hidden;
+      const audioPath = document.getElementById('bgMusic');
+
+      if (hidden && !audioPath.paused) {
+        audioPath.pause();
+      } else if (!hidden && audioPath.currentTime > 0) {
+
+        // if audioPath data-playing is true, play music
+        if (audioPath.getAttribute('data-playing') === 'true') {
+          audioPath.play();
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
   }, []);
 
   useEffect(() => {
@@ -926,7 +949,7 @@ function App() {
       <ImagePreloader srcArray={imageSources} loadStatus={status => setLoading(status.every(s => s))} />
 
       {/* BGMusic */}
-      <audio id="bgMusic" loop>
+      <audio id="bgMusic" loop data-playing="false">
         <source src={bgMusic} type="audio/mpeg" />
       </audio>
     </div >

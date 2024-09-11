@@ -95,9 +95,11 @@ const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, bac
     const bgm = document.getElementById("bgMusic");
     if (bgm.paused) {
       setMusicToggle(true);
+      bgm.setAttribute('data-playing', 'true');
       bgm.play();
     } else {
       setMusicToggle(false);
+      bgm.setAttribute('data-playing', 'false');
       bgm.pause();
     }
   }
