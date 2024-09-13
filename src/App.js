@@ -446,6 +446,7 @@ function App() {
 
   // 回到開始畫面 / 重置
   const backToStart = useCallback(() => {
+    setEnterARBegin(false);
     setFirstTimeScan(true);
     setDetectingAR(false);
     setSearchingBear(false);
