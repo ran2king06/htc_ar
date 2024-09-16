@@ -51,10 +51,12 @@ function App() {
   const [captureDone, setCaptureDone] = useState(false);
   const [enterARBegin, setEnterARBegin] = useState(false);
   const [showRepo, setShowRepo] = useState(false);
+  const [startGame, setStartGame] = useState(false);
 
-  const [isHidden, setIsHidden] = useState(false);
+  // const [isHidden, setIsHidden] = useState(false);
 
   const [captureLoading, setCaptureLoading] = useState(false)
+  
 
   // 取得localStorage的語言設定
   const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
@@ -263,6 +265,7 @@ function App() {
             document.getElementById("unityWEBGL").contentWindow.playCurrentTrackedImage();
             setDetectingAR(false);
             setShowDialog(true);
+            setStartGame(true);
 
             // 播放熊動作
             // setTimeout(() => {
@@ -446,7 +449,7 @@ function App() {
 
   // 回到開始畫面 / 重置
   const backToStart = useCallback(() => {
-    setEnterARBegin(false);
+    // setEnterARBegin(false);
     setFirstTimeScan(true);
     setDetectingAR(false);
     setSearchingBear(false);
@@ -459,9 +462,11 @@ function App() {
     setShowRepo(false);
     setCaptureLoading(false);
 
+    setStartGame(false);
     setNextDialog(0);
-
-    // document.getElementById("unityWEBGL").contentWindow.backToStart();
+    
+    // 測試換放在這裏
+    document.getElementById("unityWEBGL").contentWindow.enterStartScene();
   }, []);
 
   // 任務完成
@@ -556,7 +561,7 @@ function App() {
 
         {/* 點擊熊 */}
         {
-          (showDialog && !showCapture && !showCaptureResult && !captureDone) &&
+          (startGame && showDialog && !showCapture && !showCaptureResult && !captureDone) &&
           <div className="modal-click-bear">
             <p>
               {
