@@ -56,7 +56,7 @@ function App() {
   // const [isHidden, setIsHidden] = useState(false);
 
   const [captureLoading, setCaptureLoading] = useState(false)
-  
+
 
   // 取得localStorage的語言設定
   const currentLanguage = localStorage.getItem('i18nextLng_htc_ar');
@@ -205,7 +205,11 @@ function App() {
         } else {
           // 進入AR場景
           document.getElementById("unityWEBGL").contentWindow.enterARScene();
-          setSearchingBear(true);
+
+          setTimeout(() => {
+            // 播放熊
+            setSearchingBear(true);
+          }, 2000);
         }
 
         setUnityLoading(false);
@@ -464,7 +468,7 @@ function App() {
 
     setStartGame(false);
     setNextDialog(0);
-    
+
     // 測試換放在這裏
     document.getElementById("unityWEBGL").contentWindow.enterStartScene();
   }, []);
@@ -550,7 +554,7 @@ function App() {
               />
               <Route path="/tour" element={<SceneTour />} />
               <Route path="/play"
-                element={<ScenePlay ref={scenePlayRef} setEnterARBegin={setEnterARBegin} showRepo={showRepo} setSearchingBear={setSearchingBear} backToStart={backToStart} openIntroModal={setIsOpen} />}
+                element={<ScenePlay ref={scenePlayRef} detectingAR={detectingAR} showDialog={showDialog} searchingBear={searchingBear} setEnterARBegin={setEnterARBegin} showRepo={showRepo} setSearchingBear={setSearchingBear} backToStart={backToStart} openIntroModal={setIsOpen} />}
               />
               <Route path="/collection" element={<SceneCollection arScene={enterSceneFromCollection} />} />
               <Route path="/reward" element={<SceneReward />} />

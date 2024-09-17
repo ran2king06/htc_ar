@@ -12,9 +12,9 @@ import BtnChangeFinish from './../../assets/img/btn/btn-exchange-finish.png';
 import EnBtnChangeDisable from './../../assets/img/btn/en/btn-exchange-dis.png';
 import EnBtnChangeFinish from './../../assets/img/btn/en/btn-exchange-finish.png';
 import IconPrize1 from './../../assets/img/icon/icon-prize.png';
+import BannerImg from './../../assets/img/redeem.png';
 import Footer from './../../components/footer';
 import ModalConfirmExchange from './../../components/modal/ModalConfirmExchange';
-import BannerImg from './img/banner.png';
 
 const SceneReward = () => {
   const { t, i18n } = useTranslation();
@@ -127,6 +127,9 @@ const SceneReward = () => {
 
           <p>
             {t('scene-reward.text3')}
+            <span>
+              {t('scene-reward.textTips')}
+            </span>
           </p>
         </div>
 

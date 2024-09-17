@@ -13,7 +13,7 @@ import BtnMusicON from './../../assets/img/btn/MusicOn.png';
 let modeStart = '';
 let modeCollect = '';
 
-const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, backToStart, openIntroModal }, ref) => {
+const ScenePlay = forwardRef(({ detectingAR, firstTimeScan, showDialog, showRepo, setEnterARBegin, setSearchingBear, backToStart, openIntroModal }, ref) => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation();
   // const [showReposition, setShowReposition] = useState(false);
@@ -107,9 +107,17 @@ const ScenePlay = forwardRef(({ showRepo, setEnterARBegin, setSearchingBear, bac
   return (
     <div className="scene-intro">
       <header>
-        <button onClick={() => enterStart()}>
+        {
+          // If tracking ar, hide back button
+          (detectingAR && !showDialog) ?
+            <div></div> :
+            <button onClick={() => enterStart()}>
+              <img src={BtnBack} alt="Back" />
+            </button>
+        }
+        {/* <button onClick={() => enterStart()}>
           <img src={BtnBack} alt="Back" />
-        </button>
+        </button> */}
         <div className="header-right">
           {
             showRepo &&

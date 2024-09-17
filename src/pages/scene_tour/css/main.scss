@@ -245,6 +245,7 @@
         justify-content: space-between;
         align-items: center;
         margin-bottom: 15px;
+        gap: 15px;
 
         img {
           width: 10px;
@@ -263,6 +264,8 @@
           align-items: center;
           gap: 5px;
           color: #223883;
+          word-break: keep-all;
+          justify-content: end;
         }
       }
 
