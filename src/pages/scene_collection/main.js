@@ -356,7 +356,7 @@ const SceneCollection = ({ arScene }) => {
                     <img src={btnChallenge} alt="Challenge" />
                   </button>
                   :
-                  <button onClick={() => goToQA(1)}>
+                  <button>
                     <img src={IconLock} alt="Challenge" />
                   </button>
             }
@@ -432,7 +432,7 @@ const SceneCollection = ({ arScene }) => {
                     <img src={btnChallenge} alt="Challenge" />
                   </button>
                   :
-                  <button onClick={() => goToQA(2)}>
+                  <button>
                     <img src={IconLock} alt="Challenge" />
                   </button>
             }
@@ -508,7 +508,7 @@ const SceneCollection = ({ arScene }) => {
                     <img src={btnChallenge} alt="Challenge" />
                   </button>
                   :
-                  <button onClick={() => goToQA(3)}>
+                  <button>
                     <img src={IconLock} alt="Challenge" />
                   </button>
             }
@@ -584,7 +584,7 @@ const SceneCollection = ({ arScene }) => {
                     <img src={btnChallenge} alt="Challenge" />
                   </button>
                   :
-                  <button onClick={() => goToQA(4)}>
+                  <button>
                     <img src={IconLock} alt="Challenge" />
                   </button>
             }
@@ -660,7 +660,7 @@ const SceneCollection = ({ arScene }) => {
                     <img src={btnChallenge} alt="Challenge" />
                   </button>
                   :
-                  <button onClick={() => goToQA(5)}>
+                  <button>
                     <img src={IconLock} alt="Challenge" />
                   </button>
 
