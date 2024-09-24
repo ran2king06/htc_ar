@@ -325,7 +325,7 @@ const SceneCollection = ({ arScene }) => {
               missionCompleteA1 ?
                 <img src={btnComplete} alt="Complete" className="box-complete" />
                 :
-                <button onClick={() => goToARScene(1)} >
+                <button>
                   <img src={IconLock} alt="Challenge" />
                 </button>
             }
@@ -401,7 +401,7 @@ const SceneCollection = ({ arScene }) => {
               missionCompleteB1 ?
                 <img src={btnComplete} alt="Complete" className="box-complete" />
                 :
-                <button onClick={() => goToARScene(2)}>
+                <button>
                   <img src={IconLock} alt="Challenge" />
                 </button>
             }
@@ -477,7 +477,7 @@ const SceneCollection = ({ arScene }) => {
               missionCompleteC1 ?
                 <img src={btnComplete} alt="Complete" className="box-complete" />
                 :
-                <button onClick={() => goToARScene(3)}>
+                <button>
                   <img src={IconLock} alt="Challenge" />
                 </button>
             }
@@ -553,7 +553,7 @@ const SceneCollection = ({ arScene }) => {
               missionCompleteD1 ?
                 <img src={btnComplete} alt="Complete" className="box-complete" />
                 :
-                <button onClick={() => goToARScene(4)}>
+                <button>
                   <img src={IconLock} alt="Challenge" />
                 </button>
             }
@@ -629,7 +629,7 @@ const SceneCollection = ({ arScene }) => {
               missionCompleteE1 ?
                 <img src={btnComplete} alt="Complete" className="box-complete" />
                 :
-                <button onClick={() => goToARScene(5)}>
+                <button>
                   <img src={IconLock} alt="Challenge" />
                 </button>
             }
