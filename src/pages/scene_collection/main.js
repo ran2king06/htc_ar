@@ -17,6 +17,7 @@ import EnTitle4 from './../../assets/img/collection/4.png';
 import EnTitle5 from './../../assets/img/collection/5.png';
 import EnBtnExchange from './../../assets/img/collection/btn-redeem.png';
 import IconComplete from './../../assets/img/icon/icon-complete.png';
+import IconLock from './../../assets/img/icon/icon-lock.svg';
 import IconNew from './../../assets/img/icon/icon-new.png';
 import IconPrizeSilver from './../../assets/img/icon/icon-prize-silver.png';
 import IconPrize from './../../assets/img/icon/icon-prize.png';
@@ -325,7 +326,7 @@ const SceneCollection = ({ arScene }) => {
                 <img src={btnComplete} alt="Complete" className="box-complete" />
                 :
                 <button onClick={() => goToARScene(1)} >
-                  <img src={btnChallenge} alt="Challenge" />
+                  <img src={IconLock} alt="Challenge" />
                 </button>
             }
           </div>
@@ -348,12 +349,16 @@ const SceneCollection = ({ arScene }) => {
               {t('scene-collection.mission2')}
             </span>
             {
-              missionCompleteA2 ?
+              missionCompleteA1 && missionCompleteA2 ?
                 <img src={btnComplete} alt="Complete" className="box-complete" onClick={() => goToQA(1)} />
-                :
-                <button onClick={() => goToQA(1)}>
-                  <img src={btnChallenge} alt="Challenge" />
-                </button>
+                : missionCompleteA1 ?
+                  <button onClick={() => goToQA(1)}>
+                    <img src={btnChallenge} alt="Challenge" />
+                  </button>
+                  :
+                  <button onClick={() => goToQA(1)}>
+                    <img src={IconLock} alt="Challenge" />
+                  </button>
             }
           </div>
         </section>
@@ -397,7 +402,7 @@ const SceneCollection = ({ arScene }) => {
                 <img src={btnComplete} alt="Complete" className="box-complete" />
                 :
                 <button onClick={() => goToARScene(2)}>
-                  <img src={btnChallenge} alt="Challenge" />
+                  <img src={IconLock} alt="Challenge" />
                 </button>
             }
           </div>
@@ -420,12 +425,16 @@ const SceneCollection = ({ arScene }) => {
               {t('scene-collection.mission2')}
             </span>
             {
-              missionCompleteB2 ?
+              missionCompleteB1 && missionCompleteB2 ?
                 <img src={btnComplete} alt="Complete" className="box-complete" onClick={() => goToQA(2)} />
-                :
-                <button onClick={() => goToQA(2)}>
-                  <img src={btnChallenge} alt="Challenge" />
-                </button>
+                : missionCompleteB1 ?
+                  <button onClick={() => goToQA(2)}>
+                    <img src={btnChallenge} alt="Challenge" />
+                  </button>
+                  :
+                  <button onClick={() => goToQA(2)}>
+                    <img src={IconLock} alt="Challenge" />
+                  </button>
             }
           </div>
         </section>
@@ -469,7 +478,7 @@ const SceneCollection = ({ arScene }) => {
                 <img src={btnComplete} alt="Complete" className="box-complete" />
                 :
                 <button onClick={() => goToARScene(3)}>
-                  <img src={btnChallenge} alt="Challenge" />
+                  <img src={IconLock} alt="Challenge" />
                 </button>
             }
           </div>
@@ -492,12 +501,16 @@ const SceneCollection = ({ arScene }) => {
               {t('scene-collection.mission2')}
             </span>
             {
-              missionCompleteC2 ?
+              missionCompleteC1 && missionCompleteC2 ?
                 <img src={btnComplete} alt="Complete" className="box-complete" onClick={() => goToQA(3)} />
-                :
-                <button onClick={() => goToQA(3)}>
-                  <img src={btnChallenge} alt="Challenge" />
-                </button>
+                : missionCompleteC1 ?
+                  <button onClick={() => goToQA(3)}>
+                    <img src={btnChallenge} alt="Challenge" />
+                  </button>
+                  :
+                  <button onClick={() => goToQA(3)}>
+                    <img src={IconLock} alt="Challenge" />
+                  </button>
             }
           </div>
         </section>
@@ -541,7 +554,7 @@ const SceneCollection = ({ arScene }) => {
                 <img src={btnComplete} alt="Complete" className="box-complete" />
                 :
                 <button onClick={() => goToARScene(4)}>
-                  <img src={btnChallenge} alt="Challenge" />
+                  <img src={IconLock} alt="Challenge" />
                 </button>
             }
           </div>
@@ -564,12 +577,16 @@ const SceneCollection = ({ arScene }) => {
               {t('scene-collection.mission2')}
             </span>
             {
-              missionCompleteD2 ?
+              missionCompleteD1 && missionCompleteD2 ?
                 <img src={btnComplete} alt="Complete" className="box-complete" onClick={() => goToQA(4)} />
-                :
-                <button onClick={() => goToQA(4)}>
-                  <img src={btnChallenge} alt="Challenge" />
-                </button>
+                : missionCompleteD1 ?
+                  <button onClick={() => goToQA(4)}>
+                    <img src={btnChallenge} alt="Challenge" />
+                  </button>
+                  :
+                  <button onClick={() => goToQA(4)}>
+                    <img src={IconLock} alt="Challenge" />
+                  </button>
             }
           </div>
         </section>
@@ -613,7 +630,7 @@ const SceneCollection = ({ arScene }) => {
                 <img src={btnComplete} alt="Complete" className="box-complete" />
                 :
                 <button onClick={() => goToARScene(5)}>
-                  <img src={btnChallenge} alt="Challenge" />
+                  <img src={IconLock} alt="Challenge" />
                 </button>
             }
           </div>
@@ -636,12 +653,17 @@ const SceneCollection = ({ arScene }) => {
               {t('scene-collection.mission2')}
             </span>
             {
-              missionCompleteE2 ?
+              missionCompleteE1 && missionCompleteE2 ?
                 <img src={btnComplete} alt="Complete" className="box-complete" onClick={() => goToQA(5)} />
-                :
-                <button onClick={() => goToQA(5)}>
-                  <img src={btnChallenge} alt="Challenge" />
-                </button>
+                : missionCompleteE1 ?
+                  <button onClick={() => goToQA(5)}>
+                    <img src={btnChallenge} alt="Challenge" />
+                  </button>
+                  :
+                  <button onClick={() => goToQA(5)}>
+                    <img src={IconLock} alt="Challenge" />
+                  </button>
+
             }
           </div>
         </section>
