@@ -232,7 +232,6 @@ function App() {
         // 港史館 KaoHarborMuseum = 4 = ar1
         // 水花園 KaoPortPark = 5 = ar0
         // 根據模式設定
-        console.log(gameMode);
 
         switch (parseInt(gameMode)) {
           case 1:
@@ -470,7 +469,7 @@ function App() {
     setNextDialog(0);
 
     // 測試換放在這裏
-    document.getElementById("unityWEBGL").contentWindow.enterStartScene();
+    // document.getElementById("unityWEBGL").contentWindow.enterStartScene();
   }, []);
 
   // 任務完成
@@ -565,7 +564,7 @@ function App() {
 
         {/* 點擊熊 */}
         {
-          (startGame && showDialog && !showCapture && !showCaptureResult && !captureDone) &&
+          (startGame && showDialog && !showCapture && !showCaptureResult && !captureDone && !enterARBegin) &&
           <div className="modal-click-bear">
             <p>
               {
