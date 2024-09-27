@@ -43,12 +43,10 @@
 	  
 	  mindARStr += imageTargetsStr;
 
-	  function startARCamera() {
-			window.startARCamera = () => { };
-			console.log('add Camera');
-			container.insertAdjacentHTML('beforebegin', mindARStr);
-		}
-	  window.startARCamera = startARCamera;
+	  window.startARCamera = () => { };
+	  console.log('add Camera');
+	  container.insertAdjacentHTML('beforebegin', mindARStr);
+	  window.startARCamera = ()=>{};
 	  
 	  /*finish mindar code*/
       

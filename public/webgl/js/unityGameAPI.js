@@ -9,6 +9,10 @@ document.addEventListener("unityWebGL_onReady", function () {
     isUnityReady = true;
 });
 
+document.addEventListener("unityWebGL_onTransitionPlayCompleted", function (e) {
+    console.log(`tansition played ${e.detail}`);
+});
+
 async function waitUntilUnityReady() {
     return new Promise(r => {
         const checkInterval = setInterval(() => {
@@ -72,6 +76,28 @@ function onImageTracked() {
 onImageTracked();
 
 /**
+ * 設定路段種類 5=大港橋 6=棧貳庫
+ * @param {number} index 
+ */
+function setGameMode(index) {
+    window.unityInstance.SendMessage("GameManager", "SetGameMode", `${index}`);
+}
+
+/**
+ * 設定路段為 大港橋
+ */
+function setGameMode_GreatHarborBridge() {
+    setGameMode(5);
+}
+
+/**
+ * 設定路段為 棧貳庫
+ */
+function setGameMode_Kw2() {
+    setGameMode(6);
+}
+
+/**
  * 當圖片偵測丟失
  */
 function onImageLost() {
@@ -94,31 +120,74 @@ function onImagePlayed() {
 onImagePlayed();
 
 /**
- * AR場景-撥放當前偵測到的圖片
+ * 秀轉場效果
+ * @param {number} index 
+ */
+function showTransition(index) {
+    index = index - 1;
+    if (index < 0) return;
+    window.unityInstance.SendMessage("TransitionManager", "PlayIndex", `${index}`);
+}
+
+/**
+ * AR場景-叫出開頭介紹教學的角色
+ */
+function playIntro() {
+    window.unityInstance.SendMessage("ARCarProcessManager", "PlayIndex", "0");
+    setTimeout(() => triggerRandomCurrentTargetEffect(), 100);
+}
+
+/**
+ * AR場景-隱藏當前角色
+ */
+function hideCurrentCharacter() {
+    window.unityInstance.SendMessage("ARCarProcessManager", "StopCurrent");
+}
+
+/**
+ * AR場景-撥放當前偵測到的圖片，會直接出現第1個站點的角色
  */
 function playCurrentTrackedImage() {
     window.unityInstance.SendMessage("ARManager", "PlayCurrentTrackedImage");
+    setTimeout(() => triggerRandomCurrentTargetEffect(), 100);
+}
+
+/**
+ * AR場景-切換到下一個角色
+ */
+function switchToNextCharacter() {
+    window.unityInstance.SendMessage("ARCarProcessManager", "PlayNextIndex");
+    setTimeout(() => triggerRandomCurrentTargetEffect(), 100);
+}
+
+/**
+ * AR場景-切換到特定的角色
+ * @param {number} index 角色index(跟站點是對應的 從0開始數)
+ */
+function switchToSpecificCharacter(index) {
+    window.unityInstance.SendMessage("ARCarProcessManager", "PlayIndex", `${index + 1}`);
+    setTimeout(() => triggerRandomCurrentTargetEffect(), 100);
 }
 
 /**
  * AR場景-照順序觸發當前觸發到的圖片的效果(照順序切換角色表演動作)
  */
 function triggerNextCurrentTargetEffect() {
-    window.unityInstance.SendMessage("ARManager", "TriggerNextCurrentTargetEffect", "effect");
+    window.unityInstance.SendMessage("ARCarProcessManager", "TriggerNextEffect", "effect");
 }
 
 /**
  * AR場景-隨機觸發當前觸發到的圖片的效果(隨機切換角色表演動作)
  */
 function triggerRandomCurrentTargetEffect() {
-    window.unityInstance.SendMessage("ARManager", "TriggerRandomCurrentTargetEffect", "effect");
+    window.unityInstance.SendMessage("ARCarProcessManager", "TriggerRandomEffect", "effect");
 }
 
 /**
  * AR場景-隨機觸發當前觸發到的圖片的效果(隨機切換角色頒獎動作)
  */
 function triggerRandomCurrentTargetReward() {
-    window.unityInstance.SendMessage("ARManager", "TriggerRandomCurrentTargetEffect", "reward");
+    window.unityInstance.SendMessage("ARCarProcessManager", "TriggerRandomEffect", "reward");
 }
 
 /**
@@ -136,26 +205,11 @@ function triggerRandomStartSceneEffect() {
 }
 
 /**
- * AR場景-將當前觸發的圖片效果，放置到相機前方(只有在 圖片偵測丟失 的時候才有用)
- */
-function setCurrentTargetToCamera() {
-    window.unityInstance.SendMessage("ARManager", "SetTrackerTransformToCamera");
-}
-
-/**
  * 設定語言 zh-tw/en
  * @param {string} lang 
  */
 function setLocalization(lang) {
     window.unityInstance.SendMessage("Localization", "LoadLocalization", lang);
-}
-
-/**
- * 設定遊戲模式(第幾個地區)
- * @param {number} mode 
- */
-function setGameMode(mode) {
-    window.unityInstance.SendMessage("GameManager", "SetGameMode", `${mode}`);
 }
 
 // 只是測試用
