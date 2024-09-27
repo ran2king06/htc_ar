@@ -29,6 +29,8 @@ import SceneReward from './pages/scene_reward/main';
 import SceneStart from './pages/scene_start/main';
 import SceneTour from './pages/scene_tour/main';
 
+let timerPlay = null;
+
 function App() {
   const sceneIntroRef = useRef();
   const scenePlayRef = useRef();
@@ -232,7 +234,6 @@ function App() {
         // 港史館 KaoHarborMuseum = 4 = ar1
         // 水花園 KaoPortPark = 5 = ar0
         // 根據模式設定
-        console.log(gameMode);
 
         switch (parseInt(gameMode)) {
           case 1:
@@ -264,7 +265,7 @@ function App() {
           // 重新定位
           setShowRepo(false);
 
-          setTimeout(() => {
+          timerPlay = setTimeout(() => {
             // 播放熊
             document.getElementById("unityWEBGL").contentWindow.playCurrentTrackedImage();
             setDetectingAR(false);
@@ -291,6 +292,10 @@ function App() {
           // setShowCapture(false);
         });
       });
+    }
+
+    return () => {
+      clearTimeout(timerPlay);
     }
 
   }, [enterARBegin]);
@@ -470,7 +475,7 @@ function App() {
     setNextDialog(0);
 
     // 測試換放在這裏
-    document.getElementById("unityWEBGL").contentWindow.enterStartScene();
+    // document.getElementById("unityWEBGL").contentWindow.enterStartScene();
   }, []);
 
   // 任務完成
@@ -525,7 +530,6 @@ function App() {
   //   console.log(randomMode);
   //   document.getElementById("unityWEBGL").contentWindow.setGameMode(randomMode);
   // }
-
 
   return (
     <div className="App">
