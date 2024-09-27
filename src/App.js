@@ -29,6 +29,8 @@ import SceneReward from './pages/scene_reward/main';
 import SceneStart from './pages/scene_start/main';
 import SceneTour from './pages/scene_tour/main';
 
+let timerPlay = null;
+
 function App() {
   const sceneIntroRef = useRef();
   const scenePlayRef = useRef();
@@ -263,7 +265,7 @@ function App() {
           // 重新定位
           setShowRepo(false);
 
-          setTimeout(() => {
+          timerPlay = setTimeout(() => {
             // 播放熊
             document.getElementById("unityWEBGL").contentWindow.playCurrentTrackedImage();
             setDetectingAR(false);
@@ -290,6 +292,10 @@ function App() {
           // setShowCapture(false);
         });
       });
+    }
+
+    return () => {
+      clearTimeout(timerPlay);
     }
 
   }, [enterARBegin]);
@@ -525,7 +531,6 @@ function App() {
   //   document.getElementById("unityWEBGL").contentWindow.setGameMode(randomMode);
   // }
 
-
   return (
     <div className="App">
       <div className='app-container'>
@@ -564,7 +569,7 @@ function App() {
 
         {/* 點擊熊 */}
         {
-          (startGame && showDialog && !showCapture && !showCaptureResult && !captureDone && !enterARBegin) &&
+          (startGame && showDialog && !showCapture && !showCaptureResult && !captureDone) &&
           <div className="modal-click-bear">
             <p>
               {
