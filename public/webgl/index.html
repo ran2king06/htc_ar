@@ -43,10 +43,17 @@
 	  
 	  mindARStr += imageTargetsStr;
 
-	  console.log('add Camera');
-	  window.startARCamera = ()=>{
+	  if (/iPhone|iPad|iPod/i.test(navigator.userAgent)){
+			console.log('ios set startARCamera');
+			window.startARCamera = ()=>{
+			  container.insertAdjacentHTML('beforebegin', mindARStr);
+			  console.log('add Camera');
+			};
+	  }else{
 		container.insertAdjacentHTML('beforebegin', mindARStr);
-	  };
+		window.startARCamera = ()=>{};
+		console.log('add Camera');
+		}
 
 	  /*finish mindar code*/
       

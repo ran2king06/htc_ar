@@ -29,7 +29,7 @@ const ModalNews = (props) => {
 
   // 获取新闻数据
   useEffect(() => {
-    fetch('/news.json')
+    fetch('/news.json?nocache='+ (new Date()).getTime())
       .then((response) => response.json())
       .then((data) => {
         if (modeQuery) {
