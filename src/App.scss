@@ -23,6 +23,7 @@
   justify-content: center;
   align-items: center;
   position: fixed;
+  flex-direction: column;
   top: 0;
   margin: 0;
   z-index: 99999;
@@ -30,7 +31,7 @@
   transform: translateX(-50%);
 
   img {
-    width: 140px;
+    height: 140px;
   }
 }
 
@@ -548,5 +549,29 @@ button.btn-thanks {
   svg path,
   svg rect {
     fill: #FF6700;
+  }
+}
+
+.loading-bar {
+  height: 30px;
+  width: 100%;
+  max-width: 280px;
+  position: relative;
+  margin: 20px auto;
+  background-color: #000;
+  border-radius: 10px;
+  padding: 2.5px;
+
+  span {
+    height: 75%;
+    width: 100%;
+    background-color: #FFDB5B;
+    position: absolute;
+    max-width: 270px;
+    left: 5px;
+    top: 50%;
+    transform: translate(0%, -50%);
+    animation: loading 2s infinite;
+    border-radius: 7.5px;
   }
 }
