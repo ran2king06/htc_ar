@@ -114,7 +114,7 @@ const Scene_Intro = forwardRef(({ setEnterARBegin, backToStart, openIntroModal }
   const joinGame = () => {
     if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
       navigator.mediaDevices
-        .getUserMedia({ video: true, audio: false })
+        .getUserMedia({ video: { facingMode: "environment" }, audio: false })
         .then(() => {
           document.getElementById("unityWEBGL").contentWindow.enterARScene();
           navigate('/play' + modeStart);
