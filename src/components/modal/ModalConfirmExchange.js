@@ -21,7 +21,7 @@ const ModalConfirmExchange = (props) => {
     const userData = localStorage.getItem('htcAr_localStorgeData');
     if (userData) {
       const user = JSON.parse(userData);
-      user.rewardPoints = user.rewardPoints - 10;
+      user.rewardPoints = user.rewardPoints - 8;
       user.stillHaveReward = false;
       localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
 
