@@ -92,7 +92,7 @@ const SceneReward = () => {
 
   useEffect(() => {
     // 檢查是否可兌換
-    if (rewardPoints >= 10) {
+    if (rewardPoints >= 8) {
       setEnableChange(true);
     } else {
       setEnableChange(false);
@@ -136,7 +136,7 @@ const SceneReward = () => {
         <div className="reward-change-box">
           <div className="reward-change-value">
             <img src={IconPrize1} alt="Prize" />
-            <span>10</span>
+            <span>8</span>
           </div>
 
           {/* 可兌換 */}

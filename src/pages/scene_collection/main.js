@@ -516,7 +516,7 @@ const SceneCollection = ({ arScene }) => {
         </section>
 
         {/* MODE 04 */}
-        <section className="scene-collection-section section-forth">
+        {/* <section className="scene-collection-section section-forth">
           <img src={Bear04} alt="Bear01" className="bear-img" />
           <div className={`box-title ${lang === 'en' ? 'en' : ''}`}>
             {
@@ -589,7 +589,7 @@ const SceneCollection = ({ arScene }) => {
                   </button>
             }
           </div>
-        </section>
+        </section> */}
 
         {/* MODE 05 */}
         <section className="scene-collection-section section-fifth">
