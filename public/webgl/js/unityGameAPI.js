@@ -158,6 +158,20 @@ function setGameMode(mode) {
     window.unityInstance.SendMessage("GameManager", "SetGameMode", `${mode}`);
 }
 
+/**
+ * 設定高雄熊大小(變大)
+ */
+function setCharacterSizeLarger(){
+    window.unityInstance.SendMessage("SizeScaler", "SetLarger");
+}
+
+/**
+ * 設定高雄熊大小(變小)
+ */
+function setCharacterSizeSmaller(){
+    window.unityInstance.SendMessage("SizeScaler", "SetSmaller");
+}
+
 // 只是測試用
 // function enterAR(e) {
 //     enterARScene();
