@@ -575,3 +575,22 @@ button.btn-thanks {
     border-radius: 7.5px;
   }
 }
+
+.zoom-btn {
+  position: fixed;
+  z-index: 4;
+  bottom: 7.5%;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  button {
+
+    img {
+      height: 50px;
+      width: 50px;
+    }
+  }
+}

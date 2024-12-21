@@ -315,6 +315,7 @@ function App() {
     // 熊拍照 takeScreenshot
     const textBase64 = await document.getElementById("unityWEBGL").contentWindow.takeScreenshot();
     const imgBlob = base64ToBlob(textBase64, 'image/jpg');
+
     setCapturePhoto(URL.createObjectURL(imgBlob));
 
     setTimeout(() => {
@@ -902,7 +903,9 @@ function App() {
                   <img src={LoadingSVG} alt="loading" />
                 </div>
                 :
-                <img src={capturePhoto} alt="Capture" />
+                <a href={capturePhoto} download="capture-image.jpg">
+                  <img src={capturePhoto} alt="Capture" />
+                </a>
             }
 
           </div>

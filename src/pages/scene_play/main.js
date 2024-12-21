@@ -8,6 +8,9 @@ import BthReposition from './../../assets/img/btn/btn-reposition.png';
 import BtnMusicOFF from './../../assets/img/btn/MusicOff.png';
 import BtnMusicON from './../../assets/img/btn/MusicOn.png';
 
+import BtnZoomIn from './img/Zoomin.png';
+import BtnZoomOut from './img/Zoomout.png';
+
 // import { useTranslation } from 'react-i18next';
 
 let modeStart = '';
@@ -145,6 +148,16 @@ const ScenePlay = forwardRef(({ detectingAR, firstTimeScan, showDialog, showRepo
           </button>
         </div>
       </header>
+
+      {/* 右下放大縮小 */}
+      <div className="zoom-btn">
+        <button onClick={() => document.getElementById("unityWEBGL").contentWindow.setCharacterSizeLarger()}>
+          <img src={BtnZoomIn} alt="Zoom In" />
+        </button>
+        <button onClick={() => document.getElementById("unityWEBGL").contentWindow.setCharacterSizeSmaller()}>
+          <img src={BtnZoomOut} alt="Zoom Out" />
+        </button>
+      </div>
     </div>
   );
 });
