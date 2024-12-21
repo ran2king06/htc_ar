@@ -559,7 +559,7 @@ function App() {
               />
               <Route path="/tour" element={<SceneTour />} />
               <Route path="/play"
-                element={<ScenePlay ref={scenePlayRef} detectingAR={detectingAR} showDialog={showDialog} searchingBear={searchingBear} setEnterARBegin={setEnterARBegin} showRepo={showRepo} setSearchingBear={setSearchingBear} backToStart={backToStart} openIntroModal={setIsOpen} />}
+                element={<ScenePlay ref={scenePlayRef} detectingAR={detectingAR} showCapture={showCapture} showDialog={showDialog} searchingBear={searchingBear} setEnterARBegin={setEnterARBegin} showRepo={showRepo} setSearchingBear={setSearchingBear} backToStart={backToStart} openIntroModal={setIsOpen} />}
               />
               <Route path="/collection" element={<SceneCollection arScene={enterSceneFromCollection} />} />
               <Route path="/reward" element={<SceneReward />} />

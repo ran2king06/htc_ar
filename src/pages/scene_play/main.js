@@ -16,7 +16,7 @@ import BtnZoomOut from './img/Zoomout.png';
 let modeStart = '';
 let modeCollect = '';
 
-const ScenePlay = forwardRef(({ detectingAR, firstTimeScan, showDialog, showRepo, setEnterARBegin, setSearchingBear, backToStart, openIntroModal }, ref) => {
+const ScenePlay = forwardRef(({ detectingAR, showCapture, showDialog, showRepo, setEnterARBegin, setSearchingBear, backToStart, openIntroModal }, ref) => {
   const navigate = useNavigate();
   const { i18n, t } = useTranslation();
   // const [showReposition, setShowReposition] = useState(false);
@@ -150,14 +150,19 @@ const ScenePlay = forwardRef(({ detectingAR, firstTimeScan, showDialog, showRepo
       </header>
 
       {/* 右下放大縮小 */}
-      <div className="zoom-btn">
-        <button onClick={() => document.getElementById("unityWEBGL").contentWindow.setCharacterSizeLarger()}>
-          <img src={BtnZoomIn} alt="Zoom In" />
-        </button>
-        <button onClick={() => document.getElementById("unityWEBGL").contentWindow.setCharacterSizeSmaller()}>
-          <img src={BtnZoomOut} alt="Zoom Out" />
-        </button>
-      </div>
+      {
+
+        // If tracking ar, hide back button
+        showCapture &&
+        <div className="zoom-btn">
+          <button onClick={() => document.getElementById("unityWEBGL").contentWindow.setCharacterSizeLarger()}>
+            <img src={BtnZoomIn} alt="Zoom In" />
+          </button>
+          <button onClick={() => document.getElementById("unityWEBGL").contentWindow.setCharacterSizeSmaller()}>
+            <img src={BtnZoomOut} alt="Zoom Out" />
+          </button>
+        </div>
+      }
     </div>
   );
 });
