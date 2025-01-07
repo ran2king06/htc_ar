@@ -69,6 +69,9 @@
     "location4": "港史館",
     "location5": "高港水花園",
 
+    "walk": "步行",
+    "minute": "分鐘",
+
     "tour1": {
       "title_about": "關於「高雄港」",
       "h3_1": "台灣最大的國際港口",
@@ -126,6 +129,7 @@
 
       "attraction_title": "「大港倉」在地商家",
 
+      "storeFine": "倉",
       "store": {
         "c1": "全部",
         "c2": "倉7",

@@ -70,6 +70,9 @@
     "location4": "Kaohsiung \n Harbor Museum",
     "location5": "Kao Port \n Park",
 
+    "walk": "",
+    "minute": "-min walk",
+
     "tour1": {
       "title_about": "About",
       "h3_1": "Taiwan's Largest International Port",
@@ -127,6 +130,7 @@
 
       "attraction_title": "Port Depot 410",
 
+      "storeFine": "KD",
       "store": {
         "c1": "ALL",
         "c2": "KD7",

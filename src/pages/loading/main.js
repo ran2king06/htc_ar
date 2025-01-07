@@ -29,7 +29,7 @@ const Loading = () => {
     <div className="loading-bg">
       <img src={loadingImg} alt="Loading" />
 
-      <div class="loading-bar">
+      <div className="loading-bar">
         <span style={{ width: `${loadingPercent}%` }}></span>
       </div>
     </div>
