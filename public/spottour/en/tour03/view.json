@@ -1,0 +1,151 @@
+[
+  {
+    "store": "7",
+    "eat": [
+      {
+        "img": "/spottour/asset/03/7/7-1.png",
+        "storeName": "YONSHIN FUDOPIA",
+        "desc": "A new seafood cocktail bistro for a laid-back vibe."
+      },
+      {
+        "img": "/spottour/asset/03/7/7-2.png",
+        "storeName": "WAVE STELLAR",
+        "desc": "Modern Taiwanese Seafood Bistro"
+      }
+    ]
+  },
+  {
+    "store": "8",
+    "eat": [
+      {
+        "img": "/spottour/asset/03/8/8-1.png",
+        "storeName": "THEFREEN BURGER",
+        "desc": "Come to THEFREEN BURGER, and don’t forget your shorts! :)"
+      },
+      {
+        "img": "/spottour/asset/03/8/8-2.png",
+        "storeName": "Bistro Club 1883",
+        "desc": "Your New Go-To Spot for Nightlife in the City"
+      }
+    ],
+    "shop": [
+      {
+        "img": "/spottour/asset/03/8/8-3.png",
+        "storeName": "PEANUTS",
+        "desc": "Bringing the cuteness of Snoopy to everyone."
+      },
+      {
+        "img": "/spottour/asset/03/8/8-4.png",
+        "storeName": "BAKER STREET",
+        "desc": "British Alpaca, Top-selling playful fashion in Taiwan."
+      },
+      {
+        "img": "/spottour/asset/03/8/8-5.png",
+        "storeName": "KISS KISS",
+        "desc": "Your go-to choice for meaningful jewelry."
+      }
+    ]
+  },
+  {
+    "store": "9",
+    "shop": [
+      {
+        "img": "/spottour/asset/03/9/9-1.png",
+        "storeName": "Momentum",
+        "desc": "NIKE/adidas/PUMA/<br>Reebok/Billabong/<br>NEW BALANCE"
+      },
+      {
+        "img": "/spottour/asset/03/9/9-2.png",
+        "storeName": "KANGOL",
+        "desc": "British Classic Street Culture Brand"
+      }
+    ]
+  },
+  {
+    "store": "10",
+    "eat": [
+      {
+        "img": "/spottour/asset/03/10/10-1.png",
+        "storeName": "CHOU's SHRIMP ROLLS",
+        "desc": "50-Year Old Recipe. Authentic traditional flavors from a beloved shop."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-2.png",
+        "storeName": "PIAN PIANO",
+        "desc": "Italian Techniques, Taiwanese Ingredients. The PIAN PIANO Way."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-3.png",
+        "storeName": "CHICK UP",
+        "desc": "The Best Korean Fried Chicken. Crispy, flavorful, and unforgettable."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-4.png",
+        "storeName": "Queenny",
+        "desc": "Happiness in a Bubble Tea. Satisfy your sweet cravings in one bite."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-5.png",
+        "storeName": "Arosa cafe'",
+        "desc": "SCA-Certified Coffee Master. Crafting premium coffee with expertise."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-6.png",
+        "storeName": "ENJOYING TEA",
+        "desc": "Simple, Authentic, and Flavorful Tea. Merging tea traditions with Taiwan’s finest leaves."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-7.png",
+        "storeName": "THE NORTH SEA GOURMET",
+        "desc": "Freshly Grilled Squid. A modern twist on classic ocean snacks."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-8.png",
+        "storeName": "Hong Kong Style Dessert",
+        "desc": "Crispy Outside, Soft Inside. Freshly grilled and irresistibly fragrant."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-9.png",
+        "storeName": "VIGOR KOBO",
+        "desc": "Taiwanese Pastry Gifts. Using only the freshest ingredients for memorable treat."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-10.png",
+        "storeName": "蔦町和菓子",
+        "desc": "Authentic Japanese sweets made by skilled artisans."
+      }
+    ],
+    "shop": [
+      {
+        "img": "/spottour/asset/03/10/10-11.png",
+        "storeName": "TAKAO GIFT SHOP",
+        "desc": "Trendy Selections & Gift Ideas. Unique items and stylish souvenirs."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-12.png",
+        "storeName": "TAKAO CAKE",
+        "desc": "Locally Sourced Ingredients. Crafted with care, celebrating local flavors."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-13.png",
+        "storeName": "C'est Si Bon",
+        "desc": "Natural Material Accessories. Eco-friendly designs by artisan brands."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-14.png",
+        "storeName": "CHEZ",
+        "desc": "Japanese-Style Comfort. Simple and warm everyday wear."
+      },
+      {
+        "img": "/spottour/asset/03/10/10-15.png",
+        "storeName": "ZOLA Select",
+        "desc": "Curated Fashion Items"
+      },
+      {
+        "img": "/spottour/asset/03/10/10-16.png",
+        "storeName": "Havaianas",
+        "desc": "Timeless Comfort Flip-Flops. Designed to last, made for everyone."
+      }
+    ]
+  }
+]

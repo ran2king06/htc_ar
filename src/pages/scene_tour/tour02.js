@@ -10,8 +10,8 @@ const Tour02 = () => {
   const [tourData, setTourData] = React.useState([]);
   const [viewData, setViewData] = React.useState([]);
 
-  const zhApiPath = '/tour/zh/tour02/';
-  const enApiPath = '/tour/en/tour02/';
+  const zhApiPath = '/spottour/zh/tour02/';
+  const enApiPath = '/spottour/en/tour02/';
 
   useEffect(() => {
     let apiPath = '';
@@ -27,7 +27,7 @@ const Tour02 = () => {
         setTourData(data);
       });
 
-    fetch(apiPath + 'view.json')
+    fetch(apiPath + 'view.json?nocache='+ (new Date()).getTime())
       .then((response) => response.json())
       .then((data) => {
         setViewData(data);

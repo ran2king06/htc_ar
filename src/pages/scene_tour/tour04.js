@@ -7,8 +7,8 @@ const Tour04 = () => {
   const { t, i18n } = useTranslation();
   const [tourData, setTourData] = React.useState([]);
 
-  const zhApiPath = '/tour/zh/tour04/';
-  const enApiPath = '/tour/en/tour04/';
+  const zhApiPath = '/spottour/zh/tour04/';
+  const enApiPath = '/spottour/en/tour04/';
 
   useEffect(() => {
     let apiPath = '';

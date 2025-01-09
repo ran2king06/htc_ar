@@ -1,0 +1,25 @@
+[
+  {
+    "img": "/spottour/asset/05/1.png",
+    "title": "A Secret Garden in Kaohsiung Harbor",
+    "content": "Tucked away behind Piers 3 to 5 of Kaohsiung Harbor, Kao Port Park is a hidden gem inspired by the concept of an ocean garden city. Covering 4,300 square meters, it boasts over 50,000 plants and incorporates existing air raid shelters and vegetation to create a miniature forest sanctuary within the harbor."
+  },
+  {
+    "img": "/spottour/asset/05/2.png",
+    "imgAnother": "/spottour/asset/05/3.png",
+    "imgLabel": "Sunlight Tree",
+    "imgLabelAnother": "Waterfall Forest",
+    "title": "Urban Forest and Natural Scenery",
+    "content": "Enter through the hollow of the Sunlight Tree at the entrance, and you'll feel like you've stepped into a tropical island forest. The park features a waterfall forest inspired by Kaohsiung's Chai Mountain, a misty Forget Worries pond and bridge, a tree archway, an exploration path, a heart-shaped stone weir, and a lucky clover windmill."
+  },
+  {
+    "img": "/spottour/asset/05/4.png",
+    "title": "Tropical South Pacific Pavilion",
+    "content": "At the wooden pavilion, you'll find a scene straight out of a South Pacific vacation, with sunshine, a sandy beach, and swaying palm trees. The fine golden sand is a hit with kids and families."
+  },
+  {
+    "img": "/spottour/asset/05/5.png",
+    "title": "Panoramic Views from the Observation Deck",
+    "content": "Standing on the observation deck atop the air raid shelter, you can take in the beautiful surroundings of the port. If you're lucky, you might see a cruise ship or a large vessel entering the harbor, set against the backdrop of the blue sea and sky, offering visitors a unique glimpse of Kaohsiung's port scenery."
+  }
+]
