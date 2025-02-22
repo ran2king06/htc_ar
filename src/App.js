@@ -29,6 +29,8 @@ import SceneReward from './pages/scene_reward/main';
 import SceneStart from './pages/scene_start/main';
 import SceneTour from './pages/scene_tour/main';
 
+import { setEncryptedData, getEncryptedData, removeEncryptedData } from './utils/storageUtil';
+
 let timerPlay = null;
 
 function App() {
@@ -74,11 +76,11 @@ function App() {
 
   // 建立locaStorage資料
   useEffect(() => {
-    // htcAr_localStorgeData 資料結構，會有 
+    // htcAr_localStorge 資料結構，會有 
     // rewardPoints, missionA_1, missionA_2, missionB_1, missionB_2, missionC_1, missionC_2, missionD_1, missionD_2, missionE_1, missionE_2
-    const userData = localStorage.getItem('htcAr_localStorgeData');
+    const userData = getEncryptedData('htcAr_localStorge');
     if (!userData) {
-      localStorage.setItem('htcAr_localStorgeData', JSON.stringify({
+      setEncryptedData('htcAr_localStorge', JSON.stringify({
         rewardPoints: 0,
         exchangeSuccess: false,
         getNewScoreA_1: false,
@@ -161,9 +163,9 @@ function App() {
     }
   }, [currentLanguage]);
 
-  // Clear htcAr_localStorgeData
+  // Clear htcAr_localStorge
   // function clearLocalStorageData() {
-  //   localStorage.removeItem('htcAr_localStorgeData')
+  //   localStorage.removeItem('htcAr_localStorge')
 
   //   // refresh page
   //   window.location.reload();
@@ -403,7 +405,7 @@ function App() {
     // 港史館 KaoHarborMuseum = 4
     // 水花園 KaoPortPark = 5
 
-    const data = JSON.parse(localStorage.getItem('htcAr_localStorgeData')) || [];
+    const data = JSON.parse(getEncryptedData('htcAr_localStorge')) || [];
 
     let points = 0;
     // 如果已經拿過分數，就不再給分
@@ -453,7 +455,7 @@ function App() {
     }
 
     // 更新 localStorage
-    localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
+    setEncryptedData('htcAr_localStorge', JSON.stringify(data));
   }
 
 

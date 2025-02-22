@@ -29,6 +29,7 @@ import Bear02 from './img/bear2.png';
 import Bear03 from './img/bear3.png';
 import Bear04 from './img/bear4.png';
 import Bear05 from './img/bear5.png';
+import { setEncryptedData, getEncryptedData, removeEncryptedData } from '../../utils/storageUtil';
 
 const SceneCollection = ({ arScene }) => {
   const { t, i18n } = useTranslation();
@@ -109,12 +110,13 @@ const SceneCollection = ({ arScene }) => {
     setModeStart('/intro?mode=' + mode + '&newsModal=false');
 
     // localStorage 取得獎章數量
-    // htcAr_localStorgeData 資料結構，會有 
+    // htcAr_localStorge 資料結構，會有 
     // rewardPoints, missionA_1, missionA_2, missionB_1, missionB_2, missionC_1, missionC_2, missionD_1, missionD_2, missionE_1, missionE_2
-    const userData = localStorage.getItem('htcAr_localStorgeData');
+    const userData = getEncryptedData('htcAr_localStorge');
 
     if (userData) {
       const data = JSON.parse(userData);
+
       setRewardPoints(data.rewardPoints);
       setGetNewScoreA1(data.getNewScoreA_1);
       setGetNewScoreA2(data.getNewScoreA_2);
@@ -139,7 +141,7 @@ const SceneCollection = ({ arScene }) => {
     } else {
       setRewardPoints(0);
 
-      localStorage.setItem('htcAr_localStorgeData', JSON.stringify({
+      setEncryptedData('htcAr_localStorge', JSON.stringify({
         rewardPoints: 0,
         exchangeSuccess: false,
         getNewScoreA_1: false,
@@ -179,7 +181,7 @@ const SceneCollection = ({ arScene }) => {
         data.getNewScoreD_2 = false;
         data.getNewScoreE_1 = false;
         data.getNewScoreE_2 = false;
-        localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
+        setEncryptedData('htcAr_localStorge', JSON.stringify(data));
       }
     }
   }, []);
@@ -200,36 +202,6 @@ const SceneCollection = ({ arScene }) => {
       }
     }
   }, [lang]);
-
-  // const testEarnPoints = (points) => {
-  //   // localStorage 取得獎章數量
-  //   const userData = localStorage.getItem('htcAr_localStorgeData');
-
-  //   if (!userData) {
-  //     return;
-  //   }
-  //   const data = JSON.parse(userData);
-
-  //   // 獲得獎章
-  //   data.rewardPoints += points;
-  //   setRewardPoints(data.rewardPoints);
-
-  //   // 更新 localStorage
-  //   localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
-  // }
-
-  // const clearPoints = () => {
-  //   // localStorage 取得獎章數量
-  //   const userData = localStorage.getItem('htcAr_localStorgeData');
-  //   const data = JSON.parse(userData);
-
-  //   // 清空獎章
-  //   data.rewardPoints = 0;
-  //   setRewardPoints(data.rewardPoints);
-
-  //   // 更新 localStorage
-  //   localStorage.setItem('htcAr_localStorgeData', JSON.stringify(data));
-  // }
 
   const goToARScene = (index) => {
     // 去 /intro 頁面, 並帶入 mode 參數, 然後打開 scene_intro 的 goToAr()

@@ -25,6 +25,7 @@ import ResultImg3 from './../../assets/img/result/3.png';
 import ResultImg4 from './../../assets/img/result/4.png';
 import ResultImg5 from './../../assets/img/result/5.png';
 import Footer from './../../components/footer';
+import { setEncryptedData, getEncryptedData, removeEncryptedData } from '../../utils/storageUtil';
 
 const SceneQA = () => {
   const { t, i18n } = useTranslation();
@@ -78,7 +79,7 @@ const SceneQA = () => {
     // console.log(quiz);
 
     // 取得 local storage , 是否已經作答過
-    const userData = localStorage.getItem('htcAr_localStorgeData');
+    const userData = getEncryptedData('htcAr_localStorge');
     if (userData) {
       const user = JSON.parse(userData);
 
@@ -136,7 +137,7 @@ const SceneQA = () => {
     }
 
     // 取得 local storage , 更新獎章, 更新獎勵點數
-    const userData = localStorage.getItem('htcAr_localStorgeData');
+    const userData = getEncryptedData('htcAr_localStorge');
     if (userData) {
       const user = JSON.parse(userData);
 
@@ -145,35 +146,35 @@ const SceneQA = () => {
         user.missionA_2 = true;
         user.rewardPoints = user.rewardPoints + 1;
         user.getNewScoreA_2 = true;
-        localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
+        setEncryptedData('htcAr_localStorge', JSON.stringify(user));
       }
 
       if (qaQuestion === 2 && answer === 2 && !userData.missionB_2) {
         user.missionB_2 = true;
         user.rewardPoints = user.rewardPoints + 1;
         user.getNewScoreB_2 = true;
-        localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
+        setEncryptedData('htcAr_localStorge', JSON.stringify(user));
       }
 
       if (qaQuestion === 3 && answer === 3 && !userData.missionC_2) {
         user.missionC_2 = true;
         user.rewardPoints = user.rewardPoints + 1;
         user.getNewScoreC_2 = true;
-        localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
+        setEncryptedData('htcAr_localStorge', JSON.stringify(user));
       }
 
       if (qaQuestion === 4 && answer === 2 && !userData.missionD_2) {
         user.missionD_2 = true;
         user.rewardPoints = user.rewardPoints + 1;
         user.getNewScoreD_2 = true;
-        localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
+        setEncryptedData('htcAr_localStorge', JSON.stringify(user));
       }
 
       if (qaQuestion === 5 && answer === 0 && !userData.missionE_2) {
         user.missionE_2 = true;
         user.rewardPoints = user.rewardPoints + 1;
         user.getNewScoreE_2 = true;
-        localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
+        setEncryptedData('htcAr_localStorge', JSON.stringify(user));
       }
     }
   }

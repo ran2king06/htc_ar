@@ -2,7 +2,7 @@ import './css/modal-exchange-confirm.scss';
 
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-
+import { setEncryptedData, getEncryptedData, removeEncryptedData } from '../../utils/storageUtil';
 import BtnCancel from './../../assets/img/btn/btn-cancel.png';
 import BtnUse from './../../assets/img/btn/btn-use.png';
 import EnBtnCancel from './../../assets/img/btn/en/btn-cancel.png';
@@ -17,13 +17,13 @@ const ModalConfirmExchange = (props) => {
   function exchange() {
     setExchangeSuccess(true);
 
-    // htcAr_localStorgeData 資料更新, rewardPoints 減少 10 點
-    const userData = localStorage.getItem('htcAr_localStorgeData');
+    // htcAr_localStorge 資料更新, rewardPoints 減少 10 點
+    const userData = getEncryptedData('htcAr_localStorge');
     if (userData) {
       const user = JSON.parse(userData);
       user.rewardPoints = user.rewardPoints - 8;
       user.stillHaveReward = false;
-      localStorage.setItem('htcAr_localStorgeData', JSON.stringify(user));
+      setEncryptedData('htcAr_localStorge', JSON.stringify(user));
 
       props.exchangeSuccess();
     }

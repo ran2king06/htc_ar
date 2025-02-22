@@ -16,6 +16,8 @@ import BannerImg from './../../assets/img/redeem.png';
 import Footer from './../../components/footer';
 import ModalConfirmExchange from './../../components/modal/ModalConfirmExchange';
 
+import { setEncryptedData, getEncryptedData, removeEncryptedData } from '../../utils/storageUtil';
+
 const SceneReward = () => {
   const { t, i18n } = useTranslation();
 
@@ -57,7 +59,7 @@ const SceneReward = () => {
     setModeStart('/collection?mode=' + modeQuery);
 
     // 取得獎勵點數
-    const userData = localStorage.getItem('htcAr_localStorgeData');
+    const userData = getEncryptedData('htcAr_localStorge');
 
     if (userData) {
       const user = JSON.parse(userData);
